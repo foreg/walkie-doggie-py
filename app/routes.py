@@ -12,3 +12,11 @@ def index():
 @app.route('/profile')
 def UserProfile():
     return controller_profile.UserProfile(db)
+
+@app.route('/login')
+def login():
+    return controller_index.Login()
+
+@app.route('/register')
+def register():
+    return controller_index.Register()
