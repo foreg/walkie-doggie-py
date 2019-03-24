@@ -18,10 +18,10 @@
                 {{ form.hidden_tag() }}
               <!-- Email -->
                 <div class="md-form">
-                {{ form.username() }}
+                {{ form.email() }}
                 
                 <input type="email" id="FormEmail" class="form-control">
-                {% for error in form.username.errors %}
+                {% for error in form.email.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
                 <label for="FormEmail">E-mail</label>

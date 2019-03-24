@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-profile
+<form class="text-center" style="color: #757575;" action="" method="post" novalidate>
+    {{ form.hidden_tag() }}
+    {{ form.surname() }}
+    {{ form.name() }}
+    {{ form.middlename() }}
+    {{ form.addres() }}
+    {{ form.phone() }}
+    {{ form.info() }}
+    {{ form.submit() }}
+</form>
 {% endblock %}

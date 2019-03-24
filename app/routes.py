@@ -11,7 +11,7 @@ from flask_login import login_required
 def index():
     return controller_index.Index()
 
-@app.route('/profile')
+@app.route('/profile', methods=['GET', 'POST'])
 def UserProfile():
     return controller_profile.UserProfile(db)
 

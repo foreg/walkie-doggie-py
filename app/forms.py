@@ -4,7 +4,7 @@ from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
 
 class LoginForm(FlaskForm):
-    username = StringField('Username', validators=[DataRequired()])
+    email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
@@ -21,3 +21,12 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+class UserProfileForm(FlaskForm):
+    surname= StringField('Surname')
+    name= StringField('Name')
+    middlename= StringField('Middlename')
+    addres=StringField('Addres')
+    phone=StringField('Phone')
+    info=StringField('Text')
+    submit = SubmitField('Save')
