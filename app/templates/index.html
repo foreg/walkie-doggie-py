@@ -1,0 +1,349 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section id="intro" class="view intro">
+    <div class="mask rgba-black-light flex-center">
+      <div class="container d-flex align-items-center justify-content-start h-100">
+        <div class="row d-flex justify-content-start text-left">
+          <div class="col-md-10">
+            <!-- Heading -->
+            <h2 class="display-4 white-text pt-5 mb-2 book">Сервис для выгула собак</h2>
+            <h1 class="display-3 white-text mb-2 medium">Walkie-Doggie</h1>
+            <!-- Divider -->
+            <hr class="hr-light">
+            <!-- Description -->
+            <h4 class="white-text my-4 display-text book">Мы поможем вам нести ответственность за тех, кого вы приручили</h4>
+            <a href="#wd" type="button" class="btn btn-outline-white medium">Узнать больше<i class="fa fa-paw ml-2"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <main class="mt-5">
+  <section id="need-us" class="text-center my-5">
+       <div class="container">
+          <h2 class="mb-4 font-weight-bold h2-article">Почему мы вам нужны</h2>
+          <div class="row d-flex justify-content-center mb-4 wow animated fadeIn" data-wow-duration="0.5s">
+            <div class="col-md-7">
+              <p class="">Вы владелец собаки, и нередко бывают ситуации, когда некому погулять с питомцем?</p>
+            </div>
+          </div>
+          <div class="row wow animated fadeIn" data-wow-duration="0.5s">
+            <div class="col-lg-2 col-md-4 row-img-need">
+              <img src="{{ url_for('static', filename='img/pills.png') }}">
+            </div>
+            <div class="col-lg-2 col-md-8 mb-4 row-item">
+                <h4 class="my-4 font-weight-bold text-left">Самочувствие</h4>
+              <p class="text-left">Чувствуете себя плохо, но надо выгулять собаку? Наш выгульщик позаботится о вашем питомце</p>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-2 col-md-4 row-img-need">
+              <img src="{{ url_for('static', filename='img/dream.png') }}">
+            </div>
+            <div class="col-lg-2 col-md-8  mb-4 row-item">
+                <h4 class="my-4 font-weight-bold text-left">Усталость</h4>
+              <p class="text-left">Бывают случаи когда вы пришли с учебы или работы совсем без сил, но гулять с собакой все равно надо? Наш сервис решит эту проблему</p>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-2 col-md-4 row-img-need">
+              <img src="{{ url_for('static', filename='img/case.png') }}">
+            </div>
+            <div class="col-lg-2 col-md-8 mb-4 row-item">
+                <h4 class="my-4 font-weight-bold text-left">Занятость</h4>
+              <p class="text-left">Уезжаете на несколько дней и не знаете кто позаботится о вашем любимце? Наши работники могут гулять с вашей собакой во время вашей командировки
+              </p>
+            </div>
+            <!--Grid column-->
+          </div>
+        </div>
+  </section>
+  <section id="wd" class="text-center mb-5">
+        <div class="container">
+          <h2 class="mb-4 font-weight-bold h2-article">Почему Walkie-Doggie?</h2>
+          <div class="row d-flex justify-content-center mb-4">
+            <div class="col-md-8 col-xs-12">
+              <p class="wow animated fadeIn" data-wow-duration="0.5s">Мы предлагаем нечто новое, но при этом заботимся о <br /> безопасности наших клиентов</p>
+            </div>
+          </div>
+          <div class="row wow animated fadeIn" data-wow-duration="0.5s">
+            <div class="col-lg-4 col-md-4 row-img-wd pr-3-1">
+              <img src="{{ url_for('static', filename='img/job.png') }}">
+            </div>
+            <div class="col-lg-8 col-md-8 mb-4 row-item">
+                <h4 class="my-4 font-weight-bold text-left">Выгульщики проходят тщательный отбор</h4>
+              <p class="text-left">Волкеры допускаются к работе только после прохождения <br /> специализированных курсов</p>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-4 row-img-wd pr-3">
+              <img src="{{ url_for('static', filename='img/hammer.png') }}">
+            </div>
+            <div class="col-lg-8 col-md-8  mb-4 row-item">
+                <h4 class="my-4 font-weight-bold text-left">Система анти-аукциона</h4>
+              <p class="text-left">Цена, которою платит хозяин только уменьшается! Волкеры <br /> постоянно сбивают цену, чтобы именно они могли погулять с собакой</p>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-4 row-img-wd pr-4-1">
+              <img src="{{ url_for('static', filename='img/employee.png') }}">
+            </div>
+            <div class="col-lg-8 col-md-8 mb-4 row-item">
+                <h4 class="my-4 font-weight-bold text-left">Выгульщики работают сами на себя</h4>
+              <p class="text-left">Мы не принуждаем никого работать определенное количество часов. <br /> Волкеры сами выбирают сколько работать.
+              </p>
+            </div>
+            <!--Grid column-->
+          </div>
+        </div>
+  </section>	
+  <section id="it-works" class="text-center mb-5">
+      <div class="container">
+          <h2 class="mb-4 font-weight-bold h2-article">Как работает наш сервис</h2>
+          <div class="row wow animated fadeIn" data-wow-duration="0.5s">
+            <div class="col-lg-3 col-md-12 mb-4 row-item">
+                <img src="{{ url_for('static', filename='img/website.png') }}">
+                <h4 class="my-4 font-weight-bold">Зарегистрируйтесь</h4>
+              <p class="text-center">После регистрации вы можете разместить заказ на прогулку, указав все необходимые детали</p>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-1 row-item row-arrow">
+                <img src="{{ url_for('static', filename='img/right-arrow.png') }}" class="right-arrow">
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-12 mb-4 row-item">
+                <img src="{{ url_for('static', filename='img/network.png') }}">
+                <h4 class="my-4 font-weight-bold">Свяжитесь с выгульщиком</h4>
+              <p class="text-center">Получите отклик на заказ от волкера. После подтверждения он отправится в указанную владельцем точку, чтобы забрать собаку и начать прогулку.</p>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-1 row-item row-arrow">
+                <img src="{{ url_for('static', filename='img/right-arrow.png') }}" class="right-arrow">
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-12 mb-4 row-item">
+                <img src="{{ url_for('static', filename='img/meditation.png') }}">
+                <h4 class="my-4 font-weight-bold">Уделите время себе</h4>
+              <p class="text-center">Проведите время с пользой, пока наш волкер гуляет с вашей собакой.
+              </p>
+            </div>
+            <!--Grid column-->
+          </div>
+        </div>
+  </section>
+  <section id="clients" class="jumbotron mb-5">
+     <div class="container">
+          <h2 class="mb-4 font-weight-bold text-center h2-article">Отзывы наших клиентов</h2>
+          <div class="row wow animated fadeIn" data-wow-duration="0.5s">
+           <div class="col-lg-4 col-md-12 mb-4 card-item">
+            <div class="card promoting-card">
+                <div class="card-body">
+                  <div class="collapse-content">
+                    <p class="card-text my-3 d-flex align-items-center">
+                        <i class="far fa-clock pr-2"></i>
+                        4 янв. 2019
+                        <a class="btn btn-flat black-text p-1 my-0 ml-2 mr-0 collapsed" data-toggle="collapse" href="#collapseContent1" aria-expanded="false" aria-controls="collapseContent1"></a>
+                    </p>
+                    <h4 class="card-title font-weight-bold mb-0">Потрясающий сервис</h4>
+                    <p class="card-text collapse mt-4" id="collapseContent1">Пользовался услугой выгула собаки и остался доволен. Выгульщик приехал спустя 15 минут. Собака осталась довольна!</p>
+                  </div>
+                </div>
+                <hr class="my-0 hr-orange">
+                <div class="card-body d-flex flex-row">
+                  <img src="{{ url_for('static', filename='img/person1.png') }}" class="rounded-circle mr-3" height="80px" width="80px" alt="avatar">
+                  <div class="d-flex flex-column justify-content-center">
+                    <span class="card-text name">Дмитрий</span>
+                    <span class="card-text name">Строков</span>
+                  </div>
+                </div>
+            </div>
+           </div>
+            <!--Grid column-->
+           <div class="col-lg-4 col-md-12 mb-4 card-item">
+               <div class="card promoting-card">
+                <div class="card-body">
+                  <div class="collapse-content">
+  
+                    <p class="card-text my-3 d-flex align-items-center">
+                        <i class="far fa-clock pr-2"></i>
+                        4 янв. 2019
+                        <a class="btn btn-flat btn-outline-primary black-text p-1 my-0 ml-2 mr-0 collapsed" data-toggle="collapse" href="#collapseContent2" aria-expanded="false" aria-controls="collapseContent2"></a>
+                    </p>
+                    <h4 class="card-title font-weight-bold mb-0">Все на высшем уровне</h4>
+                    <p class="card-text collapse mt-4" id="collapseContent2">Заболела и не могла выгулять собаку, обратилась в сервис, погуляли и помыли собаку.</p>
+                  </div>
+                </div>
+                <hr class="my-0 hr-orange">
+                <div class="card-body d-flex flex-row">
+                  <img src="{{ url_for('static', filename='img/person2.jpg') }}" class="rounded-circle mr-3" height="80px" width="80px" alt="avatar">
+                  <div class="d-flex flex-column justify-content-center">
+                    <span class="card-text name">Дарья</span>
+                    <span class="card-text name">Завьялова</span>
+                  </div>		        
+                </div>
+              </div>
+           </div>
+            <!--Grid column-->
+           <div class="col-lg-4 col-md-12 mb-4 card-item">
+               <div class="card promoting-card">
+                <div class="card-body">
+                  <div class="collapse-content">
+                    <p class="card-text my-3 d-flex align-items-center">
+                        <i class="far fa-clock pr-2"></i>
+                        4 янв. 2019
+                        <a class="btn btn-flat btn-outline-primary black-text p-1 my-0 ml-2 mr-0 collapsed" data-toggle="collapse" href="#collapseContent3" aria-expanded="false" aria-controls="collapseContent3"></a>
+                    </p>
+                    <h4 class="card-title font-weight-bold mb-0">Помогите Помогите</h4>
+                    <p class="card-text collapse mt-4" id="collapseContent3">Почему меня поместили на лендинг? Почему меня поместили на лендинг? Почему меня поместили на лендинг?</p>
+                  </div>
+                </div>
+                <hr class="my-0 hr-orange">
+                <div class="card-body d-flex flex-row">
+                  <img src="{{ url_for('static', filename='img/person3.png') }}" class="rounded-circle mr-3" height="80px" width="80px" alt="avatar">
+                  <div class="d-flex flex-column justify-content-center">
+                    <span class="card-text name">Анна</span>
+                    <span class="card-text name">Копач</span>
+                  </div>
+                </div>
+              </div>
+           </div>
+            <!--Grid column-->
+          </div>
+        </div>
+  </section>
+  
+  <section id="walkers" class="text-center mb-5">
+      <div class="container">
+          <h2 class="mb-4 font-weight-bold h2-article">Хотите стать волкером?</h2>
+          <div class="row wow animated fadeIn d-flex justify-content-center" data-wow-duration="0.5s">
+            <div class="col-md-10 mb-4 text-center">
+                <p>Если вы чувствуете в себе силы и желание помогать животным,
+                     хотите работать в дружном коллективе и без обязательных 
+                     часов отработки, то мы ждем именно вас! Пройдите наше обучение
+                      и станьте профессиональным волкером.</p>
+                <a class="btn btn-outline-black btn-rounded waves-effect medium">Стать волкером
+                    <i class="far fa-fist-raised pl-1"></i>
+                </a>
+            </div>
+            <!--Grid column-->
+          </div>
+        </div>
+  </section>
+  
+  <section id="questions" class="jumbotron fix">
+      <div class="container">
+          <h2 class="mb-4 font-weight-bold h2-article text-center">Часто задаваемые вопросы</h2>
+          <div class="row wow animated fadeIn d-flex justify-content-center" data-wow-duration="0.5s">
+              <div class="accordion md-accordion col-md-8" id="accordion">
+                <div id="card1" class="card hello active">
+                  <div class="card-header" id="headingOne">
+                    <a href="#" class="card-link" data-toggle="collapse" data-target="#quest1" aria-expanded="true"
+                      aria-controls="quest1">
+                      <h5 id="h5-1" class="mb-0 h5-color quest-article active">
+                        Моя собака будет гулять на поводке? <i id="arrow1" class="fas fa-angle-down open"></i>
+                      </h5>
+                    </a>
+                  </div>
+                  <div id="quest1" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body card-quest">
+                      Да, конечно! Мы не отпускаем собак с поводка, кроме собачьих площадок.
+                       Каждый выгульщик гуляет на специальной амуниции: страхующий ошейник,
+                        поводок и пояс, которые сделаны из репшнуров, никогда не порвутся и 
+                        прикреплены друг к другу альпинистскими карабинами. 
+                        Поэтому можем давать гарантию, что собака не убежит.
+                    </div>
+                  </div>
+                </div>
+                
+                <div id="card2" class="card hello">
+                  <div class="card-header" id="headingTwo">
+                    <a href="#" class="card-link" data-toggle="collapse" data-target="#quest2" aria-expanded="true"
+                      aria-controls="quest2">
+                      <h5 id="h5-2" class="mb-0 h5-color quest-article">
+                        Справится ли выгульщик с моей собакой? <i id="arrow2" class="fas fa-angle-down"></i>
+                      </h5>
+                    </a>
+                  </div>
+                  <div id="quest2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body card-quest">
+                      Все выгульщики проходят отбор и обучение, которые включаю
+                      т онлайн-курсы и стажировки на разных выгулах с наставниками
+                      . Если у вас сложная собака - мы подберем опытного человека, который точно справится.
+                    </div>
+                  </div>
+  
+                </div>
+  
+                <div id="card3" class="card hello">
+                  <div class="card-header" id="headingThree">
+                    <a href="#" class="card-link" data-toggle="collapse" data-target="#quest3" aria-expanded="true"
+                      aria-controls="quest3">
+                      <h5 id="h5-3" class="mb-0 h5-color quest-article">
+                        Как происходит оплата в нашем сервисе? <i id="arrow3" class="fas fa-angle-down"></i>
+                      </h5>
+                    </a>
+                  </div>
+                  <div id="quest3" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body card-quest">
+                      Мы отправим вам ссылку на оплату. Оплачивать выгулы можно с помощью банковской карты.
+                    </div>
+                  </div>
+                </div>
+  
+                <div id="card4" class="card hello">
+                  <div class="card-header" id="headingFour">
+                    <a href="#" class="card-link" data-toggle="collapse" data-target="#quest4" aria-expanded="true"
+                      aria-controls="quest4">
+                      <h5 id="h5-4" class="mb-0 h5-color quest-article">
+                        Безопасно ли оплачивать услуги по ссылке? <i id="arrow4" class="fas fa-angle-down"></i>
+                      </h5>
+                    </a>
+                  </div>
+                  <div id="quest4" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                    <div class="card-body card-quest">
+                      Да! Данные вашей карты передаются через безопасный SSL-протокол.
+                       Оплату мы принимаем через Яндекс.Кассу, этот сервис используют 
+                       большое число IT-компании в стране.
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+      </div>
+  </section>
+  </main>
+  
+  <footer class="footer pt-5">
+      <div class="container">
+              <div class="row d-flex justify-content-center text-left">
+                  <div class="col-xs-12 col-sm-12 col-md-4">
+                      <h5>Навигация</h5>
+                      <ul class="list-unstyled quick-links">
+                          <li><a href="#intro"><i class="far fa-angle-double-right"></i>Главная</a></li>
+                          <li><a href="#need-us"><i class="far fa-angle-double-right"></i>О нас</a></li>
+                          <li><a href="#wd"><i class="far fa-angle-double-right"></i>Сервис</a></li>
+                          <li><a href="#clients"><i class="far fa-angle-double-right"></i>Отзывы</a></li>
+                          <li><a href="#questions"><i class="far fa-angle-double-right"></i>Вопросы</a></li>
+                      </ul>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-5">
+                      <h5>Наши партнеры</h5>
+                      <ul class="list-unstyled quick-links">
+                          <li><a href="#"><i class="far fa-angle-double-right"></i>Станьте нашим партнером!</a></li>
+                      </ul>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-3">
+                      <h5>Контакты</h5>
+                      <ul class="list-unstyled quick-links">
+                          <li><a href="#"><i class="far fa-angle-double-right"></i>E-mail: walkiedoggie72@gmail.com</a></li>
+                          <li><a href="#"><i class="far fa-angle-double-right"></i>г. Тюмень</a></li>
+                          <li><a href="#"><i class="far fa-angle-double-right"></i>тел. +79199399783</a></li>
+                          <li class="social"><i class="fab fa-vk"></i></li>
+                          
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      <div class="footer-copyright text-center text-white py-4">
+          Сервис для выгула собак "Walkie-Doggie" © 2019
+      </div>
+  </footer>
+{% endblock %}

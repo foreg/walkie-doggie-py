@@ -1,0 +1,583 @@
+ General Settings */
+body{
+	margin: 0;
+	padding: 0;
+}
+
+i{
+	padding-right: 6px;
+}
+
+a{
+	text-decoration: none;
+}
+
+li{
+	list-style: none;
+}
+
+html,
+body,
+.intro{
+    height: 100%;
+}
+
+section.mb-5{
+	margin-bottom: 5rem !important;
+}
+
+.h2-article:after{
+	content: "";
+    display: block;
+    margin: 0 auto;
+    width: 140px;
+    margin-top: 1.5rem !important;
+    /* border-bottom: 3px solid #ff691e; */
+}
+/* Fonts */
+@font-face {
+	font-family: 'Futura PT Light';
+	src: url('../fonts/FuturaPT-Light.eot');
+	src: url('../fonts/FuturaPT-Light.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/FuturaPT-Light.woff') format('woff'),
+	url('../fonts/FuturaPT-Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Futura PT Book';
+	src: url('../fonts/FuturaPT-Book.eot');
+	src: url('../fonts/FuturaPT-Book.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/FuturaPT-Book.woff') format('woff'),
+	url('../fonts/FuturaPT-Book.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Futura PT Medium';
+	src: url('../fonts/FuturaPT-Medium.eot');
+	src: url('../fonts/FuturaPT-Medium.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/FuturaPT-Medium.woff') format('woff'),
+	url('../fonts/FuturaPT-Medium.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.book{
+	font-family: "Futura PT Book"; 
+}
+
+.medium{
+	font-family: "Futura PT Medium";
+}
+
+.light{
+	font-family: "Futura PT Light";
+}
+
+/* End Fonts */
+
+/* Header & NavBar Styles */
+
+.header-logo{
+	cursor: default;
+	max-width: 150px;
+	max-height: 90px;
+}
+
+.animated-icon {
+	width: 30px;
+	height: 20px;
+	position: relative;
+	margin: 0px;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	-webkit-transition: .5s ease-in-out;
+	-moz-transition: .5s ease-in-out;
+	-o-transition: .5s ease-in-out;
+	transition: .5s ease-in-out;
+	cursor: pointer;
+}
+
+.animated-icon span {
+	display: block;
+	position: absolute;
+	height: 3px;
+	width: 100%;
+	background: #f3e5f5;
+	border-radius: 9px;
+	opacity: 1;
+	left: 0;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	-webkit-transition: .25s ease-in-out;
+	-moz-transition: .25s ease-in-out;
+	-o-transition: .25s ease-in-out;
+	transition: .25s ease-in-out;
+}
+
+.animated-icon span:nth-child(1) {
+	top: 0px;
+	-webkit-transform-origin: left center;
+	-moz-transform-origin: left center;
+	-o-transform-origin: left center;
+	transform-origin: left center;
+}
+
+.animated-icon span:nth-child(2) {
+	top: 10px;
+	-webkit-transform-origin: left center;
+	-moz-transform-origin: left center;
+	-o-transform-origin: left center;
+	transform-origin: left center;
+}
+
+.animated-icon span:nth-child(3) {
+	top: 20px;
+	-webkit-transform-origin: left center;
+	-moz-transform-origin: left center;
+	-o-transform-origin: left center;
+	transform-origin: left center;
+}
+
+.animated-icon.open span:nth-child(1) {
+	-webkit-transform: rotate(45deg);
+	-moz-transform: rotate(45deg);
+	-o-transform: rotate(45deg);
+	transform: rotate(45deg);
+	top: 0px;
+	left: 8px;
+}
+
+.animated-icon.open span:nth-child(2) {
+	width: 0%;
+	opacity: 0;
+}
+
+.animated-icon.open span:nth-child(3) {
+	-webkit-transform: rotate(-45deg);
+	-moz-transform: rotate(-45deg);
+	-o-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+	top: 21px;
+	left: 8px;
+}
+
+/* override Bootstrap rules */
+
+.btn{
+	font-size: 1.2rem;
+}
+.btn.btn-flat{
+	font-size: 1.1rem !important;
+	color: #000 !important;
+	border:none !important;
+}
+
+
+.btn-outline-white{
+	margin-left: 0;
+}
+
+/* .navbar-dark {
+	background-color: #222632;
+}
+
+.navbar-index{
+	background-color: unset;
+} */
+
+.top-nav-collapse {
+	background-color: #222632;
+}
+
+.navbar {
+	box-shadow: unset !important;
+	-webkit-transition: .45s ease-in-out;
+	-moz-transition: .45s ease-in-out;
+	-o-transition: .45s ease-in-out;
+	transition: .45s ease-in-out;
+}
+/*
+@media only screen and (max-width: 768px) {
+    .navbar {
+        background-color: #ff884d;
+    }
+}*/
+
+.navbar-dark .navbar-nav .nav-link{
+	color: #fff;
+	font-size: 20px;
+	font-weight: 400;
+	font-family: "Futura PT Book";
+}
+a.nav-link{
+	margin-bottom: 3px;
+	border-bottom: 3px solid transparent;
+}
+
+a.nav-link:hover, a.nav-link:focus {
+	color: #fff !important;
+	border-bottom: 3px solid #ff691e;
+}
+
+@media (min-width: 768px){
+	.offset-md-4 {
+	    margin-left: 39.633333%;
+	}
+}
+@media (min-width: 768px){
+	.navbar-brand.offset-md-1{
+		margin-left: 3.133333%;
+	}
+}
+
+@media (min-width: 600px){
+	
+	.navbar.scrolling-navbar{
+		transition: background 0.3s ease-in-out,padding 0.3s ease-in-out !important;
+	}
+}
+
+@media (min-width: 576px) and (max-width: 756px){
+	.navbar{
+		display: flex;
+    	flex-direction: column;
+	}
+}
+
+/* End Overriding Bootstrap Rules */
+/* End Header Styles */
+
+/* Intro Block */
+.intro {
+    background: url("../img/bg.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 100% 0px;
+}
+
+.display-4{
+	font-size: 2.2rem;
+}
+
+.display-3{
+	font-size: 4rem;
+	font-weight: 500;
+}
+
+.display-text{
+	font-size: 1.45rem;
+	font-weight: 300;
+}
+
+@media (max-width: 423px){
+	.display-4{
+		font-size: 1.75rem !important;
+	}
+
+	.display-3{
+		font-size: 2.95rem !important;
+	}
+
+	.display-text{
+		font-size: 1.25rem !important;
+	}
+}
+
+.btn .fa {
+    font-size: 1rem;
+}
+
+.rgba-black-light, .rgba-black-light:after {
+    background-color: unset;
+	}
+
+@media (max-width: 992px){
+	.rgba-black-light, .rgba-black-light:after {
+    background-color: rgba(0,0,0,0.5);
+	}
+}
+/* End Intro */
+
+/* Why We Need Us Block */
+@media (max-width: 767px){
+	.row-item h4, .row-item p{
+		text-align: center !important;
+	}
+}
+
+@media (min-width: 768px) and (max-width: 992px){
+	.row-img-need{
+		text-align: right;
+	}
+}
+
+@media (min-width: 768px){
+	.row-item h4{
+		margin-top: 0 !important;
+	}
+}
+
+@media (min-width: 992px){
+	.row-item{
+		padding: 0 !important;
+	}
+}
+
+/* End Why We Need Us Block */
+
+/* Why WD Block */
+.row-img-wd{
+	text-align: right;
+}
+
+@media (max-width: 767px){
+	.pr-3-1 {
+    padding-right: 2.3rem!important;
+	}
+}
+
+@media (min-width: 768px){
+	.pr-3-1{
+	padding-right: 1.3rem!important;
+	}
+	.pr-4-1{
+	padding-right: 1.9rem!important;
+	}
+}
+
+@media (max-width: 768px){
+	.row-img-wd{
+		text-align: center;
+	}
+}
+
+/* End Why WD Block */
+
+/*  How It Works Block */
+.right-arrow{
+    position: relative;
+    top: 3.25rem;
+}
+
+@media (max-width: 992px){
+	.row-arrow{
+		display: none;
+	}
+}
+/* End How It Works Block*/
+
+/* Clients */
+.card-body .avatar{
+	width: 80px;
+	height: 80px;
+}
+
+.card-text.name{
+	color: #000 !important;
+	font-size: 1rem !important;
+}
+
+.collapse-content a.collapsed:after{
+	content: "Подробнее" !important;
+}
+.collapse-content a:not(.collapsed):after{
+	content: "Скрыть" !important;
+}
+.btn.focus, .btn:focus {
+    outline: 0;
+    /* box-shadow: 0 0 0 0.2rem rgba(255,105,30,.45) */
+}
+@media (max-width: 320px){
+	.card-text{
+		flex-direction: column;
+	}
+	.fa-clock {
+		padding: 0 !important;
+	}
+	.btn.btn-flat{
+		margin-left: unset !important;
+	}
+}
+
+.jumbotron{
+	background-color: #fafafa;
+	box-shadow:unset;
+}
+
+/* End Clients*/
+
+/* Questions */
+.card .fa-angle-down{
+	font-size: 1.5rem;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	-webkit-transition: .25s ease-in-out;
+	-moz-transition: .25s ease-in-out;
+	-o-transition: .25s ease-in-out;
+	transition: .25s ease-in-out;
+}
+
+.card.active .fa-angle-down {
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+	-webkit-transition: .25s ease-in-out;
+	-moz-transition: .25s ease-in-out;
+	-o-transition: .25s ease-in-out;
+	transition: .25s ease-in-out;
+}
+
+.h5-color, .md-accordion .card .card-body{
+	color: #000 !important;
+}
+.md-accordion .card .card-body{
+	font-size: 1rem;
+}
+
+.fix.jumbotron{
+	margin-bottom: unset !important;
+}
+
+.card-quest{
+	padding-left: 1.55rem;
+}
+
+
+
+
+@media (max-width: 992px){
+	.quest-article{
+		font-size: 1.1rem;
+	}
+}
+@media (max-width: 515px){
+	.quest-article i{
+		display: none;
+	}
+
+	.card.active .card-header{
+		background: #222632 !important;
+	}
+
+	.card.active .card-header .h5-color{
+		color: #fff !important;
+	}
+
+	.card-header{
+		-webkit-transition: .25s ease-in-out;
+		-moz-transition: .25s ease-in-out;
+		-o-transition: .25s ease-in-out;
+		transition: .25s ease-in-out;
+	}
+	
+}
+
+/* Stop Asking Questions */
+
+/* Footer */
+
+.social{
+	color: #fff;
+	font-size: 2rem;
+}
+
+.article-list-first:after{
+	content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 106px;
+    background: #13bfb1;
+}
+
+.footer{
+	background: #222632;
+}
+
+.footer h5{
+	padding-left: 10px;
+    border-left: 3px solid #fff;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.footer a {
+    text-decoration: none !important;
+}
+
+.footer ul.quick-links li a{
+	color:#fff;
+}
+
+.footer ul.quick-links li{
+	padding: 3px 0;
+	-webkit-transition: .25s all ease;
+	-moz-transition: .25s all ease;
+	transition: .25s all ease;
+}
+.footer ul.quick-links a:hover{
+	padding: 3px 0;
+	margin-left:5px;
+}
+
+@media (min-width: 768px) and (max-width: 814px){
+	.footer .col-md-4, .footer .col-md-5, .footer .col-md-3{
+		-ms-flex: 0 0 100%;
+	    flex: 0 0 100%;
+	    max-width: 100%;
+	}
+}
+
+/* End Footer
+
+/* Login Form */
+.info-color{
+	background-color: #ff691e !important;
+}
+.btn-outline-info {
+	border: unset !important;
+	background-color: #ff691e !important;
+    color: #fff!important;
+}
+
+.btn-outline-info:hover, .btn-outline-info:visited{
+	color: #fff!important;
+	-webkit-transition: .25s ease-in-out;
+	-moz-transition: .25s ease-in-out;
+	-o-transition: .25s ease-in-out;
+	transition: .25s ease-in-out;
+	background-color: #ea4e00 !important;
+}
+
+.intro.login{
+	background: url("../img/login.jpg") no-repeat center center;
+}
+
+.intro.register{
+	background: url("../img/auth.jpg") no-repeat center bottom;
+}
+
+.intro.login, .intro.register{
+	-webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 100% 0px;
+}
