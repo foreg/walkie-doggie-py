@@ -82,6 +82,7 @@ section.mb-5{
 /* Header & NavBar Styles */
 
 .header-logo{
+	cursor: default;
 	max-width: 150px;
 	max-height: 90px;
 }
@@ -182,6 +183,14 @@ section.mb-5{
 
 .btn-outline-white{
 	margin-left: 0;
+}
+
+.navbar-dark {
+	background-color: #222632;
+}
+
+.navbar-index{
+	background-color: unset;
 }
 
 .top-nav-collapse {
