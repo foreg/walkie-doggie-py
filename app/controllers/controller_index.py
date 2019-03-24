@@ -19,6 +19,7 @@ def Login():
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         return render_template('index.html')
+    return render_template('login.html', form=form)
     
 
 def Register():
@@ -32,7 +33,7 @@ def Register():
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
-    return render_template('register.html')
+    return render_template('register.html', form=form)
 
 def Logout():
     logout_user()
