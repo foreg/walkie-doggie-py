@@ -1,5 +1,47 @@
 {% extends "base.html" %}
 
 {% block content %}
-Registration
+<section id="intro" class="view intro register">
+        <div class="mask rgba-black-strong flex-center">
+          <div class="container d-flex align-items-center justify-content-center h-100">
+            <div class="row d-flex justify-content-center">
+                    <!-- text-left -->
+              <!-- Material form login -->
+                <div class="card mt-5">
+                <h5 class="card-header info-color white-text text-center py-4">
+                <strong>Регистрация</strong>
+                </h5>
+                <!--Card content-->
+                <div class="card-body px-lg-5 pt-0">
+                <!-- Form -->
+                <form class="text-center" style="color: #757575;">
+                    <!-- Email -->
+                    <div class="md-form">
+                        <input type="email" id="FormEmail" class="form-control">
+                        <label for="FormEmail">E-mail</label>
+                    </div>
+                    <!-- Password -->
+                    <div class="md-form">
+                        <input type="password" id="FormPassword" class="form-control">
+                        <label for="FormPassword">Пароль</label>
+                    </div>
+                    <!-- Re-Password -->
+                    <div class="md-form">
+                        <input type="password" id="FormPasswordRepeat" class="form-control">
+                        <label for="FormPasswordRepeat">Повторите пароль</label>
+                    </div>
+                    <!-- Sign in button -->
+                    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button>
+                    <!-- Register -->
+                    <p>Регистрируясь на нашем сервисе <br /> вы принимаете пользовательское соглашение
+                    <br /><a href="#">Соглашение</a>
+                    </p>
+                </form>
+                </div>
+            </div>
+          <!-- Material form login -->
+            </div>
+          </div>
+        </div>
+    </section>
 {% endblock %}
