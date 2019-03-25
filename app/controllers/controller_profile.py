@@ -7,7 +7,7 @@ from app.models import load_user
 def UserProfile(db):
     if current_user.is_authenticated:
         form = UserProfileForm()
-        user = current_user.id
+        user = current_user
         if form.validate_on_submit():
             user.surname = form.surname.data   
             user.name = form.name.data      

@@ -45,6 +45,12 @@
                         <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}
                     </div>
+                    <div class="md-form">
+                        {% for error in form.recaptcha.errors %}
+                        {{ error }}
+                        {% endfor %}
+                        {{  form.recaptcha  }} 
+                    </div>
                     <!-- Sign in button -->
                     {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Зарегистрироваться") }}
                     <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button> -->
