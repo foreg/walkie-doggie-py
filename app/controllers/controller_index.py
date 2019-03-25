@@ -1,13 +1,13 @@
 from flask import render_template, flash, redirect, url_for
-from app.forms import LoginForm
-from flask_login import current_user, login_user
-from app.models import User
-from flask_login import logout_user
+from flask_login import current_user, login_user, logout_user
+from app.forms import LoginForm, RegistrationForm
+from app.models import User, Role, User_roles
 from app import db
-from app.forms import RegistrationForm
+
+
 def Index():
     return render_template('index.html')
- 
+
 def Login():
     if current_user.is_authenticated:
        return render_template('index.html')
@@ -20,7 +20,6 @@ def Login():
         login_user(user, remember=form.remember_me.data)
         return redirect(url_for('UserProfile'))
     return render_template('login.html', form=form)
-    
 
 def Register():
     if current_user.is_authenticated:
@@ -31,6 +30,9 @@ def Register():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
+        user_roles = User_roles(user=user, role=Role.query.get(6)) # User
+        db.session.add(user_roles)
+        db.session.commit()
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
@@ -38,4 +40,3 @@ def Register():
 def Logout():
     logout_user()
     return render_template('index.html')
-    

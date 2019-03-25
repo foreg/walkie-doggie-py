@@ -3,6 +3,7 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User
 
+
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
@@ -10,11 +11,10 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 class RegistrationForm(FlaskForm):
-    
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
-    password2 = PasswordField(
-        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    password2 = PasswordField('Repeat Password', 
+        validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Register')
 
     def validate_email(self, email):
@@ -26,7 +26,7 @@ class UserProfileForm(FlaskForm):
     surname= StringField('Surname')
     name= StringField('Name')
     middlename= StringField('Middlename')
-    addres=StringField('Addres')
+    address=StringField('Addres')
     phone=StringField('Phone')
     info=StringField('Text')
     submit = SubmitField('Save')

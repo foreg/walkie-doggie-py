@@ -1,8 +1,7 @@
-from app import app, db
 from flask import render_template, flash, redirect, url_for
-from app.controllers import controller_index, controller_profile
 from flask_login import login_required
-# from app.controllers.controller_profile import UserProfile
+from app import app, db
+from app.controllers import controller_index, controller_profile
 
 
 @app.route('/')
@@ -12,7 +11,7 @@ def index():
     return controller_index.Index()
 
 @app.route('/profile', methods=['GET', 'POST'])
-def UserProfile():
+def userProfile():
     return controller_profile.UserProfile(db)
 
 @app.route('/login', methods=['GET', 'POST'])
