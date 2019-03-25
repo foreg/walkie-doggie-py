@@ -49,12 +49,18 @@
 	            <li class="nav-item">
 	                <a href="#questions" class="nav-link">Вопросы</a>
 	            </li>
-	        </ul>
+			</ul>
+			
+    
 	        <ul class="navbar-nav ml-auto">
 	            <li class="nav-item">
+					{% if current_user.is_anonymous %}
 	                <a href="{{ url_for('login') }}" class="nav-link">
 	                   <i class="fas fa-sign-in"></i>Логин
-	                </a>
+					</a>
+					{% else %}
+    <a href="{{ url_for('logout') }}">Logout</a>
+    {% endif %}
 	            </li>
 	            <li class="nav-item">
 	                <a href="{{ url_for('register') }}" class="nav-link">

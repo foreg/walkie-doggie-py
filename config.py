@@ -5,3 +5,4 @@ class Config(object):
     TEMPLATES_AUTO_RELOAD = True
     SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/wd'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    

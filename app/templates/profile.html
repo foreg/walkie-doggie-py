@@ -1,5 +1,85 @@
 {% extends "base.html" %}
 
 {% block content %}
-profile
+<section id="intro" class="view intro register">
+    <div class="mask rgba-black-strong flex-center">
+      <div class="container d-flex align-items-center justify-content-center h-100">
+        <div class="row d-flex justify-content-center">
+                <!-- text-left -->
+          <!-- Material form login -->
+            <div class="card mt-5">
+            <h5 class="card-header info-color white-text text-center py-4">
+            <strong>Профиль</strong>
+            </h5>
+            <!--Card content-->
+            <div class="card-body px-lg-5 pt-0">
+            <!-- Form -->
+            <form class="text-center" style="color: #757575;" action="" method="post">
+                {{ form.hidden_tag() }}
+                <!-- surname -->
+                <div class="md-form">
+                    {{ form.surname(class_="form-control", id="FormSurname") }}<br>
+                    <label for="FormSurname">Surname</label>
+                    
+                    {% for error in form.surname.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                 <!-- name -->
+                 <div class="md-form">
+                    {{ form.name(class_="form-control", id="FormName") }}<br>
+                    <label for="FormName">Name</label>
+                    
+                    {% for error in form.name.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                 <!-- middlename -->
+                 <div class="md-form">
+                    {{ form.middlename(class_="form-control", id="FormMiddlename") }}<br>
+                    <label for="FormMiddlename">Middlename</label>
+                    
+                    {% for error in form.middlename.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                 <!-- adress -->
+                 <div class="md-form">
+                    {{ form.addres(class_="form-control", id="FormAdress") }}<br>
+                    <label for="FormAdress">Adress</label>
+                    
+                    {% for error in form.addres.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                 <!-- phone -->
+                 <div class="md-form">
+                    {{ form.phone(class_="form-control", id="FormPhone") }}<br>
+                    <label for="FormPhone">Phone</label>
+                    
+                    {% for error in form.phone.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                 <!-- info -->
+                 <div class="md-form">
+                    {{ form.info(class_="form-control", id="FormInfo") }}<br>
+                    <label for="FormInfo">Info</label>
+                    
+                    {% for error in form.info.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %}
+                </div>
+                <!-- Sign in button -->
+                {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Save") }}
+                <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button> -->
+                </p>
+            </form>
+            </div>
+        </div>
+      <!-- Material form login -->
+        </div>
+      </div>
+    </div>
+</section>
 {% endblock %}
