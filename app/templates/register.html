@@ -15,11 +15,11 @@
                 <div class="card-body px-lg-5 pt-0">
                 <!-- Form -->
                 <form class="text-center" style="color: #757575;" action="" method="post">
-                    {{ form.hidden_tag() }}>
+                    {{ form.hidden_tag() }}
                     <!-- Email -->
                     <div class="md-form">
-                        {{ form.email() }}<br>
-                        <input type="email" id="FormEmail" class="form-control">
+                        {{ form.email(class_="form-control", id="FormEmail") }}<br>
+                        <!-- <input type="email" id="FormEmail" class="form-control"> -->
                         <label for="FormEmail">E-mail</label>
                         
                         {% for error in form.email.errors %}
@@ -28,8 +28,8 @@
                     </div>
                     <!-- Password -->
                     <div class="md-form">
-                        {{ form.password() }}<br>
-                        <input type="password" id="FormPassword" class="form-control">
+                        {{ form.password(class="form-control", id="FormPassword") }}<br>
+                        <!-- <input type="password" id="FormPassword" class="form-control"> -->
                         <label for="FormPassword">Пароль</label>
                         {% for error in form.password.errors %}
                         <span style="color: red;">[{{ error }}]</span>
@@ -37,8 +37,8 @@
                     </div>
                     <!-- Re-Password -->
                     <div class="md-form">
-                        {{ form.password2() }}<br>
-                        <input type="password" id="FormPasswordRepeat" class="form-control">
+                        {{ form.password2(class="form-control", id="FormPasswordRepeat") }}<br>
+                        <!-- <input type="password" id="FormPasswordRepeat" class="form-control"> -->
                         <label for="FormPasswordRepeat">Повторите пароль</label>
                         
                         {% for error in form.password2.errors %}
@@ -46,8 +46,8 @@
                         {% endfor %}
                     </div>
                     <!-- Sign in button -->
-                    {{ form.submit() }}
-                    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button>
+                    {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Зарегистрироваться") }}
+                    <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button> -->
                     <!-- Register -->
                     <p>Регистрируясь на нашем сервисе <br /> вы принимаете пользовательское соглашение
                     <br /><a href="#">Соглашение</a>

@@ -18,9 +18,9 @@
                 {{ form.hidden_tag() }}
               <!-- Email -->
                 <div class="md-form">
-                {{ form.email() }}
+                {{ form.email(class_="form-control", id="FormEmail") }}
                 
-                <input type="email" id="FormEmail" class="form-control">
+                <!-- <input type="email" id="FormEmail" class="form-control"> -->
                 {% for error in form.email.errors %}
                 <span style="color: red;">[{{ error }}]</span>
                 {% endfor %}
@@ -28,8 +28,8 @@
                 </div>
                 <!-- Password -->
                 <div class="md-form">
-                {{ form.password() }}
-                <input type="password" id="FormPassword" class="form-control">
+                {{ form.password(class_="form-control", id="FormPassword") }}
+                <!-- <input type="password" id="FormPassword" class="form-control"> -->
                 <label for="FormPassword">Пароль</label>
                 {% for error in form.password.errors %}
             <span style="color: red;">[{{ error }}]</span>
@@ -39,14 +39,14 @@
                 <div>
                     <!-- Remember me -->
                     <div class="form-check">
-                    <input type="checkbox" class="form-check-input" id="FormRemember">
-                    {{ form.remember_me() }} <label class="form-check-label" for="FormRemember">Запомнить меня</label>
+                    <!-- <input type="checkbox" class="form-check-input" id="FormRemember"> -->
+                    {{ form.remember_me(class_="form-check-input", id="FormRemember") }} <label class="form-check-label" for="FormRemember">Запомнить меня</label>
                     </div>
                 </div>
                 </div>
                 <!-- Sign in button -->
-                {{ form.submit() }}
-                <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button>
+                {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Войти") }}
+                <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button> -->
                 <!-- Register -->
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
