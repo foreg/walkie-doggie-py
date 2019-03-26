@@ -35,8 +35,9 @@ def seedUsers():
     print('seedUsers done')
 
 if __name__ == "__main__":
-    # Uncomment folowing strings to seed dedicated tables
-    # and then run python manage.py in commandLine
     #seedRoles()
     #seedUsers()
+    # Uncomment folowing strings to seed dedicated tables
+    # and then run python manage.py in commandLine
+    
     

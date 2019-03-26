@@ -25,6 +25,7 @@ class User(UserMixin, db.Model):
     deletionDate=db.Column(db.DateTime(4))
     lastLoginDate=db.Column(db.DateTime(4))
     isConfirmed=db.Column(db.Boolean, default=False)
+    confirmed_on = db.Column(db.DateTime, nullable=True)
     roles = db.relationship('User_roles', backref='user', lazy='dynamic')
 
     def set_password(self, password):
