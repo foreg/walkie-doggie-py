@@ -5,6 +5,7 @@ from app.models import User, Role, User_roles
 from app.token import generate_confirmation_token, confirm_token
 from app.email import send_email
 from app import db
+import datetime
 
 
 def Index():
@@ -12,12 +13,15 @@ def Index():
 
 def Login():
     if current_user.is_authenticated:
-       return render_template('index.html')
+        return render_template('index.html')
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Invalid username or password')
+            return redirect(url_for('login'))
+        if not user.isConfirmed:
+            flash('Подтвердите свой email, перейдя по ссылке в письме')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         return redirect(url_for('userProfile'))
@@ -55,12 +59,12 @@ def Confirm(token):
     except:
         flash('The confirmation link is invalid or has expired.', 'danger')
     user = User.query.filter_by(email=email).first_or_404()
-    if user.confirmed:
+    if user.isConfirmed:
         flash('Account already confirmed. Please login.', 'success')
     else:
-        user.confirmed = True
+        user.isConfirmed = True
         user.confirmed_on = datetime.datetime.now()
         db.session.add(user)
         db.session.commit()
         flash('Аккаунт подтвержден!', 'success')
-    return redirect(url_for('profile.html'))
+    return redirect(url_for('userProfile'))
