@@ -6,10 +6,10 @@ class Config(object):
     TEMPLATES_AUTO_RELOAD = True
     SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres@localhost:5432/wd'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    RECAPTCHA_PUBLIC_KEY = '6LeYIbsSAAAAACRPIllxA7wvXjIE411PfdB2gt2J'
-    RECAPTCHA_PRIVATE_KEY = '6LeYIbsSAAAAAJezaIq3Ft_hSTo0YtyeFG-JgRtu'
+    RECAPTCHA_PUBLIC_KEY = '6LdkJ5oUAAAAAKHBrRg9v0vv6nCMCyq84NrmuYu2'
+    RECAPTCHA_PRIVATE_KEY = '6LdkJ5oUAAAAANrFAvYYgO5PfSb4orqwPhpGRatg'
     MAIL_SERVER = 'smtp.gmail.com'
-    MAIL_PORT = 587
+    MAIL_PORT = 465
     MAIL_USE_TLS = False
     MAIL_USE_SSL = True
     MAIL_USERNAME = 'walkiedoggie72@gmail.com'

@@ -26,7 +26,6 @@ def register():
 def logout():
     return controller_index.Logout()
 
-@app.route('/confirm/<token>')
-@login_required
-def confirm_email():
-    return controller_index.Confirm()
+@app.route('/confirm/<string:token>')
+def confirm_email(token):
+    return controller_index.Confirm(token)
