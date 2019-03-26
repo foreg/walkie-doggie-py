@@ -32,7 +32,7 @@ def upgrade():
     sa.Column('name', sa.String(length=50), nullable=True),
     sa.Column('middlename', sa.String(length=50), nullable=True),
     sa.Column('vkid', sa.Integer(), nullable=True),
-    sa.Column('addres', sa.Text(), nullable=True),
+    sa.Column('address', sa.Text(), nullable=True), #addres
     sa.Column('phone', sa.String(length=11), nullable=True),
     sa.Column('info', sa.Text(), nullable=True),
     sa.Column('creationDate', sa.DateTime(timezone=4), nullable=True),

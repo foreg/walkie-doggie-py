@@ -87,6 +87,48 @@ section.mb-5{
 	max-height: 90px;
 }
 
+.btn-primary.dropdown-toggle, 
+.btn-primary.dropdown-toggle:hover,
+.dropdown-item {
+	font-size: 18px !important;
+    font-weight: 400 !important;
+    font-family: "Futura PT Book" !important;
+	background-color: transparent !important;
+    box-shadow: unset !important;
+}
+.btn-primary.dropdown-toggle{
+	border-bottom: 3px solid transparent;
+}
+
+.btn-primary.dropdown-toggle:hover{
+	border-bottom: 3px solid #ea4e00;
+}
+
+.dropdown .dropdown-menu .dropdown-item:active, .dropdown .dropdown-menu 
+.dropdown-item:hover, .dropleft .dropdown-menu 
+.dropdown-item:active, .dropleft .dropdown-menu .dropdown-item:hover, .dropright .dropdown-menu 
+.dropdown-item:active, .dropright .dropdown-menu .dropdown-item:hover, 
+.dropup .dropdown-menu .dropdown-item:active, .dropup .dropdown-menu .dropdown-item:hover{
+	background-color: #222632 !important;
+	font-size: 14px;
+    font-weight: 400;
+    font-family: "Futura PT Book";
+    box-shadow: unset !important;
+}
+
+
+.btn-primary:not(:disabled):not(.disabled).active, 
+.btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+	background-color: transparent !important;
+	border-bottom: 3px solid #ea4e00;
+}
+
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+	background-color: transparent !important;
+	border-bottom: 3px solid #ea4e00;
+ }
+
 .animated-icon {
 	width: 30px;
 	height: 20px;
