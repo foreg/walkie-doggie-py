@@ -2,8 +2,10 @@ from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
 from app.forms import UserProfileForm
 from app.models import load_user
+from app.utils import login_required
 
 
+@login_required
 def UserProfile(db):
     if current_user.is_authenticated:
         form = UserProfileForm()

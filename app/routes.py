@@ -6,7 +6,6 @@ from app.controllers import controller_index, controller_profile
 
 @app.route('/')
 @app.route('/index')
-@login_required
 def index():
     return controller_index.Index()
 
