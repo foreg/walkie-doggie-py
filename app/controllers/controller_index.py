@@ -13,7 +13,7 @@ def Index():
 
 def Login():
     if current_user.is_authenticated:
-        return render_template('index.html')
+        return redirect(url_for('userProfile'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -29,7 +29,7 @@ def Login():
 
 def Register():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('userProfile'))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(email=form.email.data)
