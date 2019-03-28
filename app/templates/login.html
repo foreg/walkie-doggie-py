@@ -22,7 +22,7 @@
                 
                 <!-- <input type="email" id="FormEmail" class="form-control"> -->
                 {% for error in form.email.errors %}
-                <span style="color: red;">[{{ error }}]</span>
+                <span style="color: red;">{{ error }}</span>
                 {% endfor %}
                 <label for="FormEmail">E-mail</label>
                 </div>
@@ -32,7 +32,7 @@
                 <!-- <input type="password" id="FormPassword" class="form-control"> -->
                 <label for="FormPassword">Пароль</label>
                 {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
+            <span style="color: red;">{{ error }}</span>
             {% endfor %}
                 </div>
                 <div class="d-flex justify-content-around">
