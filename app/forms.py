@@ -23,6 +23,9 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
+    def validate_password(self, password):
+        if len(password.data) < 8:
+            raise ValidationError('Ошибка! Пароль слишком короткий! Пароль должен содержать минимум 8 символов')
 class UserProfileForm(FlaskForm):
     surname= StringField('Surname')
     name= StringField('Name')
