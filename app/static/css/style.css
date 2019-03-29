@@ -614,7 +614,9 @@ a.nav-link:hover, a.nav-link:focus {
 .intro.register{
 	background: url("../img/auth.jpg") no-repeat center bottom;
 }
-
+.intro.walker{
+	background: url("../img/walker.jpg") no-repeat center center !important;
+}
 .intro.login, .intro.register{
 	-webkit-background-size: cover;
     -moz-background-size: cover;

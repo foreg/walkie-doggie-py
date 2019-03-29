@@ -1,0 +1,255 @@
+{% extends "base_walker.html" %}
+
+{% block content %}
+<section id="intro" class="view intro walker">
+    <div class="mask rgba-black-strong flex-center">
+      <div class="container d-flex align-items-center justify-content-start h-100">
+        <div class="row d-flex justify-content-start text-left">
+          <div class="col-md-10">
+            <!-- Heading -->
+            <h2 class="display-4 white-text pt-5 mb-2 book">Сервис для выгула собак</h2>
+            <h1 class="display-3 white-text mb-2 medium">Walkie-Doggie</h1>
+            <!-- Divider -->
+            <hr class="hr-light">
+            <!-- Description -->
+            <h4 class="white-text my-4 display-text book">Мы поможем вам нести ответственность за тех, кого вы приручили</h4>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <main class="mt-5">
+  <section id="aboutus" class="text-center my-5">
+       <div class="container">
+          <h2 class="mb-4 font-weight-bold h2-article">О нашем сервисе</h2>
+    
+          <div class="row d-flex justify-content-center mb-4 wow animated fadeIn" data-wow-duration="0.5s">
+            <div class="col-md-7">
+              <p class="">Walkie-Doggie - ваш личный помощник в вопросах прогулки с вашим питомцем 
+               Сервис "Walkie-Doggie" предлагает отличную возможность для подработки волкерам и решение для клиентов,которые не могут найти время для питомца.   
+              </p>
+            </div>
+          </div>
+        </div>
+  </section>
+  <section id="workwalk" class="text-center my-5">
+        <div class="container">
+           <h2 class="mb-4 font-weight-bold h2-article">Почему стоит работать волкером?</h2>
+        
+           <div class="row d-flex justify-content-center mb-4 wow animated fadeIn" data-wow-duration="0.5s">
+        
+           </div>
+           <div class="row wow animated fadeIn" data-wow-duration="0.5s">
+             <div class="col-lg-2 col-md-4 row-img-need">
+               <img src="{{ url_for('static', filename='img/dogg.png') }}" height="110px" width="110px" >
+             </div>
+             <div class="col-lg-2 col-md-8 mb-4 row-item">
+                 <h4 class="my-4 font-weight-bold text-left">Работа с животными</h4>
+               <p class="text-left">Благодаря нашему сервису вы можете проводить время с питомцами, что поможет не только отдохнуть от насущных проблем, но и весело провести время.</p>
+             </div>
+             <!--Grid column-->
+             <div class="col-lg-2 col-md-4 row-img-need">
+               <img src="{{ url_for('static', filename='img/scale.png') }}" height="110px" width="110px">
+             </div>
+             <div class="col-lg-2 col-md-8  mb-4 row-item">
+                 <h4 class="my-4 font-weight-bold text-left">Взвешенный подход</h4>
+               <p class="text-left">Если вы не уверены, что готовы завести питомца, начните выгуливать чужих собак, чтобы оценить свои возможности</p>
+             </div>
+             <!--Grid column-->
+             <div class="col-lg-2 col-md-4 row-img-need">
+               <img src="{{ url_for('static', filename='img/cost.png') }}" height="110px" width="110px">
+             </div>
+             <div class="col-lg-2 col-md-8 mb-4 row-item">
+                 <h4 class="my-4 font-weight-bold text-left">Отличная подработка</h4>
+               <p class="text-left">Необязательно работать определенное количество часов, каждый волкер сам себе начальник. Так же, для отличившихся волкеров предусмотрены поощрения.
+               </p>
+             </div>
+             <!--Grid column-->
+           </div>
+         </div>
+   </section>
+  
+   <section id="wd" class="text-center mb-5">
+        <div class="container">
+          <h2 class="mb-4 font-weight-bold h2-article">Что мы предлагаем нашим волкерам?</h2>
+        
+          <div class="row wow animated fadeIn" data-wow-duration="0.5s">
+            <div class="col-lg-4 col-md-4 row-img-wd pr-3-1">
+              <img src="{{ url_for('static', filename='img/return.png') }}" height="110px" width="110px">
+            </div>
+            <div class="col-lg-8 col-md-8 mb-4 row-item">
+                <h4 class="my-4 font-weight-bold text-left">Динамическая заработная плата</h4>
+              <p class="text-left">Вы получите ровно столько денег, сколько сами заработали. Чем больше прогулок - тем выше заработок </p>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-4 row-img-wd pr-3">
+              <img src="{{ url_for('static', filename='img/graph.png') }}"height="110px" width="110px">
+            </div>
+            <div class="col-lg-8 col-md-8  mb-4 row-item">
+                <h4 class="my-4 font-weight-bold text-left">Свободный график</h4>
+              <p class="text-left">У нас нет обязательных часов отработки, работайте столько сколько захотите</p>
+            </div>
+            <!--Grid column-->
+            <div class="col-lg-4 col-md-4 row-img-wd pr-4-1">
+              <img src="{{ url_for('static', filename='img/career.png') }}"height="110px" width="110px">
+            </div>
+            <div class="col-lg-8 col-md-8 mb-4 row-item">
+                <h4 class="my-4 font-weight-bold text-left">Обучение</h4>
+              <p class="text-left">Наш сервис предлагает всем желающим стать профессональным волкером. Вас будет обучать преподаватель с опытом работы с животными
+              </p>
+            </div>
+            <!--Grid column-->
+          </div>
+        </div>
+  </section>
+  <section id="it-works" class="text-center mb-5">
+        <div class="container">
+            <h2 class="mb-4 font-weight-bold h2-article">В чём заключается работа волкера?</h2>
+        
+            <div class="row wow animated fadeIn" data-wow-duration="0.5s">
+              <div class="col-lg-3 col-md-12 mb-4 row-item">
+                  <img src="{{ url_for('static', filename='img/location-pin.png') }}" height="110px" width="110px">
+                  <h4 class="my-4 font-weight-bold">Принять заказ</h4>
+                <p class="text-center">Выберите собаку, с которой хотите погулять, и подтвердите заказ</p>
+              </div>
+              <!--Grid column-->
+              <div class="col-lg-1 row-item row-arrow">
+                  <img src="{{ url_for('static', filename='img/right-arrow.png') }}" class="right-arrow">
+              </div>
+              <!--Grid column-->
+              <div class="col-lg-4 col-md-12 mb-4 row-item">
+                  <img src="{{ url_for('static', filename='img/go-walk.png') }}" height="110px" width="110px">
+                  <h4 class="my-4 font-weight-bold">Начать прогулку</h4>
+                <p class="text-center">Заберите собаку в месте, указанном владельцем и погуляйте с ней</p>
+              </div>
+              <!--Grid column-->
+              <div class="col-lg-1 row-item row-arrow">
+                  <img src="{{ url_for('static', filename='img/right-arrow.png') }}" class="right-arrow">
+              </div>
+              <!--Grid column-->
+              <div class="col-lg-3 col-md-12 mb-4 row-item">
+                  <img src="{{ url_for('static', filename='img/pet.png') }}"height="110px" width="110px">
+                  <h4 class="my-4 font-weight-bold">Вернуть собаку</h4>
+                <p class="text-center">Передайте собаку владельцу и получите вознаграждение за прогулку
+                </p>
+              </div>
+              <!--Grid column-->
+            </div>
+          </div>
+    </section>	
+  <section id="clients" class="jumbotron mb-5">
+     <div class="container">
+          <h2 class="mb-4 font-weight-bold text-center h2-article">Наши волкеры</h2>
+           <div class="row wow animated fadeIn" data-wow-duration="0.5s">
+           <div class="col-lg-4 col-md-12 mb-4 card-item">
+            <div class="card promoting-card">
+                <div class="card-body">
+                    <div class="collapse-content">
+                        <p >Люблю собак, но завести свою не позволяет жилплощадь. Благодаря сервису могу проводить с ними много времени</p>
+                    </div>
+                </div>
+                <hr class="my-0 hr-orange">
+                <div class="card-body d-flex flex-row">
+                  <img src="{{ url_for('static', filename='img/person1.png') }}" class="rounded-circle mr-3" height="80px" width="80px" alt="avatar">
+                  <div class="d-flex flex-column justify-content-center">
+                    <span class="card-text name">Дмитрий</span>
+                    <span class="card-text name">Строков</span>
+                  </div>
+                </div>
+            </div>
+           </div>
+            <!--Grid column-->
+           <div class="col-lg-4 col-md-12 mb-4 card-item">
+               <div class="card promoting-card">
+                <div class="card-body">
+                    <div class="collapse-content">
+                     <p >Мне как студенту подходит подработка - гуляю с собаками до и после занятий. Радует, что нет проблем с начальством во время сессии, просто не беру заказы</p>
+                     </div>
+                </div>
+                <hr class="my-0 hr-orange">
+                <div class="card-body d-flex flex-row">
+                  <img src="{{ url_for('static', filename='img/person2.jpg') }}" class="rounded-circle mr-3" height="80px" width="80px" alt="avatar">
+                  <div class="d-flex flex-column justify-content-center">
+                    <span class="card-text name">Дарья</span>
+                    <span class="card-text name">Завьялова</span>
+                  </div>		        
+                </div>
+              </div>
+           </div>
+            <!--Grid column-->
+           <div class="col-lg-4 col-md-12 mb-4 card-item">
+               <div class="card promoting-card">
+                <div class="card-body">
+                  <div class="collapse-content">
+                    <p >Благодаря сервису могу найти компанию своему питомцу и получить дополнительный доход, не меняя повседневный график</p>
+                  </div>
+                </div>
+                <hr class="my-0 hr-orange">
+                <div class="card-body d-flex flex-row">
+                  <img src="{{ url_for('static', filename='img/person3.png') }}" class="rounded-circle mr-3" height="80px" width="80px" alt="avatar">
+                  <div class="d-flex flex-column justify-content-center">
+                    <span class="card-text name">Анна</span>
+                    <span class="card-text name">Копач</span>
+                  </div>
+                </div>
+              </div>
+           </div>
+            <!--Grid column-->
+          </div>
+        </div>
+  </section>
+  
+  <section id="walkers" class="text-center mb-5">
+      <div class="container">
+          <h2 class="mb-4 font-weight-bold h2-article">Присоединяйтесь к нашей команде</h2>
+        
+          <div class="row wow animated fadeIn d-flex justify-content-center" data-wow-duration="0.5s">
+            <div class="col-md-10 mb-4 text-center">
+                <p>Зарегистрируйтесь на сайте и оставьте заявку на обучение, и в скором времени вы станете профессиональным дог-волкером!</p>
+                <a href="{{ url_for('register' )}}"  class="btn btn-outline-black btn-rounded waves-effect medium">Зарегистрироваться
+                        <i class="far fa-user-plus"></i>
+                </a>
+            </div>
+            <!--Grid column-->
+          </div>
+        </div>
+  </section>
+ </main>
+  
+  <footer class="footer pt-5">
+      <div class="container">
+              <div class="row d-flex justify-content-center text-left">
+                  <div class="col-xs-12 col-sm-12 col-md-4">
+                      <h5>Навигация</h5>
+                      <ul class="list-unstyled quick-links">
+                          <li><a href="#intro"><i class="far fa-angle-double-right"></i>Главная</a></li>
+                          <li><a href="#need-us"><i class="far fa-angle-double-right"></i>О нас</a></li>
+                          <li><a href="#wd"><i class="far fa-angle-double-right"></i>Сервис</a></li>
+                          <li><a href="#clients"><i class="far fa-angle-double-right"></i>Отзывы</a></li>
+                          <li><a href="#questions"><i class="far fa-angle-double-right"></i>Вопросы</a></li>
+                      </ul>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-5">
+                      <h5>Наши партнеры</h5>
+                      <ul class="list-unstyled quick-links">
+                          <li><a href="#"><i class="far fa-angle-double-right"></i>Станьте нашим партнером!</a></li>
+                      </ul>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-3">
+                      <h5>Контакты</h5>
+                      <ul class="list-unstyled quick-links">
+                          <li><a href="#"><i class="far fa-angle-double-right"></i>E-mail: walkiedoggie72@gmail.com</a></li>
+                          <li><a href="#"><i class="far fa-angle-double-right"></i>г. Тюмень</a></li>
+                          <li><a href="#"><i class="far fa-angle-double-right"></i>тел. +79199399783</a></li>
+                          <li class="social"><i class="fab fa-vk"></i></li>
+                          
+                      </ul>
+                  </div>
+              </div>
+          </div>
+      <div class="footer-copyright text-center text-white py-4">
+          Сервис для выгула собак "Walkie-Doggie" © 2019
+      </div>
+  </footer>
+{% endblock %}
