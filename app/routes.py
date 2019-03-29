@@ -9,6 +9,10 @@ from app.controllers import controller_index, controller_profile
 def index():
     return controller_index.Index()
 
+@app.route('/walker')
+def walker():
+    return controller_index.Walker()
+
 @app.route('/profile', methods=['GET', 'POST'])
 def userProfile():
     return controller_profile.UserProfile(db)

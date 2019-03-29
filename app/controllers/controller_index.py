@@ -11,6 +11,9 @@ import datetime
 def Index():
     return render_template('index.html')
 
+def Walker():
+    return render_template('walker.html')
+
 def Login():
     if current_user.is_authenticated:
         return redirect(url_for('userProfile'))

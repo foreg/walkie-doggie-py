@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- SEO Tags -->
+    <title>WD-LAND</title>
+
+    <!-- Favicon Icon -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='libs/fontawesome/css/all.css') }}"></link>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+</head>
+<body>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top scrolling-navbar">
+  	<div class="container">
+	    <a href="#" class="navbar-brand">
+	        <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" class="img-fluid header-logo">
+	    </a>
+	    <button class="navbar-toggler nav-button" type="button" data-toggle="collapse" data-target="#navbarMenu"
+	    aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+	        <div class="animated-icon">
+	            <span></span><span></span><span></span>
+	        </div>
+	    </button>
+	    <div class="collapse navbar-collapse" id="navbarMenu">
+	        <ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+	                <a href="{{ url_for('index' )}}" class="nav-link">Главная</a>
+	            </li>
+	            <li class="nav-item">
+	                <a href="#aboutus" class="nav-link">О нас</a>
+	            </li>
+	            <li class="nav-item">
+	                <a href="#it-works" class="nav-link">О работе</a>
+	            </li>
+	            <li class="nav-item">
+	                <a href="#clients" class="nav-link">Команда</a>
+	            </li>
+	            <li class="nav-item">
+	                <a href="#walkers" class="nav-link">Заявка</a>
+	            </li>
+			</ul>
+			
+    
+	        <ul class="navbar-nav ml-auto">
+                {% if current_user.is_anonymous %}
+	                <li class="nav-item">
+	                    <a href="{{ url_for('login') }}" class="nav-link">
+	                       <i class="fas fa-sign-in"></i>Логин
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url_for('register') }}" class="nav-link">
+                            <i class="fas fa-user"></i>Регистрация
+                        </a>
+                    </li>
+				{% else %}
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenu4" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false">
+						Опции
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenu4">
+						<a class="dropdown-item" href="{{ url_for('logout') }}">Выйти</a>
+						<a class="dropdown-item" href="{{ url_for('userProfile') }}">Профиль</a>
+						<!-- <a class="dropdown-item" href="#">Something else here</a> -->
+					</div>
+                    <!-- <li class="nav-item">
+                        <a href="{{ url_for('logout') }}" class="nav-link">Logout</a>
+                    </li> -->
+                {% endif %}
+	        </ul>
+	    </div>
+  	</div>
+  </nav>
+</header>
+{% block content %}
+{% endblock %}
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
