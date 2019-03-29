@@ -18,7 +18,7 @@ def Login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
+            flash('Неправильный логин или пароль!')
             return redirect(url_for('login'))
         if not user.isConfirmed:
             flash('Подтвердите свой email, перейдя по ссылке в письме')
@@ -39,7 +39,7 @@ def Register():
         token = generate_confirmation_token(user.email)
         confirm_url = url_for('confirm_email', token=token, _external=True)
         html = render_template('activate.html', confirm_url=confirm_url)
-        subject = "Please confirm your email"
+        subject = "Пожалуйста, подтвердите свой e-mail."
         send_email(user.email, subject, html)
 
         user_roles = User_roles(user=user, role=Role.query.get(6)) # User
@@ -57,10 +57,10 @@ def Confirm(token):
     try:
         email = confirm_token(token)
     except:
-        flash('The confirmation link is invalid or has expired.', 'danger')
+        flash('Ссылка для подтверждения недействительна или просрочена.', 'danger')
     user = User.query.filter_by(email=email).first_or_404()
     if user.isConfirmed:
-        flash('Account already confirmed. Please login.', 'success')
+        flash('Аккаунт уже подтвержден. Пожалуйста, авторизуйтесь.', 'success')
     else:
         user.isConfirmed = True
         user.confirmed_on = datetime.datetime.now()
