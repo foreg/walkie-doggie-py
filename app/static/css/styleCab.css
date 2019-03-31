@@ -1,0 +1,171 @@
+/* General Settings */
+body{
+	margin: 0;
+	padding: 0;
+}
+
+i{
+	padding-right: 6px;
+}
+
+a{
+	text-decoration: none;
+}
+
+li{
+	list-style: none;
+}
+
+/* Fonts */
+@font-face {
+	font-family: 'Futura PT Light';
+	src: url('../fonts/FuturaPT-Light.eot');
+	src: url('../fonts/FuturaPT-Light.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/FuturaPT-Light.woff') format('woff'),
+	url('../fonts/FuturaPT-Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Futura PT Book';
+	src: url('../fonts/FuturaPT-Book.eot');
+	src: url('../fonts/FuturaPT-Book.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/FuturaPT-Book.woff') format('woff'),
+	url('../fonts/FuturaPT-Book.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Futura PT Medium';
+	src: url('../fonts/FuturaPT-Medium.eot');
+	src: url('../fonts/FuturaPT-Medium.eot?#iefix') format('embedded-opentype'),
+	url('../fonts/FuturaPT-Medium.woff') format('woff'),
+	url('../fonts/FuturaPT-Medium.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.book{
+	font-family: "Futura PT Book"; 
+}
+
+.medium{
+	font-family: "Futura PT Medium";
+}
+
+.light{
+	font-family: "Futura PT Light";
+}
+
+/* End Fonts */
+
+/* NavBars Override Rules */
+.sn-bg-4{
+	background: #222632 !important;
+}
+.navbar {
+	color: #fff;
+	background: #222632 !important;
+}
+.rgba-black-light, .rgba-black-light:after{
+	background-color: rgba(34,38,50,0.7) !important;
+}
+
+.side-nav .collapsible>li a.collapsible-header.active{
+	background: unset !important;
+}
+
+.side-nav .collapsible>li a.collapsible-header:hover, .collapsible-accordion .a-nav:hover {
+     background:  #dd4a00 !important; 
+}
+
+.a-nav{
+	text-decoration: none !important;
+}
+.side-nav .collapsible a {
+    font-size: 0.85rem;
+}
+
+.side-nav .logo-wrapper, .side-nav .logo-wrapper a {
+    height: 135px;
+}
+
+a.nav-link{
+	margin-bottom: 3px;
+	border-bottom: 3px solid transparent;
+}
+
+a.nav-link:hover, a.nav-link:focus {
+	color: #fff !important;
+	border-bottom: 3px solid #ff691e;
+}
+
+.collapsible-header .fa-angle-down{
+	font-size: .9rem;
+	-webkit-transform: rotate(0deg);
+	-moz-transform: rotate(0deg);
+	-o-transform: rotate(0deg);
+	transform: rotate(0deg);
+	-webkit-transition: .25s ease-in-out;
+	-moz-transition: .25s ease-in-out;
+	-o-transition: .25s ease-in-out;
+	transition: .25s ease-in-out;
+}
+
+.collapsible-header.active .fa-angle-down {
+	-webkit-transform: rotate(90deg);
+	-moz-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+	-webkit-transition: .25s ease-in-out;
+	-moz-transition: .25s ease-in-out;
+	-o-transition: .25s ease-in-out;
+	transition: .25s ease-in-out;
+}
+
+@media (max-width: 870px) and (min-width: 767px) {
+	.card .card-body{
+		height: 264.2px;
+	}
+}
+@media (max-width: 767px){
+	.card.walker{
+		margin-top: 1.5rem !important;
+	}
+}
+
+.dropdown-menu.dropdown-primary{
+	left: -52px !important;
+}
+
+/* End NavBar */
+span{
+	border:0;
+}
+
+/* Cards */
+.btn-outline-black{
+	margin: 0;
+}
+
+.card-hr{
+	border: 0;
+    border-bottom: 1.5px solid #ccc;
+    background: #222632;
+}
+
+/* End Cards */
+
+/* Profile Page */
+
+.info-color {
+    background-color: #ff691e!important;
+}
+
+.btn-outline-info, .btn-outline-info:hover {
+    border: 2px solid #222632!important;
+    background-color: transparent!important;
+    color: #222632!important;
+}

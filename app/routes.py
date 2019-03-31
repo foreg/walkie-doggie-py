@@ -13,6 +13,10 @@ def index():
 def walker():
     return controller_index.Walker()
 
+@app.route('/roles')
+def roles():
+    return controller_index.Roles()
+
 @app.route('/profile', methods=['GET', 'POST'])
 def userProfile():
     return controller_profile.UserProfile(db)
