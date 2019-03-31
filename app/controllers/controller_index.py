@@ -4,6 +4,7 @@ from app.forms import LoginForm, RegistrationForm
 from app.models import User, Role, User_roles
 from app.token import generate_confirmation_token, confirm_token
 from app.email import send_email
+from app.utils import login_required
 from app import db
 import datetime
 
@@ -13,6 +14,10 @@ def Index():
 
 def Walker():
     return render_template('walker.html')
+
+@login_required
+def Roles():
+    return render_template('roles.html')    
 
 def Login():
     if current_user.is_authenticated:
@@ -27,7 +32,8 @@ def Login():
             flash('Подтвердите свой email, перейдя по ссылке в письме')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
-        return redirect(url_for('userProfile'))
+        # return redirect(url_for('userProfile'))
+        return redirect(url_for('roles'))
     return render_template('login.html', form=form)
 
 def Register():
@@ -70,4 +76,5 @@ def Confirm(token):
         db.session.add(user)
         db.session.commit()
         flash('Аккаунт подтвержден!', 'success')
-    return redirect(url_for('userProfile'))
+    return redirect(url_for('roles'))
+    # return redirect(url_for('userProfile'))

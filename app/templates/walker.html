@@ -1,7 +1,8 @@
 {% extends "base_walker.html" %}
 
 {% block content %}
-<section id="intro" class="view intro walker">
+<span class="anchor" id="intro"></span>
+<section class="view intro walker">
     <div class="mask rgba-black-strong flex-center">
       <div class="container d-flex align-items-center justify-content-start h-100">
         <div class="row d-flex justify-content-start text-left">
@@ -20,7 +21,8 @@
     </div>
   </section>
   <main class="mt-5">
-  <section id="aboutus" class="text-center my-5">
+  <span class="anchor" id="aboutus"></span>
+  <section class="text-center my-5">
        <div class="container">
           <h2 class="mb-4 font-weight-bold h2-article">О нашем сервисе</h2>
     
@@ -33,7 +35,8 @@
           </div>
         </div>
   </section>
-  <section id="workwalk" class="text-center my-5">
+  <span class="anchor" id="workwalk"></span>
+  <section class="text-center my-5">
         <div class="container">
            <h2 class="mb-4 font-weight-bold h2-article">Почему стоит работать волкером?</h2>
         
@@ -69,8 +72,8 @@
            </div>
          </div>
    </section>
-  
-   <section id="wd" class="text-center mb-5">
+   <span class="anchor" id="wd"></span>
+   <section class="text-center mb-5">
         <div class="container">
           <h2 class="mb-4 font-weight-bold h2-article">Что мы предлагаем нашим волкерам?</h2>
         
@@ -80,7 +83,7 @@
             </div>
             <div class="col-lg-8 col-md-8 mb-4 row-item">
                 <h4 class="my-4 font-weight-bold text-left">Динамическая заработная плата</h4>
-              <p class="text-left">Вы получите ровно столько денег, сколько сами заработали. Чем больше прогулок - тем выше заработок </p>
+              <p class="text-left">Вы получите ровно столько денег, сколько сами заработали. <br /> Чем больше прогулок - тем выше заработок </p>
             </div>
             <!--Grid column-->
             <div class="col-lg-4 col-md-4 row-img-wd pr-3">
@@ -88,22 +91,23 @@
             </div>
             <div class="col-lg-8 col-md-8  mb-4 row-item">
                 <h4 class="my-4 font-weight-bold text-left">Свободный график</h4>
-              <p class="text-left">У нас нет обязательных часов отработки, работайте столько сколько захотите</p>
+              <p class="text-left">У нас нет обязательных часов отработки,  <br />  работайте столько сколько захотите</p>
             </div>
             <!--Grid column-->
-            <div class="col-lg-4 col-md-4 row-img-wd pr-4-1">
+            <div class="col-lg-4 col-md-4 row-img-wd">
               <img src="{{ url_for('static', filename='img/career.png') }}"height="110px" width="110px">
             </div>
             <div class="col-lg-8 col-md-8 mb-4 row-item">
                 <h4 class="my-4 font-weight-bold text-left">Обучение</h4>
-              <p class="text-left">Наш сервис предлагает всем желающим стать профессональным волкером. Вас будет обучать преподаватель с опытом работы с животными
+              <p class="text-left">Наш сервис предлагает всем желающим стать профессональным волкером. <br /> Вас будет обучать преподаватель с опытом работы с животными
               </p>
             </div>
             <!--Grid column-->
           </div>
         </div>
   </section>
-  <section id="it-works" class="text-center mb-5">
+  <span class="anchor" id="job"></span>
+  <section class="text-center my-5">
         <div class="container">
             <h2 class="mb-4 font-weight-bold h2-article">В чём заключается работа волкера?</h2>
         
@@ -137,8 +141,9 @@
               <!--Grid column-->
             </div>
           </div>
-    </section>	
-  <section id="clients" class="jumbotron mb-5">
+    </section>
+  <span class="anchor" id="walkers"></span>	
+  <section class="jumbotron mb-5">
      <div class="container">
           <h2 class="mb-4 font-weight-bold text-center h2-article">Наши волкеры</h2>
            <div class="row wow animated fadeIn" data-wow-duration="0.5s">
@@ -146,7 +151,12 @@
             <div class="card promoting-card">
                 <div class="card-body">
                     <div class="collapse-content">
-                        <p >Люблю собак, но завести свою не позволяет жилплощадь. Благодаря сервису могу проводить с ними много времени</p>
+                      <p class="card-text my-3 d-flex align-items-center">
+                          <i class="far fa-clock pr-2"></i>
+                          4 янв. 2019
+                      </p>
+                      <h4 class="card-title font-weight-bold mb-0">Работа мечты</h4>
+                      <p class="card-text mt-4">Люблю собак, но завести свою не позволяет жилплощадь. Благодаря сервису могу проводить с ними много времени</p>
                     </div>
                 </div>
                 <hr class="my-0 hr-orange">
@@ -164,8 +174,14 @@
                <div class="card promoting-card">
                 <div class="card-body">
                     <div class="collapse-content">
-                     <p >Мне как студенту подходит подработка - гуляю с собаками до и после занятий. Радует, что нет проблем с начальством во время сессии, просто не беру заказы</p>
-                     </div>
+                      <p class="card-text my-3 d-flex align-items-center">
+                          <i class="far fa-clock pr-2"></i>
+                          4 янв. 2019
+                      </p>
+                      <h4 class="card-title font-weight-bold mb-0">Отзывчивое начальство</h4>
+                      <p class="card-text mt-4">Мне как студенту подходит подработка - гуляю с собаками до и после занятий.
+                        Радует, что нет проблем с начальством</p>
+                    </div>
                 </div>
                 <hr class="my-0 hr-orange">
                 <div class="card-body d-flex flex-row">
@@ -182,7 +198,13 @@
                <div class="card promoting-card">
                 <div class="card-body">
                   <div class="collapse-content">
-                    <p >Благодаря сервису могу найти компанию своему питомцу и получить дополнительный доход, не меняя повседневный график</p>
+                    <p class="card-text my-3 d-flex align-items-center">
+                          <i class="far fa-clock pr-2"></i>
+                          4 янв. 2019
+                    </p>
+                    <h4 class="card-title font-weight-bold mb-0">Удобная подработка</h4>
+                    <p class="card-text mt-4">Благодаря сервису могу найти компанию
+                     своему питомцу и получить дополнительный доход, не меняя повседневный график</p>
                   </div>
                 </div>
                 <hr class="my-0 hr-orange">
@@ -199,8 +221,8 @@
           </div>
         </div>
   </section>
-  
-  <section id="walkers" class="text-center mb-5">
+  <span class="anchor" id="request"></span>	
+  <section class="text-center my-5">
       <div class="container">
           <h2 class="mb-4 font-weight-bold h2-article">Присоединяйтесь к нашей команде</h2>
         
@@ -224,10 +246,10 @@
                       <h5>Навигация</h5>
                       <ul class="list-unstyled quick-links">
                           <li><a href="#intro"><i class="far fa-angle-double-right"></i>Главная</a></li>
-                          <li><a href="#need-us"><i class="far fa-angle-double-right"></i>О нас</a></li>
-                          <li><a href="#wd"><i class="far fa-angle-double-right"></i>Сервис</a></li>
-                          <li><a href="#clients"><i class="far fa-angle-double-right"></i>Отзывы</a></li>
-                          <li><a href="#questions"><i class="far fa-angle-double-right"></i>Вопросы</a></li>
+                          <li><a href="#aboutus"><i class="far fa-angle-double-right"></i>О нас</a></li>
+                          <li><a href="#job"><i class="far fa-angle-double-right"></i>О работе</a></li>
+                          <li><a href="#walkers"><i class="far fa-angle-double-right"></i>Команда</a></li>
+                          <li><a href="#request"><i class="far fa-angle-double-right"></i>Заявка</a></li>
                       </ul>
                   </div>
                   <div class="col-xs-12 col-sm-12 col-md-5">

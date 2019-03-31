@@ -213,6 +213,13 @@ section.mb-5{
 
 /* override Bootstrap rules */
 
+.anchor{
+	display: block;
+	height: 110px; 
+	margin-top: -110px; 
+	visibility: hidden;
+  }
+
 .btn{
 	font-size: 1.2rem;
 }
@@ -227,14 +234,6 @@ section.mb-5{
 	margin-left: 0;
 }
 
-/* .navbar-dark {
-	background-color: #222632;
-}
-
-.navbar-index{
-	background-color: unset;
-} */
-
 .top-nav-collapse {
 	background-color: #222632;
 }
@@ -246,12 +245,6 @@ section.mb-5{
 	-o-transition: .45s ease-in-out;
 	transition: .45s ease-in-out;
 }
-/*
-@media only screen and (max-width: 768px) {
-    .navbar {
-        background-color: #ff884d;
-    }
-}*/
 
 .navbar-dark .navbar-nav .nav-link{
 	color: #fff;
@@ -615,7 +608,7 @@ a.nav-link:hover, a.nav-link:focus {
 	background: url("../img/auth.jpg") no-repeat center bottom;
 }
 .intro.walker{
-	background: url("../img/walker.jpg") no-repeat center center !important;
+	background: url("../img/bg_walker.jpg") no-repeat center center !important;
 }
 .intro.login, .intro.register{
 	-webkit-background-size: cover;

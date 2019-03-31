@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Кабинет</title>
+
+	<!-- Favicon Icon -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='libs/fontawesome/css/all.css') }}"></link>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
+    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/mdb.min.css') }}">
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleCab.css') }}" type="text/css">
+</head>
+<body class="fixed-sn">
+
+  <!--Double navigation-->
+  <header>
+    <!-- Sidebar navigation -->
+    <div id="slide-out" class="side-nav sn-bg-4 fixed">
+      <ul class="custom-scrollbar">
+        <!-- Logo -->
+        <li>
+          <div class="logo-wrapper waves-light">
+            <a href="#"><img src="{{ url_for('static', filename='img/logo.png') }}" class="img-fluid flex-center"></a>
+          </div>
+        </li>
+        <!--/. Logo -->
+        
+        <!-- Side navigation links -->
+        <li>
+          <ul id="accordion" class="collapsible collapsible-accordion">
+            <li>
+              <a class="collapsible-header waves-effect">
+                <i class="fas fa-user"></i></i> 
+                Личный кабинет
+                <i class="fas fa-angle-down rotate-icon"></i>
+              </a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="{{ url_for('userProfile' )}}" class="waves-effect a-nav">Страница личного кабинета</a>
+                  </li>
+                  <li><a href="#" class="waves-effect a-nav">Записаться на курсы волкеров</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li><a class="collapsible-header waves-effect">
+              <i class="fas fa-dog"></i>
+                Питомцы<i class="fas fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="#" class="waves-effect a-nav">Добавить питомца</a>
+                  </li>
+                  <li><a href="#" class="waves-effect a-nav">Выгулять питомца</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li><a class="collapsible-header waves-effect"><i class="fas fa-browser"></i></i>Социальные сети<i
+                  class="fas fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+                <ul>
+                  <li><a href="https://vk.com/walkiedoggie" class="waves-effect a-nav">Вконтакте</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <div class="sidenav-bg mask rgba-black-light"></div>
+    </div>
+    <nav class="navbar fixed-top navbar-toggleable-md navbar-expand-lg double-nav">
+      <div class="float-left">
+        <a href="#" data-activates="slide-out" class="button-collapse"><i class="fas fa-bars"></i></a>
+      </div>
+      <div class="breadcrumb-dn mr-auto">
+        <p></p>
+      </div>
+      <ul class="nav navbar-nav nav-flex-icons ml-auto">
+        <li class="nav-item">
+          <a href="{{ url_for('index') }}" class="nav-link"><i class="fas fa-home"></i></i> <span class="clearfix d-none d-sm-inline-block">Главная</span></a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link"><i class="far fa-comments"></i> <span class="clearfix d-none d-sm-inline-block">Обратная связь</span></a>
+        </li> -->
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+              aria-expanded="false"><i class="fas fa-user"></i>Опции</a>
+            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="{{ url_for('userProfile') }}">Профиль</a>
+              <a class="dropdown-item" href="{{ url_for('roles') }}">Роли</a>
+              <a class="dropdown-item" href="{{ url_for('logout') }}">Выйти</a>
+            </div>
+          </li>
+        
+      </ul>
+    </nav>
+    <!-- /.Navbar -->
+  </header>
+  <!--/.Double navigation-->
+  {% block content %}
+  {% endblock %}
+</body>
+<script
+  src="https://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</html>
