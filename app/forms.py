@@ -10,6 +10,8 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
+    ignored_fields = set(['submit', 'csrf_token', 'remember_me'])
+
 class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(message='Заполните поле e-mail!'), Email(message='Неккоректный e-mail!')])
     password = PasswordField('Password', validators=[DataRequired(message='Заполните поле пароль!')])
@@ -17,6 +19,8 @@ class RegistrationForm(FlaskForm):
         validators=[DataRequired(message='Повторите пароль!'), EqualTo('password', message='Введенные пароли не совпадают!')])
     recaptcha = RecaptchaField()
     submit = SubmitField('Register')
+
+    ignored_fields = set(['submit', 'csrf_token', 'password2', 'recaptcha'])
 
     def validate_email(self, email):
         user = User.query.filter_by(email=email.data).first()
@@ -34,3 +38,5 @@ class UserProfileForm(FlaskForm):
     phone=StringField('Phone')
     info=StringField('Text')
     submit = SubmitField('Save')
+    
+    ignored_fields = set(['submit', 'csrf_token'])
