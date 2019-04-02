@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from wtforms import StringField, PasswordField, BooleanField, SubmitField,DateField,SelectField
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo,Regexp
 from app.models import User
 
 
@@ -31,12 +31,28 @@ class RegistrationForm(FlaskForm):
         if len(password.data) < 6:
             raise ValidationError('Пароль должен содержать минимум 6 символов')
 class UserProfileForm(FlaskForm):
-    surname= StringField('Surname')
-    name= StringField('Name')
-    middlename= StringField('Middlename')
-    address=StringField('Addres')
-    phone=StringField('Phone')
+    surname= StringField('Surname',validators=[DataRequired(message='Заполните поле фамилия!')])
+    name= StringField('Name',validators=[DataRequired(message='Заполните поле имя!')])
+    middlename= StringField('Middlename',validators=[DataRequired(message='Заполните поле отчество!')])
+    address=StringField('Addres',validators=[DataRequired(message='Заполните поле адрес!')])
+    phone=StringField('Phone',validators=[DataRequired(message='Заполните поле телефон!'),Regexp('^8[\d]{10}$', message = "Введите номер в формате 8XXXXXXXXXX!")])
     info=StringField('Text')
     submit = SubmitField('Save')
     
     ignored_fields = set(['submit', 'csrf_token'])
+
+class WalkerProfileForm(FlaskForm):
+    addresspr= StringField('Addresspr',validators=[DataRequired(message='Заполните поле адрес проживания!')])
+    addressreg= StringField('Addressreg',validators=[DataRequired(message='Заполните поле адрес регистрации!')])
+    height= StringField('Height',validators=[DataRequired(message='Заполните поле рост!')])
+    weight= StringField('Weight',validators=[DataRequired(message='Заполните поле вес!')])
+    gender= StringField('Gender',validators=[DataRequired(message='Заполните поле пол!')])
+    rating=StringField('Rating',validators=[DataRequired(message='Заполните поле рейтинг!')])
+    series=StringField('Series',validators=[DataRequired(message='Заполните поле серия!'),Regexp('^[\d]{4}', message = "Неправильно введена серия!")])
+    number=StringField('Number',validators=[DataRequired(message='Заполните поле номер!'),Regexp('^[\d]{6}', message = "Неправильно введен номер!")])
+    issuedBy= StringField('IssuedBy',validators=[DataRequired(message='Заполните поле кем выдан!')])
+    issueDate= DateField('IssueDate',validators=[DataRequired(message='Выберите дату!')])
+    birthDate= DateField('BirthDate',validators=[DataRequired(message='Выберите дату!')])
+    rating=StringField('Rating')
+    score=StringField('Score')
+    submit = SubmitField('Save')
