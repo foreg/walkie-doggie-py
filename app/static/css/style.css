@@ -213,6 +213,10 @@ section.mb-5{
 
 /* override Bootstrap rules */
 
+.row.mh-100{
+	max-height: 500px !important;
+}
+
 .anchor{
 	display: block;
 	height: 110px; 
@@ -266,12 +270,13 @@ a.nav-link:hover, a.nav-link:focus {
 	.offset-md-4 {
 	    margin-left: 39.633333%;
 	}
-}
-@media (min-width: 768px){
 	.navbar-brand.offset-md-1{
 		margin-left: 3.133333%;
 	}
 }
+
+
+
 
 @media (min-width: 600px){
 	

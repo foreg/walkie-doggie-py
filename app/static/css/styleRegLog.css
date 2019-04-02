@@ -1,0 +1,21 @@
+
+@media (max-width: 767px){
+	.view.intro{
+		overflow-y: auto;
+	}
+	.view .mask{
+		/* background: unset !important; */
+		overflow: unset !important;
+    }
+    
+    .navbar{
+        background-color: #222632 !important;
+    }
+}
+
+@media (max-width: 576px){
+	.card.reg{
+		margin-left: 1.5rem;
+		margin-right: 1.5rem;
+	}
+}
