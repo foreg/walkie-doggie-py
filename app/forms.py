@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
+from wtforms.validators import ValidationError, DataRequired, Email, EqualTo,Regexp
 from app.models import User
+import re
 
 
 class LoginForm(FlaskForm):
@@ -31,12 +32,16 @@ class RegistrationForm(FlaskForm):
         if len(password.data) < 6:
             raise ValidationError('Пароль должен содержать минимум 6 символов')
 class UserProfileForm(FlaskForm):
-    surname= StringField('Surname')
-    name= StringField('Name')
-    middlename= StringField('Middlename')
-    address=StringField('Addres')
-    phone=StringField('Phone')
-    info=StringField('Text')
+    surname= StringField('Surname',validators=[DataRequired(message='Заполните поле фамилия!')])
+    name= StringField('Name',validators=[DataRequired(message='Заполните поле имя!')])
+    middlename= StringField('Middlename',validators=[DataRequired(message='Заполните поле отчество!')])
+    address=StringField('Addres',validators=[DataRequired(message='Заполните поле адрес!')])
+    phone=StringField('Phone',validators=[DataRequired(message='Заполните поле телефон!'),Regexp('^[8][\d]{10}', message = "Неправильно введен номер!")])
+    info=StringField('Text',validators=[DataRequired(message='Заполните поле о себе!')])
     submit = SubmitField('Save')
     
     ignored_fields = set(['submit', 'csrf_token'])
+
+    def validate_phone(self, phone): 
+        if len(phone.data) != 11:
+            raise ValidationError('Номер должен состоять из 11 цифр.')
