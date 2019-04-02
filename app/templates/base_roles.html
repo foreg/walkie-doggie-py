@@ -43,7 +43,7 @@
               </a>
               <div class="collapsible-body">
                 <ul>
-                  <li><a href="{{ url_for('userProfile' )}}" class="waves-effect a-nav">Страница личного кабинета</a>
+                  <li><a href="{{ url_for('profile' )}}" class="waves-effect a-nav">Страница личного кабинета</a>
                   </li>
                   <li><a href="#" class="waves-effect a-nav">Записаться на курсы волкеров</a>
                   </li>
@@ -94,8 +94,7 @@
             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
               aria-expanded="false"><i class="fas fa-user"></i>Опции</a>
             <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="{{ url_for('userProfile') }}">Профиль</a>
-              <a class="dropdown-item" href="{{ url_for('roles') }}">Роли</a>
+                <a class="dropdown-item" href="{{ url_for('profile') }}">Профиль</a>
               <a class="dropdown-item" href="{{ url_for('logout') }}">Выйти</a>
             </div>
           </li>

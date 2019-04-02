@@ -27,6 +27,8 @@ class User(UserMixin, db.Model):
     isConfirmed=db.Column(db.Boolean, default=False)
     confirmed_on = db.Column(db.DateTime, nullable=True)
     roles = db.relationship('User_roles', backref='user', lazy='dynamic')
+    walker_id = db.Column(db.Integer, db.ForeignKey('walker.id'))
+    walker_info = db.relationship('Walker', backref='user')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -34,12 +36,23 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def check_role(self, role):
+        for user_role in self.roles.all():
+            if user_role.role_id == role:
+                return True
+        return False
+
+    def add_role(self, role):
+        if not self.check_role(int(role)):
+            user_roles = User_roles(user=self, role=Role.query.get(int(role)))
+            db.session.add(user_roles)
+            db.session.commit()
+
     def __repr__(self):
         return '<User {}>'.format(self.surname) 
 
-class Walker(User):
-    __tablename__='walkers'
-    id_walker = db.Column(db.Integer, db.ForeignKey('user.id'))
+class Walker(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     address_pr=db.Column(db.Text)
     address_reg=db.Column(db.Text)
     height=db.Column(db.String(3))

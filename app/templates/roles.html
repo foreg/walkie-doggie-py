@@ -9,7 +9,7 @@
               <div class="card owner">
                 <div class="view overlay">
                     <img class="card-img-top" src="{{ url_for('static', filename='img/owner.jpg') }}" alt="Dog Owner">
-                    <a href="{{ url_for('userProfile') }}">
+                    <a href="{{ url_for('profile') }}">
                         <div class="mask rgba-white-light"></div>
                     </a>
                 </div>
@@ -19,7 +19,7 @@
                     <p class="card-text">
                     Вы хотите воспользоваться услугами профессиональных волкеров и обеспечить своему питомцу качественную и комфортную прогулку.
                     </p>
-                    <a href="{{ url_for('userProfile') }}" class="btn btn-outline-black btn-rounded waves-effect medium">Стать хозяином<i class="fas fa-paw pl-1"></i></a>
+                    <a href="{{ url_for('profile', become='owner') }}" class="btn btn-outline-black btn-rounded waves-effect medium">Стать хозяином<i class="fas fa-paw pl-1"></i></a>
                 </div>
               </div>
             </div>
@@ -27,7 +27,7 @@
                 <div class="card walker">
                     <div class="view overlay">
                         <img class="card-img-top img-walker" src="{{ url_for('static', filename='img/walker.jpg') }}" alt="Dog Walker">
-                        <a href="{{ url_for('walkerProfile') }}">
+                        <a href="{{ url_for('profile') }}">
                             <div class="mask rgba-white-light"></div>
                         </a>
                     </div>
@@ -35,7 +35,7 @@
                     <h4 class="card-title">ВОЛКЕР</h4>
                     <hr class="card-hr">
                     <p class="card-text">Вы хотите вступить в команду волкеров Walkie-Doggie, найти друзей, работу или же просто любите животных, также как и мы.</p>
-                    <a href="{{ url_for('walkerProfile') }}" class="btn btn-outline-black btn-rounded waves-effect medium">Стать волкером<i class="fas fa-dog-leashed pl-1"></i></a>
+                    <a href="{{ url_for('profile', become='walker') }}" class="btn btn-outline-black btn-rounded waves-effect medium">Стать волкером<i class="fas fa-dog-leashed pl-1"></i></a>
                     </div>
                 </div>
             </div>
