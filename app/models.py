@@ -37,6 +37,22 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User {}>'.format(self.surname) 
 
+class Walker(User):
+    __tablename__='walkers'
+    id_walker = db.Column(db.Integer, db.ForeignKey('user.id'))
+    address_pr=db.Column(db.Text)
+    address_reg=db.Column(db.Text)
+    height=db.Column(db.String(3))
+    weight=db.Column(db.String(10))
+    gender=db.Column(db.String(10))
+    rating=db.Column(db.Integer)
+    series=db.Column(db.String(4))
+    number=db.Column(db.String(6))
+    issuedBy=db.Column(db.Text)
+    issueDate=db.Column(db.DateTime(4))
+    birthDate=db.Column(db.DateTime(4))
+    score=db.Column(db.Integer)
+
 @login.user_loader
 def load_user(id):
     return User.query.get(int(id))
