@@ -59,7 +59,7 @@
                     </div>
                     <!-- phone -->
                     <div class="md-form">
-                        {{ form.phone(class_="form-control", id="FormPhone") }}<br>
+                        {{ form.phone(class_="form-control datepicker", id="FormPhone", placeholder="") }}<br>
                         <label for="FormPhone">Телефон</label>
                         
                         {% for error in form.phone.errors %}

@@ -22054,8 +22054,8 @@ function getScrollbarWidth() {
     var widthWithoutScroll = $outer[0].offsetWidth
 
     // Force adding scrollbars.
-    $outer.css( 'overflow', 'scroll' )
-
+    $outer.css( 'overflow', 'hidden' ) 
+		//scroll 
     // Add the inner div.
     var $inner = $( '<div style="width:100%" />' ).appendTo( $outer )
 
@@ -24164,7 +24164,8 @@ ClockPicker.prototype.parseInputValue = function(){
 		raiseCallback(this.options.beforeHide);
 		this.input.removeClass('picker__input picker__input--active');
 		this.popover.removeClass('picker--opened');
-		$(document.body).css('overflow', 'visible');
+		// $(document.body).css('overflow', 'visible');
+		$(document.body).css('overflow', 'hidden');
 		this.isShown = false;
 		$(':input').each(function(index) {
 			$(this).attr('tabindex', index + 1);
@@ -26182,7 +26183,8 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         } // @see: https://stackoverflow.com/a/4370047
 
 
-        this.$element.get(0).style.overflow = 'scroll';
+				// this.$element.get(0).style.overflow = 'scroll';
+				this.$element.get(0).style.overflow = 'hidden';
         var scrollHeight = this.$element.get(0).scrollHeight;
         this.$element.get(0).style.overflow = '';
         this.$element.css({
