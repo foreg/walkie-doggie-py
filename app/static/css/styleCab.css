@@ -1,7 +1,6 @@
 /* General Settings */
 body{
-	overflow-x: auto;
-	overflow-y: auto;
+	overflow: auto !important;
 	margin: 0;
 	padding: 0;
 }

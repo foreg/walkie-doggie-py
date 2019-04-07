@@ -5,6 +5,10 @@ from app.models import load_user
 from app.utils import login_required, fill_entity
 
 
+
+def Test():
+    return render_template('test.html')
+
 @login_required
 def UserProfile(db):
     if current_user.is_authenticated:

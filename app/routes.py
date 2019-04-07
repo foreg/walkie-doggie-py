@@ -3,6 +3,9 @@ from flask_login import login_required
 from app import app, db
 from app.controllers import controller_index, controller_profile
 
+@app.route('/test')
+def test():
+    return controller_profile.Test()
 
 @app.route('/')
 @app.route('/index')

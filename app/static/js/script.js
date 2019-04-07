@@ -69,3 +69,4 @@ $('.animated-icon').on('click', function(){
       $('.navbar').toggleClass('top-nav-collapse');
     }
 });
+
