@@ -55,6 +55,7 @@ def Register():
         db.session.add(user_roles)
         db.session.commit()
         flash('Вы успешно зарегистрировались!','success')
+
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
 

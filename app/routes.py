@@ -24,6 +24,10 @@ def roles():
 def userProfile():
     return controller_profile.UserProfile(db)
 
+@app.route('/walker_profile', methods=['GET', 'POST'])
+def walkerProfile():
+    return controller_profile.WalkerProfile(db)
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     return controller_index.Login()

@@ -15,7 +15,6 @@ jQuery.extend( jQuery.fn.pickadate.defaults, {
 
 $('.datepicker').pickadate();
 
-
 $(document).ready(function () {
   $('.nav-button').on('click', function () {
     $('.animated-icon').toggleClass('open');
