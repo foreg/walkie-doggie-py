@@ -112,13 +112,13 @@
                     </div>
                     <!-- gender -->
                     <div class="md-form">
-                        {{ form.gender(class_="form-control", id="FormGender") }}<br>
-                        <label for="FormGender">Пол</label>
+                        <option value="" disabled selected>Выберите пол</option>
+                        {{ form.gender(class_="form-control browser-default custom-select", id="FormGender") }}<br>
                         
                         {% for error in form.gender.errors %}
-                        <span style="color: red;">{{ error }}</span>
+                        <span style="color: red;">[{{ error }}]</span>
                         {% endfor %}
-                    </div>
+                       </div>
                     <!-- rating -->
                     <div class="md-form">
                         {{ form.rating(class_="form-control", id="FormRating") }}<br>
