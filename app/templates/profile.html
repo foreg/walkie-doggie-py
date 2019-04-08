@@ -33,7 +33,7 @@
                   <div class="col-md-6 col-xs-12">
                     <div class="md-form">
                         {{ form.surname(class_="form-control", id="FormSurname") }}<br>
-                        <label for="FormSurname">Фамилия</label>
+                        <label for="FormSurname"><span style="color: red;">*</span>Фамилия</label>
                         
                         {% for error in form.surname.errors %}
                         <span style="color: red;">[{{ error }}]</span>
@@ -42,7 +42,7 @@
                     <!-- name -->
                     <div class="md-form">
                         {{ form.name(class_="form-control", id="FormName") }}<br>
-                        <label for="FormName">Имя</label>
+                        <label for="FormName"><span style="color: red;">*</span>Имя</label>
                         
                         {% for error in form.name.errors %}
                         <span style="color: red;">[{{ error }}]</span>
@@ -62,7 +62,7 @@
                     <!-- adress -->
                     <div class="md-form">
                         {{ form.address(class_="form-control", id="FormAdress") }}<br>
-                        <label for="FormAdress">Адрес</label>
+                        <label for="FormAdress"><span style="color: red;">*</span>Адрес</label>
                         
                         {% for error in form.address.errors %}
                         <span style="color: red;">[{{ error }}]</span>
@@ -71,7 +71,7 @@
                     <!-- phone -->
                     <div class="md-form">
                         {{ form.phone(class_="form-control datepicker", id="FormPhone", placeholder="") }}<br>
-                        <label for="FormPhone">Телефон</label>
+                        <label for="FormPhone"><span style="color: red;">*</span>Телефон</label>
                         
                         {% for error in form.phone.errors %}
                         <span style="color: red;">[{{ error }}]</span>
