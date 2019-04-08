@@ -48,11 +48,20 @@ class WalkerProfileForm(FlaskForm):
     weight= StringField('Weight',validators=[DataRequired(message='Заполните поле вес!')])
     gender= StringField('Gender',validators=[DataRequired(message='Заполните поле пол!')])
     rating=StringField('Rating',validators=[DataRequired(message='Заполните поле рейтинг!')])
-    series=StringField('Series',validators=[DataRequired(message='Заполните поле серия!'),Regexp('^[\d]{4}', message = "Неправильно введена серия!")])
-    number=StringField('Number',validators=[DataRequired(message='Заполните поле номер!'),Regexp('^[\d]{6}', message = "Неправильно введен номер!")])
+    series=StringField('Series',validators=[DataRequired(message='Заполните поле серия!'),Regexp('^[\d]{4}$', message = "Неправильно введена серия!")])
+    number=StringField('Number',validators=[DataRequired(message='Заполните поле номер!'),Regexp('^[\d]{6}$', message = "Неправильно введен номер!")])
     issuedBy= StringField('IssuedBy',validators=[DataRequired(message='Заполните поле кем выдан!')])
     issueDate= DateField('IssueDate',validators=[DataRequired(message='Выберите дату!')])
     birthDate= DateField('BirthDate',validators=[DataRequired(message='Выберите дату!')])
     rating=StringField('Rating')
     score=StringField('Score')
     submit = SubmitField('Save')
+
+    ignored_fields = set(['submit', 'csrf_token'])
+
+    def __init__(self, **kwargs):
+        # self.addresspr.data = self.addresspr.data or kwargs['obj'].address_pr
+        # self.addressreg.data = self.addresspr.data or kwargs['obj'].address_reg
+        kwargs['obj'].addresspr = kwargs['obj'].address_pr
+        kwargs['obj'].addressreg = kwargs['obj'].address_reg
+        super().__init__(**kwargs)

@@ -16,12 +16,12 @@ def Walker():
     return render_template('walker.html')
 
 @login_required
-def Roles():
+def UserProfile():
     return render_template('roles.html')    
 
 def Login():
     if current_user.is_authenticated:
-        return redirect(url_for('userProfile'))
+        return redirect(url_for('profile'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -32,13 +32,12 @@ def Login():
             flash('Подтвердите свой email, перейдя по ссылке в письме')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
-        # return redirect(url_for('userProfile'))
-        return redirect(url_for('roles'))
+        return redirect(url_for('profile'))
     return render_template('login.html', form=form)
 
 def Register():
     if current_user.is_authenticated:
-        return redirect(url_for('userProfile'))
+        return redirect(url_for('profile'))
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(email=form.email.data)
@@ -77,5 +76,4 @@ def Confirm(token):
         db.session.add(user)
         db.session.commit()
         flash('Аккаунт подтвержден!', 'success')
-    return redirect(url_for('roles'))
-    # return redirect(url_for('userProfile'))
+    return redirect(url_for('profile'))

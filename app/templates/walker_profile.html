@@ -2,6 +2,9 @@
 
 {% block content %}
 <main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/css/suggestions.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/js/jquery.suggestions.min.js"></script>
 <!-- <section id="intro" class="view intro register">
     <div class="mask rgba-black-strong flex-center"> -->
       <div class="container d-flex align-items-center justify-content-center">
@@ -25,7 +28,7 @@
                         <label for="FormAdressPr">Адрес проживания</label>
                         
                         {% for error in form.addresspr.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
+                        <span style="color: red;">{{ error }}</span>
                         {% endfor %}
                     </div>
                     <!-- addresreg -->
@@ -34,16 +37,38 @@
                         <label for="FormAdressReg">Адрес регистрации</label>
                         
                         {% for error in form.addressreg.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
+                        <span style="color: red;">{{ error }}</span>
                         {% endfor %}
                     </div>
+                    <script>
+                        data = {
+                            token: "3283e59c98911c85fa289a756dfeebd62efe57b4",
+                            type: "ADDRESS",
+                            selectOnSpace: true,
+                            onSearchStart: self.forceTyumen,
+                            /* Вызывается, когда пользователь выбирает одну из подсказок */
+                            onSelect: function(suggestion) {
+                                console.log(suggestion);
+                            },
+                            forceTyumen: function (params) {
+                                var query = params["query"];
+                                var pattern = /Тюмень/i;
+                                if (!pattern.test(query)) {
+                                    query = "Тюмень " + query;
+                                }
+                                params["query"] = query;
+                            }
+                        }
+                        $("#FormAdressPr").suggestions(data);
+                        $("#FormAdressReg").suggestions(data);
+                    </script>
                     <!-- height -->
                     <div class="md-form">
                         {{ form.height(class_="form-control", id="FormHeight") }}<br>
                         <label for="FormHeight">Рост</label>
                         
                         {% for error in form.height.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
+                        <span style="color: red;">{{ error }}</span>
                         {% endfor %}
                     </div>
                      <!-- series -->
@@ -52,7 +77,7 @@
                         <label for="FormSeries">Серия паспорта</label>
                         
                         {% for error in form.series.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
+                        <span style="color: red;">{{ error }}</span>
                         {% endfor %}
                     </div>
                    <!-- number -->
@@ -61,7 +86,7 @@
                     <label for="FormNumber">Номер паспорта</label>
                     
                     {% for error in form.number.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                    <span style="color: red;">{{ error }}</span>
                     {% endfor %}
                 </div> 
 
@@ -71,7 +96,7 @@
                     <label for="FormIssuedBy">Кем выдан</label>
                     
                     {% for error in form.issuedBy.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                    <span style="color: red;">{{ error }}</span>
                     {% endfor %}
                 </div> 
                   </div>
@@ -82,7 +107,7 @@
                         <label for="FormWeight">Вес</label>
                         
                         {% for error in form.weight.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
+                        <span style="color: red;">{{ error }}</span>
                         {% endfor %}
                     </div>
                     <!-- gender -->
@@ -91,7 +116,7 @@
                         <label for="FormGender">Пол</label>
                         
                         {% for error in form.gender.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
+                        <span style="color: red;">{{ error }}</span>
                         {% endfor %}
                     </div>
                     <!-- rating -->
@@ -100,7 +125,7 @@
                         <label for="FormRating">Рейтинг</label>
                         
                         {% for error in form.rating.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
+                        <span style="color: red;">{{ error }}</span>
                         {% endfor %}
                     </div>
                     
@@ -109,7 +134,7 @@
                     <p class="text-left my-0 fs-13">Дата выдачи</p>
                     {{ form.issueDate(class_="form-control", id="FormIssueDate", type="date") }}<br>
                     {% for error in form.issueDate.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                    <span style="color: red;">{{ error }}</span>
                     {% endfor %}
                 </div> 
                 <!-- birthDate -->
@@ -119,7 +144,7 @@
                     <!-- <label for="FormBirthDate">Дата рождения</label> -->
                     
                     {% for error in form.birthDate.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                    <span style="color: red;">{{ error }}</span>
                     {% endfor %}
                 </div> 
                  <!-- score -->
@@ -128,7 +153,7 @@
                     <label for="FormScore">Счёт</label>
                     
                     {% for error in form.score.errors %}
-                    <span style="color: red;">[{{ error }}]</span>
+                    <span style="color: red;">{{ error }}</span>
                     {% endfor %}
                 </div> 
                   </div>

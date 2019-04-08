@@ -1,7 +1,8 @@
-from flask import render_template, flash, redirect, url_for
-from flask_login import login_required
+from flask import render_template, flash, redirect, url_for, request
+from flask_login import current_user
 from app import app, db
 from app.controllers import controller_index, controller_profile
+from app.constants import Roles
 
 @app.route('/test')
 def test():
@@ -16,17 +17,24 @@ def index():
 def walker():
     return controller_index.Walker()
 
-@app.route('/roles')
-def roles():
-    return controller_index.Roles()
-
 @app.route('/profile', methods=['GET', 'POST'])
-def userProfile():
-    return controller_profile.UserProfile(db)
-
-@app.route('/walker_profile', methods=['GET', 'POST'])
-def walkerProfile():
-    return controller_profile.WalkerProfile(db)
+def profile():
+    become = request.args.get('become')
+    if not current_user.is_authenticated:
+        return redirect(url_for('login'))
+    if current_user.check_role(Roles.admin):
+        pass
+    if current_user.check_role(Roles.moderator):
+        pass
+    if current_user.check_role(Roles.expert):
+        pass
+    if current_user.check_role(Roles.walker) or become == 'walker':
+        return controller_profile.WalkerProfile(db)
+    if current_user.check_role(Roles.owner) or become == 'owner':
+        return controller_profile.OwnerProfile(db)
+    if current_user.check_role(Roles.user): # should be checked last since everyone has it
+        return controller_index.UserProfile()
+    return redirect(url_for('index'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():

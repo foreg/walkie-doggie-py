@@ -15,7 +15,7 @@ def fill_entity(entity, form, needed = [], aliases = {}):
         form {FlaskForm} -- Форма, источник данных
     
     Keyword Arguments:
-        aliases {dict} -- Словарь типа {'name_in_entity':'name_in_form'} в случае если поля на форме и у сущности называются по разному
+        aliases {dict} -- Словарь типа {'name_in_form':'name_in_entity'} в случае если поля на форме и у сущности называются по разному
         needed {list} -- Лист нужных для заполнения полей. Если не указан - заполняются все поля
     
     Returns:
@@ -30,8 +30,8 @@ def fill_entity(entity, form, needed = [], aliases = {}):
         field_name = aliases.get(field, field)
         if len(needed) > 0 and field_name not in needed:
             continue
-        if getattr(entity, '{}'.format(field_name), False):
-            setattr(entity, '{}'.format(field_name), form.data[field_name])
+        if hasattr(entity, '{}'.format(field_name)):
+            setattr(entity, '{}'.format(field_name), form.data[field])
             successfully.append(field_name)
         else:
             errors.append(field_name)
