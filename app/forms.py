@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm, RecaptchaField
-from wtforms import StringField, PasswordField, BooleanField, SubmitField,DateField,SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField,DateField,SelectField,TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo,Regexp
 from app.models import User
 
@@ -36,7 +36,7 @@ class UserProfileForm(FlaskForm):
     middlename= StringField('Middlename',validators=[DataRequired(message='Заполните поле отчество!')])
     address=StringField('Addres',validators=[DataRequired(message='Заполните поле адрес!')])
     phone=StringField('Phone',validators=[DataRequired(message='Заполните поле телефон!'),Regexp('^8[\d]{10}$', message = "Введите номер в формате 8XXXXXXXXXX!")])
-    info=StringField('Text')
+    info=TextAreaField('Text')
     submit = SubmitField('Save')
     
     ignored_fields = set(['submit', 'csrf_token'])
