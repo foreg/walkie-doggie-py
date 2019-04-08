@@ -131,16 +131,18 @@
                     
                 <!-- issueDate -->
                 <div class="md-form">
-                    {{ form.issueDate(class_="form-control", id="FormIssueDate", placeholder="Дата выдачи") }}<br>
-                    <label for="FormIssueDate">Дата выдачи</label>
+                    <p class="text-left my-0 fs-13">Дата выдачи</p>
+                    {{ form.issueDate(class_="form-control", id="FormIssueDate", type="date") }}<br>
                     {% for error in form.issueDate.errors %}
                     <span style="color: red;">{{ error }}</span>
                     {% endfor %}
                 </div> 
                 <!-- birthDate -->
                 <div class="md-form">
-                    {{ form.birthDate(class_="form-control", id="FormBirthDate") }}<br>
-                    <label for="FormBirthDate">Дата рождения</label>
+                    <p class="text-left my-0 fs-13">Дата рождения</p>
+                    {{ form.birthDate(class_="form-control", id="FormBirthDate", type="date") }}<br>
+                    <!-- <label for="FormBirthDate">Дата рождения</label> -->
+                    
                     {% for error in form.birthDate.errors %}
                     <span style="color: red;">{{ error }}</span>
                     {% endfor %}

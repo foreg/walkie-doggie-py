@@ -6,6 +6,10 @@ from app.utils import login_required, fill_entity
 from app.constants import Roles
 
 
+
+def Test():
+    return render_template('test.html')
+
 @login_required
 def OwnerProfile(db):
     if current_user.is_authenticated:

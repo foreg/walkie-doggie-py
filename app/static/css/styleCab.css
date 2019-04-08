@@ -1,5 +1,6 @@
 /* General Settings */
 body{
+	overflow: auto !important;
 	margin: 0;
     padding: 0;
     overflow: hidden;
@@ -169,4 +170,8 @@ span{
     border: 2px solid #222632!important;
     background-color: transparent!important;
     color: #222632!important;
+}
+
+.fs-13{
+	font-size: 13px !important;
 }
