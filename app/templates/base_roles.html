@@ -9,7 +9,7 @@
 	<!-- Favicon Icon -->
 	<link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='libs/fontawesome/css/all.css') }}"></link>
+    <link rel="stylesheet" href="{{ url_for('static', filename='libs/fontawesome/css/all.css') }}">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" 
     integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -43,9 +43,23 @@
               </a>
               <div class="collapsible-body">
                 <ul>
-                  <li><a href="{{ url_for('profile' )}}" class="waves-effect a-nav">Страница личного кабинета</a>
+                  {% if user.check_role(4) %}
+                  <li>
+                    <a href="{{ url_for('profile', become='owner') }}" class="waves-effect a-nav">Профиль владельца</a>
                   </li>
+                  {% endif %}
+                  {% if user.check_role(5) %}
+                  <li>
+                    <a href="{{ url_for('profile', become='walker') }}" class="waves-effect a-nav">Профиль волкера</a>
+                  </li>
+                  {% else %}
                   <li><a href="#" class="waves-effect a-nav">Записаться на курсы волкеров</a>
+                  {% endif %}
+                  {% if not (user.check_role(4) and user.check_role(5)) %}
+                  <li>
+                    <a href="{{ url_for('profile', become='user') }}" class="waves-effect a-nav">Выбор другой роли</a>
+                  </li>
+                  {% endif %}
                   </li>
                 </ul>
               </div>

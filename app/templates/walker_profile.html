@@ -17,12 +17,23 @@
             </h5>
             <!--Card content-->
             <div class="card-body px-lg-5 pt-0">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{category}} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <!-- <strong>Title</strong> --> {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <!-- Form -->
             <form class="text-center" style="color: #757575;" action="" method="post">
                 {{ form.hidden_tag() }}
                 <div class="row d-flex justify-content-center flex-row">
                   <!-- addresspr -->
-                  <div class="col-md-6 col-xs-12">
+                  <div class="col-md-12 col-xs-12">
                     <div class="md-form">
                         {{ form.addresspr(class_="form-control", id="FormAdressPr") }}<br>
                         <label for="FormAdressPr">Адрес проживания</label>
@@ -62,6 +73,8 @@
                         $("#FormAdressPr").suggestions(data);
                         $("#FormAdressReg").suggestions(data);
                     </script>
+                  </div>
+                  <div class="col-md-6 col-xs-12">                    
                     <!-- height -->
                     <div class="md-form">
                         {{ form.height(class_="form-control", id="FormHeight") }}<br>
@@ -71,24 +84,26 @@
                         <span style="color: red;">{{ error }}</span>
                         {% endfor %}
                     </div>
+                    <div class="row d-flex justify-content-center flex-row">
                      <!-- series -->
-                     <div class="md-form">
-                        {{ form.series(class_="form-control", id="FormSeries") }}<br>
-                        <label for="FormSeries">Серия паспорта</label>
+                        <div class="md-form col-md-6">
+                            {{ form.series(class_="form-control", id="FormSeries") }}<br>
+                            <label for="FormSeries">Серия паспорта</label>
+                            
+                            {% for error in form.series.errors %}
+                            <span style="color: red;">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    <!-- number -->
+                        <div class="md-form col-md-6">
+                        {{ form.number(class_="form-control", id="FormNumber") }}<br>
+                        <label for="FormNumber">Номер паспорта</label>
                         
-                        {% for error in form.series.errors %}
+                        {% for error in form.number.errors %}
                         <span style="color: red;">{{ error }}</span>
                         {% endfor %}
-                    </div>
-                   <!-- number -->
-                   <div class="md-form">
-                    {{ form.number(class_="form-control", id="FormNumber") }}<br>
-                    <label for="FormNumber">Номер паспорта</label>
-                    
-                    {% for error in form.number.errors %}
-                    <span style="color: red;">{{ error }}</span>
-                    {% endfor %}
-                </div> 
+                        </div>
+                    </div> 
 
                  <!-- issuedBy -->
                  <div class="md-form">
@@ -96,6 +111,14 @@
                     <label for="FormIssuedBy">Кем выдан</label>
                     
                     {% for error in form.issuedBy.errors %}
+                    <span style="color: red;">{{ error }}</span>
+                    {% endfor %}
+                </div> 
+                <!-- issueDate -->
+                <div class="md-form">
+                    <p class="text-left my-0 fs-13">Дата выдачи</p>
+                    {{ form.issueDate(class_="form-control", id="FormIssueDate", type="date") }}<br>
+                    {% for error in form.issueDate.errors %}
                     <span style="color: red;">{{ error }}</span>
                     {% endfor %}
                 </div> 
@@ -112,7 +135,7 @@
                     </div>
                     <!-- gender -->
                     <div class="md-form">
-                        <option value="" disabled selected>Выберите пол</option>
+                        <p class="text-left my-0 fs-13">Выберите пол</p>
                         {{ form.gender(class_="form-control browser-default custom-select", id="FormGender") }}<br>
                         
                         {% for error in form.gender.errors %}
@@ -120,7 +143,7 @@
                         {% endfor %}
                        </div>
                     <!-- rating -->
-                    <div class="md-form">
+                    <div class="md-form mt-raiting">
                         {{ form.rating(class_="form-control", id="FormRating") }}<br>
                         <label for="FormRating">Рейтинг</label>
                         
@@ -128,15 +151,6 @@
                         <span style="color: red;">{{ error }}</span>
                         {% endfor %}
                     </div>
-                    
-                <!-- issueDate -->
-                <div class="md-form">
-                    <p class="text-left my-0 fs-13">Дата выдачи</p>
-                    {{ form.issueDate(class_="form-control", id="FormIssueDate", type="date") }}<br>
-                    {% for error in form.issueDate.errors %}
-                    <span style="color: red;">{{ error }}</span>
-                    {% endfor %}
-                </div> 
                 <!-- birthDate -->
                 <div class="md-form">
                     <p class="text-left my-0 fs-13">Дата рождения</p>
@@ -146,21 +160,15 @@
                     {% for error in form.birthDate.errors %}
                     <span style="color: red;">{{ error }}</span>
                     {% endfor %}
-                </div> 
-                 <!-- score -->
-                 <div class="md-form">
-                    {{ form.score(class_="form-control", id="FormScore") }}<br>
-                    <label for="FormScore">Счёт</label>
-                    
-                    {% for error in form.score.errors %}
-                    <span style="color: red;">{{ error }}</span>
-                    {% endfor %}
-                </div> 
+                </div>
+                 
                   </div>
+                  
                   <!-- Sign in button -->
                   {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Сохранить") }}
                   <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button> -->
                 </div>
+                
             </form>
             </div>
         </div>

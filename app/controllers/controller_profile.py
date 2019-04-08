@@ -21,8 +21,11 @@ def OwnerProfile(db):
             db.session.add(user)
             db.session.commit()
             user.add_role(Roles.owner)
-            return render_template('profile.html', form=form)        
-        return render_template('profile.html', form=form)
+            flash('Все изменения сохранены!', 'success')
+            return render_template('profile.html', form=form, user=user)
+        elif len(form.errors) > 0:
+            flash('Проверьте правильность введенных данный', 'danger')
+        return render_template('profile.html', form=form, user=user)
     return redirect(url_for('login'))
 
 @login_required
@@ -43,6 +46,9 @@ def WalkerProfile(db):
             user.add_role(Roles.walker)
             db.session.add(user)
             db.session.commit()
-            return render_template('walker_profile.html', form=form)        
-        return render_template('walker_profile.html', form=form)
+            flash('Все изменения сохранены!', 'success')
+            return render_template('walker_profile.html', form=form, user=user)
+        elif len(form.errors) > 0:     
+            flash('Проверьте правильность введенных данный', 'danger')
+        return render_template('walker_profile.html', form=form, user=user)
     return redirect(url_for('login'))

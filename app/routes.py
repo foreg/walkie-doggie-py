@@ -22,15 +22,21 @@ def profile():
     become = request.args.get('become')
     if not current_user.is_authenticated:
         return redirect(url_for('login'))
+    if become == 'walker':
+        return controller_profile.WalkerProfile(db)
+    if become == 'owner':
+        return controller_profile.OwnerProfile(db)
+    if become == 'user':
+        return controller_index.UserProfile()
     if current_user.check_role(Roles.admin):
         pass
     if current_user.check_role(Roles.moderator):
         pass
     if current_user.check_role(Roles.expert):
         pass
-    if current_user.check_role(Roles.walker) or become == 'walker':
+    if current_user.check_role(Roles.walker):
         return controller_profile.WalkerProfile(db)
-    if current_user.check_role(Roles.owner) or become == 'owner':
+    if current_user.check_role(Roles.owner):
         return controller_profile.OwnerProfile(db)
     if current_user.check_role(Roles.user): # should be checked last since everyone has it
         return controller_index.UserProfile()

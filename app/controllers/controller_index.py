@@ -26,10 +26,10 @@ def Login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
-            flash('Неправильный логин или пароль!')
+            flash('Неправильный логин или пароль!','danger')
             return redirect(url_for('login'))
         if not user.isConfirmed:
-            flash('Подтвердите свой email, перейдя по ссылке в письме')
+            flash('Подтвердите свой email, перейдя по ссылке в письме','info')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
         return redirect(url_for('profile'))

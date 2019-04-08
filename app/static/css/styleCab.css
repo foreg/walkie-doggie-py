@@ -3,7 +3,6 @@ body{
 	overflow: auto !important;
 	margin: 0;
     padding: 0;
-    overflow: hidden;
 }
 
 i{
@@ -127,11 +126,14 @@ a.nav-link:hover, a.nav-link:focus {
 	transition: .25s ease-in-out;
 }
 
-@media (max-width: 870px) and (min-width: 767px) {
-	.card .card-body{
-		height: 264.2px;
-	}
+.cards-roles .card .card-body{
+    height: 24vh !important;
+    /* height: 264.2px; */
 }
+
+/* @media (max-width: 870px) and (min-width: 767px) {
+	
+} */
 @media (max-width: 767px){
 	.card.walker{
 		margin-top: 1.5rem !important;
@@ -174,4 +176,7 @@ span{
 
 .fs-13{
 	font-size: 13px !important;
+}
+.mt-raiting{
+    margin-top: 3.225rem!important;
 }

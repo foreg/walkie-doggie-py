@@ -15,6 +15,17 @@
             <!--Card content-->
             <div class="card-body px-lg-5 pt-0">
             <!-- Form -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+                    {% if messages %}
+                        {% for category, message in messages %}
+                        <div class="alert alert-{{category}} alert-dismissible" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <!-- <strong>Title</strong> --> {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
             <form class="text-center" style="color: #757575;" action="" method="post">
                 {{ form.hidden_tag() }}
                 <div class="row d-flex justify-content-center flex-row">
@@ -80,6 +91,7 @@
                   {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Сохранить") }}
                   <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button> -->
                 </div>
+                
             </form>
             </div>
         </div>
