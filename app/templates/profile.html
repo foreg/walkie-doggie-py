@@ -79,11 +79,10 @@
                     </div>
                     <!-- info -->
                     <div class="md-form">
-                        {{ form.info(class_="form-control", id="FormInfo") }}<br>
+                        {{ form.info(class="md-textarea form-control",rows="3", id="FormInfo") }}<br>
                         <label for="FormInfo">О себе</label>
-                        
                         {% for error in form.info.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
+                        <span style="color: red;">{{ error }}</span>
                         {% endfor %}
                     </div>
                   </div>
