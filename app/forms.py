@@ -60,6 +60,8 @@ class WalkerProfileForm(FlaskForm):
     ignored_fields = set(['submit', 'csrf_token'])
 
     def __init__(self, **kwargs):
+        # self.addresspr.data = self.addresspr.data or kwargs['obj'].address_pr
+        # self.addressreg.data = self.addresspr.data or kwargs['obj'].address_reg
+        kwargs['obj'].addresspr = kwargs['obj'].address_pr
+        kwargs['obj'].addressreg = kwargs['obj'].address_reg
         super().__init__(**kwargs)
-        self.addresspr.data = kwargs['obj'].address_pr
-        self.addressreg.data = kwargs['obj'].address_reg

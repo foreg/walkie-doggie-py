@@ -9,7 +9,7 @@
               <div class="card owner">
                 <div class="view overlay">
                     <img class="card-img-top" src="{{ url_for('static', filename='img/owner.jpg') }}" alt="Dog Owner">
-                    <a href="{{ url_for('profile') }}">
+                    <a href="{{ url_for('profile', become='owner') }}">
                         <div class="mask rgba-white-light"></div>
                     </a>
                 </div>
@@ -27,7 +27,7 @@
                 <div class="card walker">
                     <div class="view overlay">
                         <img class="card-img-top img-walker" src="{{ url_for('static', filename='img/walker.jpg') }}" alt="Dog Walker">
-                        <a href="{{ url_for('profile') }}">
+                        <a href="{{ url_for('profile', become='walker') }}">
                             <div class="mask rgba-white-light"></div>
                         </a>
                     </div>

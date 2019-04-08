@@ -30,8 +30,7 @@ def fill_entity(entity, form, needed = [], aliases = {}):
         field_name = aliases.get(field, field)
         if len(needed) > 0 and field_name not in needed:
             continue
-        attr_value = getattr(entity, '{}'.format(field_name), False)
-        if attr_value or attr_value == None:
+        if hasattr(entity, '{}'.format(field_name)):
             setattr(entity, '{}'.format(field_name), form.data[field])
             successfully.append(field_name)
         else:

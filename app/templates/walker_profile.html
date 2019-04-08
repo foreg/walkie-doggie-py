@@ -2,6 +2,9 @@
 
 {% block content %}
 <main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/css/suggestions.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@19.2.0/dist/js/jquery.suggestions.min.js"></script>
 <!-- <section id="intro" class="view intro register">
     <div class="mask rgba-black-strong flex-center"> -->
       <div class="container d-flex align-items-center justify-content-center">
@@ -37,6 +40,28 @@
                         <span style="color: red;">{{ error }}</span>
                         {% endfor %}
                     </div>
+                    <script>
+                        data = {
+                            token: "3283e59c98911c85fa289a756dfeebd62efe57b4",
+                            type: "ADDRESS",
+                            selectOnSpace: true,
+                            onSearchStart: self.forceTyumen,
+                            /* Вызывается, когда пользователь выбирает одну из подсказок */
+                            onSelect: function(suggestion) {
+                                console.log(suggestion);
+                            },
+                            forceTyumen: function (params) {
+                                var query = params["query"];
+                                var pattern = /Тюмень/i;
+                                if (!pattern.test(query)) {
+                                    query = "Тюмень " + query;
+                                }
+                                params["query"] = query;
+                            }
+                        }
+                        $("#FormAdressPr").suggestions(data);
+                        $("#FormAdressReg").suggestions(data);
+                    </script>
                     <!-- height -->
                     <div class="md-form">
                         {{ form.height(class_="form-control", id="FormHeight") }}<br>
@@ -106,16 +131,16 @@
                     
                 <!-- issueDate -->
                 <div class="md-form">
-                    {{ form.issueDate(class_="form-control datepicker", id="FormIssueDate", type="date", placeholder="Дата выдачи") }}<br>
-                    
+                    {{ form.issueDate(class_="form-control", id="FormIssueDate", placeholder="Дата выдачи") }}<br>
+                    <label for="FormIssueDate">Дата выдачи</label>
                     {% for error in form.issueDate.errors %}
                     <span style="color: red;">{{ error }}</span>
                     {% endfor %}
                 </div> 
                 <!-- birthDate -->
                 <div class="md-form">
-                    {{ form.birthDate(class_="form-control datepicker", id="FormBirthDate", type="date", placeholder="Дата рождения") }}<br>
-                    
+                    {{ form.birthDate(class_="form-control", id="FormBirthDate") }}<br>
+                    <label for="FormBirthDate">Дата рождения</label>
                     {% for error in form.birthDate.errors %}
                     <span style="color: red;">{{ error }}</span>
                     {% endfor %}
