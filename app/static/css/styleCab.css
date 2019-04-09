@@ -63,6 +63,29 @@ li{
 /* End Fonts */
 
 /* NavBars Override Rules */
+span{
+	border:0;
+}
+
+.browser-default.custom-select{
+	border-top: none !important;
+	border-right: none !important;
+	border-left: none !important;
+}
+
+.md-textarea.form-control{
+	border-top-color: rgb(206, 212, 218);
+	border-top-width: 1px;
+	border-right-color:rgb(206, 212, 218);
+	border-right-width: 1px;
+	border-left: 1px solid rgb(206, 212, 218);
+
+}
+
+.md-form label, .md-form p {
+    font-size: 1.1rem !important;
+}
+
 .sn-bg-4{
 	background: #222632 !important;
 }
@@ -127,13 +150,10 @@ a.nav-link:hover, a.nav-link:focus {
 }
 
 .cards-roles .card .card-body{
-    height: 24vh !important;
+    height: 35vh !important;
     /* height: 264.2px; */
 }
 
-/* @media (max-width: 870px) and (min-width: 767px) {
-	
-} */
 @media (max-width: 767px){
 	.card.walker{
 		margin-top: 1.5rem !important;
@@ -145,9 +165,6 @@ a.nav-link:hover, a.nav-link:focus {
 }
 
 /* End NavBar */
-span{
-	border:0;
-}
 
 /* Cards */
 .btn-outline-black{
@@ -163,6 +180,19 @@ span{
 /* End Cards */
 
 /* Profile Page */
+
+/* Required Tag Style */
+
+input:required ~ label:after, select:required ~ label:after{
+	content: '*';
+}
+
+.correctLabel{
+	top: -1.7rem !important;
+    left: 0.1rem !important;
+}
+
+
 
 .info-color {
     background-color: #ff691e!important;
