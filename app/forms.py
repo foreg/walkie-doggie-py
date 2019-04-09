@@ -2,6 +2,8 @@ from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField,DateField,SelectField,TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo,Regexp
 from app.models import User
+from dateutil.relativedelta import relativedelta
+from datetime import datetime
 
 
 class LoginForm(FlaskForm):
@@ -33,7 +35,7 @@ class RegistrationForm(FlaskForm):
 class UserProfileForm(FlaskForm):
     surname= StringField('Surname',validators=[DataRequired(message='Заполните поле фамилия!')])
     name= StringField('Name',validators=[DataRequired(message='Заполните поле имя!')])
-    middlename= StringField('Middlename',validators=[DataRequired(message='Заполните поле отчество!')])
+    middlename= StringField('Middlename')
     address=StringField('Addres',validators=[DataRequired(message='Заполните поле адрес!')])
     phone=StringField('Phone',validators=[DataRequired(message='Заполните поле телефон!'),Regexp('^8[\d]{10}$', message = "Введите номер в формате 8XXXXXXXXXX!")])
     info=TextAreaField('Text')
@@ -44,8 +46,8 @@ class UserProfileForm(FlaskForm):
 class WalkerProfileForm(FlaskForm):
     addresspr= StringField('Addresspr',validators=[DataRequired(message='Заполните поле адрес проживания!')])
     addressreg= StringField('Addressreg',validators=[DataRequired(message='Заполните поле адрес регистрации!')])
-    height= StringField('Height',validators=[DataRequired(message='Заполните поле рост!')])
-    weight= StringField('Weight',validators=[DataRequired(message='Заполните поле вес!')])
+    height= StringField('Height',validators=[DataRequired(message='Заполните поле рост!'),Regexp('^1|2[\d]{2}$', message = "Неправильно введен рост!")])
+    weight= StringField('Weight',validators=[DataRequired(message='Заполните поле вес!'),Regexp('\d+$', message = "Неправильно введен вес!")])
     gender= SelectField('Gender', choices=[('муж.', 'муж.'), ('жен.', 'жен.')])
     rating=StringField('Rating',validators=[DataRequired(message='Заполните поле рейтинг!')])
     series=StringField('Series',validators=[DataRequired(message='Заполните поле серия!'),Regexp('^[\d]{4}$', message = "Неправильно введена серия!")])
@@ -58,6 +60,20 @@ class WalkerProfileForm(FlaskForm):
     submit = SubmitField('Save')
 
     ignored_fields = set(['submit', 'csrf_token'])
+
+    def validate_weight(self, weight):
+        if (int(weight.data)) < 39:
+            raise ValidationError('Минимальный вес 40 кг!')
+
+    def validate_birthDate(self, birthDate):
+        if (relativedelta(datetime.today(),birthDate.data).years) < 17:
+            raise ValidationError('Чтобы стать выгульщиком,вам должно быть 18 лет!')
+
+    def validate_issueDate(self, issueDate):
+        today=datetime.today() 
+        today=today.date() 
+        if (issueDate.data) > today:
+            raise ValidationError('Дата выдачи не может быть в будущем!')
 
     def __init__(self, **kwargs):
         # self.addresspr.data = self.addresspr.data or kwargs['obj'].address_pr
