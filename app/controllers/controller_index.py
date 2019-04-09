@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, UserProfileForm
 from app.models import User, Role, User_roles
 from app.token import generate_confirmation_token, confirm_token
 from app.email import send_email
@@ -17,11 +17,13 @@ def Walker():
 
 @login_required
 def UserProfile():
-    return render_template('roles.html')    
+    user = current_user
+    return render_template('roles.html', user=user)    
 
 def Login():
     if current_user.is_authenticated:
-        return redirect(url_for('profile'))
+        # return render_template('profile.html', user=user, form=formUser)
+        return redirect(url_for('profile', user=user))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -32,7 +34,8 @@ def Login():
             flash('Подтвердите свой email, перейдя по ссылке в письме','info')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
-        return redirect(url_for('profile'))
+        # return render_template('profile.html', user=user, form=formUser)
+        return redirect(url_for('profile', user=user))
     return render_template('login.html', form=form)
 
 def Register():

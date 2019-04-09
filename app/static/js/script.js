@@ -14,6 +14,7 @@ jQuery.extend( jQuery.fn.pickadate.defaults, {
 $('.datepicker').pickadate();
 
 $(document).ready(function () {
+
   $('.nav-button').on('click', function () {
     $('.animated-icon').toggleClass('open');
   })
@@ -67,4 +68,27 @@ $('.animated-icon').on('click', function(){
       $('.navbar').toggleClass('top-nav-collapse');
     }
 });
+
+data = {
+  token: "3283e59c98911c85fa289a756dfeebd62efe57b4",
+  type: "ADDRESS",
+  selectOnSpace: true,
+  onSearchStart: self.forceTyumen,
+  /* Вызывается, когда пользователь выбирает одну из подсказок */
+  onSelect: function(suggestion) {
+      console.log(suggestion);
+  },
+  forceTyumen: function (params) {
+      var query = params["query"];
+      var pattern = /Тюмень/i;
+      if (!pattern.test(query)) {
+          query = "Тюмень " + query;
+      }
+      params["query"] = query;
+  }
+}
+$("#FormAdressPr").suggestions(data);
+$("#FormAdressReg").suggestions(data);
+
+
 
