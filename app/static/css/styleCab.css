@@ -184,15 +184,14 @@ a.nav-link:hover, a.nav-link:focus {
 /* Required Tag Style */
 
 input:required ~ label:after, select:required ~ label:after{
-	content: '*';
+	content: ' *';
+	color: #dc3545;
 }
 
 .correctLabel{
 	top: -1.7rem !important;
     left: 0.1rem !important;
 }
-
-
 
 .info-color {
     background-color: #ff691e!important;

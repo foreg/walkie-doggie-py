@@ -1,17 +1,17 @@
 new WOW().init();
-jQuery.extend( jQuery.fn.pickadate.defaults, { 
-    monthsFull: [ 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря' ], 
-    monthsShort: [ 'янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек' ], 
-    weekdaysFull: [ 'воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота' ], 
-    weekdaysShort: [ 'вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб' ], 
-    today: 'сегодня', 
-    clear: 'удалить', 
-    close: 'закрыть', 
-    firstDay: 1, 
-    format: 'd mmmm yyyy г.', 
-    formatSubmit: 'yyyy-mm-dd' 
-});
-$('.datepicker').pickadate();
+// jQuery.extend( jQuery.fn.pickadate.defaults, { 
+//     monthsFull: [ 'января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря' ], 
+//     monthsShort: [ 'янв', 'фев', 'мар', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек' ], 
+//     weekdaysFull: [ 'воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота' ], 
+//     weekdaysShort: [ 'вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб' ], 
+//     today: 'сегодня', 
+//     clear: 'удалить', 
+//     close: 'закрыть', 
+//     firstDay: 1, 
+//     format: 'd mmmm yyyy г.', 
+//     formatSubmit: 'yyyy-mm-dd' 
+// });
+// $('.datepicker').pickadate();
 
 $(document).ready(function () {
 
@@ -31,7 +31,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-//Accordion
 $('.card-link').click(function() {
 
     if ($(this).parent().parent().hasClass('active')){
@@ -46,49 +45,13 @@ $('.card-link').click(function() {
         $(this).removeClass('active');
       }
     });
-
-    
-    // $('#accordion .card').removeClass('active');
-    // $(this).closest('.card').addClass('active');
-
-    // var checkElement = $(this).children().next();
-    // if (checkElement.is(':visible')){
-    //   $(this).removeClass('active');
-    // }
-    // else{
-    //   $(this).addClass('active');
-    // }
-    
-
   });
-// /Accordion
 
 $('.animated-icon').on('click', function(){
     if (!$('.navbar').hasClass('top-nav-collapse')){
       $('.navbar').toggleClass('top-nav-collapse');
     }
 });
-
-data = {
-  token: "3283e59c98911c85fa289a756dfeebd62efe57b4",
-  type: "ADDRESS",
-  selectOnSpace: true,
-  onSearchStart: self.forceTyumen,
-  /* Вызывается, когда пользователь выбирает одну из подсказок */
-  onSelect: function(suggestion) {
-      console.log(suggestion);
-  },
-  forceTyumen: function (params) {
-      var query = params["query"];
-      var pattern = /Тюмень/i;
-      if (!pattern.test(query)) {
-          query = "Тюмень " + query;
-      }
-      params["query"] = query;
-  }
-}
-$("#FormAdressPr").suggestions(data);
-$("#FormAdressReg").suggestions(data);
 
 
 
