@@ -1,5 +1,6 @@
 {% extends "base_roles.html" %}
 
+{% import 'forms.jinja' as macros %}
 {% block content %}
 <main>
 <!-- <section id="intro" class="view intro register">
@@ -16,95 +17,46 @@
             <div class="card-body px-lg-5 pt-0">
             <!-- Form -->
             {% with messages = get_flashed_messages(with_categories=true) %}
-                  <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
-                    {% if messages %}
-                        {% for category, message in messages %}
-                        <div class="alert alert-{{category}} alert-dismissible" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <!-- <strong>Title</strong> --> {{ message }}
-                        </div>
-                        {% endfor %}
-                    {% endif %}
-                {% endwith %}
+              <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+                {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{category}} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <!-- <strong>Title</strong> --> {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <form class="text-center" style="color: #757575;" action="" method="post">
                 {{ form.hidden_tag() }}
                 <div class="row d-flex justify-content-center flex-row mt-4">
-                  <!-- surname -->
                   <div class="col-md-3 col-xs-12">
-                    <div class="md-form">
-                        {{ form.surname(class_="form-control", id="FormSurname") }}<br>
-                        <label for="FormSurname">Фамилия</label>
-                        
-                        {% for error in form.surname.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}
-                    </div>
+                    {{ macros.render_input(form_field = form.surname, id = 'FormSurname', label = 'Фамилия') }}
                   </div>
                   <div class="col-md-3 col-xs-12">
-                    <!-- name -->
-                    <div class="md-form">
-                        {{ form.name(class_="form-control", id="FormName") }}<br>
-                        <label for="FormName">Имя</label>
-                        
-                        {% for error in form.name.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}
-                    </div>
+                    {{ macros.render_input(form_field = form.name, id = 'FormName', label = 'Имя') }}
                   </div>
                   <div class="col-md-3 col-xs-12">
-                    <!-- middlename -->
-                    <div class="md-form">
-                        {{ form.middlename(class_="form-control", id="FormMiddlename") }}<br>
-                        <label for="FormMiddlename">Отчество</label>
-                        
-                        {% for error in form.middlename.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}
-                    </div>
+                    {{ macros.render_input(form_field = form.middlename, id = 'FormMiddlename', label = 'Отчество') }}
                   </div>
                 </div>
                 <div class="row d-flex justify-content-center flex-row">
                   <div class="col-md-6 col-xs-12">
-                    <!-- adress -->
-                    <div class="md-form">
-                        {{ form.address(class_="form-control", id="FormAdress") }}<br>
-                        <label for="FormAdress">Адрес</label>
-                        
-                        {% for error in form.address.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}
-                    </div>
+                    {{ macros.render_input(form_field = form.address, id = 'FormAdress', label = 'Адрес') }}
                   </div>
                   <div class="col-md-3 col-xs-12">
-                    <!-- phone -->
-                    <div class="md-form">
-                        {{ form.phone(class_="form-control datepicker", id="FormPhone", placeholder="") }}<br>
-                        <label for="FormPhone">Телефон</label>
-                        
-                        {% for error in form.phone.errors %}
-                        <span style="color: red;">[{{ error }}]</span>
-                        {% endfor %}
-                    </div>
+                    {{ macros.render_input(form_field = form.phone, id = 'FormPhone', label = 'Телефон') }}
                   </div>
                 </div>
                 <div class="row d-flex justify-content-center flex-row">
                   <div class="col-md-9 col-xs-12">
-                    <!-- info -->
-                    <div class="md-form">
-                        {{ form.info(class="md-textarea form-control",rows="3", id="FormInfo") }}<br>
-                        <label for="FormInfo">О себе</label>
-                        {% for error in form.info.errors %}
-                        <span style="color: red;">{{ error }}</span>
-                        {% endfor %}
-                    </div>
+                    {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'О себе', rows="3") }}
                   </div>
                 </div>
                   <!-- Sign in button -->
                   {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Сохранить") }}
                   <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button> -->
-                
-                
-            </form>
+                </form>
             </div>
         </div>
       <!-- Material form login -->

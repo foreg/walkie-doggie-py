@@ -1,5 +1,6 @@
 {% extends "base_roles.html" %}
 
+{% import 'forms.jinja' as macros %}
 {% block content %}
 <main>
 <!-- <section id="intro" class="view intro register">
@@ -28,111 +29,42 @@
                 {{ form.hidden_tag() }}
                 <div class="row d-flex justify-content-center flex-row mt-4">
                     <div class="col-md-3 col-xs-12">
-                        <div class="md-form">
-                            {{ form.birthDate(class_="form-control", id="FormBirthDate", type="date") }}<br>
-                            <!-- <label for="FormBirthDate">Дата рождения</label> -->
-                            <label for="FormBirthDate" class="correctLabel">Дата рождения</label>
-                            {% for error in form.birthDate.errors %}
-                            <span style="color: red;">{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {{ macros.render_input(form_field = form.birthDate, id = 'FormBirthDate', 
+                            label = 'Дата рождения', class_for_label = 'correctLabel', type = 'date') }}
                     </div>
                     <div class="col-md-3 col-xs-12">
-                        <!-- gender -->
-                        <div class="md-form">
-                            {{ form.gender(class_="browser-default custom-select", id="FormGender") }}<br>
-                            <label for="FormGender" class="correctLabel">Выберите пол</label>
-                            {% for error in form.gender.errors %}
-                            <span style="color: red;">[{{ error }}]</span>
-                            {% endfor %}
-                        </div>
+                        {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
+                            class_for_label = 'correctLabel', label = 'Выберите пол') }}
                     </div>
                     <div class="col-md-2 col-xs-12">
-                        <div class="md-form">
-                            {{ form.height(class_="form-control", id="FormHeight") }}<br>
-                            <label for="FormHeight">Рост</label>
-                            
-                            {% for error in form.height.errors %}
-                            <span style="color: red;">{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {{ macros.render_input(form_field = form.height, id = 'FormHeight', label = 'Рост') }}
                     </div>
                     <div class="col-md-2 col-xs-12">
-                        <div class="md-form">
-                            {{ form.weight(class_="form-control", id="FormWeight") }}<br>
-                            <label for="FormWeight">Вес</label>
-                            
-                            {% for error in form.weight.errors %}
-                            <span style="color: red;">{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес') }}
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center flex-row">
-                    <!-- series -->
                     <div class="col-md-3 col-xs-12">
-                        <div class="md-form">
-                            {{ form.series(class_="form-control", id="FormSeries") }}<br>
-                            <label for="FormSeries">Серия паспорта</label>
-                            
-                            {% for error in form.series.errors %}
-                            <span style="color: red;">{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {{ macros.render_input(form_field = form.series, id = 'FormSeries', label = 'Серия паспорта') }}
                     </div>
-                <!-- number -->
                     <div class="col-md-3 col-xs-12">
-                        <div class="md-form">
-                            {{ form.number(class_="form-control", id="FormNumber") }}<br>
-                            <label for="FormNumber">Номер паспорта</label>
-                            
-                            {% for error in form.number.errors %}
-                            <span style="color: red;">{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {{ macros.render_input(form_field = form.number, id = 'FormNumber', label = 'Номер паспорта') }}
                     </div>
-                    <!-- issueDate -->
                     <div class="col-md-4 col-xs-12 pr-0">
-                        <div class="md-form">
-                            {{ form.issueDate(class_="form-control", id="FormIssueDate", type="date") }}<br>
-                            <label for="FormIssueDate" class="correctLabel">Дата выдачи</label>
-                            {% for error in form.issueDate.errors %}
-                            <span style="color: red;">{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {{ macros.render_input(form_field = form.issueDate, id = 'FormIssueDate', 
+                            label = 'Дата выдачи', class_for_label="correctLabel", type='date') }}
                     </div>
                 </div>
                 <div class="row d-flex justify-content-center flex-row">
                     <div class="col-md-10 col-xs-12">
-                        <div class="md-form my-0">
-                            {{ form.issuedBy(class_="form-control", id="FormIssuedBy") }}<br>
-                            <label for="FormIssuedBy">Кем выдан</label>
-                            
-                            {% for error in form.issuedBy.errors %}
-                            <span style="color: red;">{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {{ macros.render_input(form_field = form.issuedBy, id = 'FormIssuedBy', 
+                            label = 'Кем выдан', class_for_wrapper='md-form my-0') }}
                     </div>
                 </div>  
                 <div class="row d-flex justify-content-center flex-row">
                     <div class="col-md-10 col-xs-12">
-                        <div class="md-form">
-                            {{ form.addresspr(class_="form-control", id="FormAdressPr") }}<br>
-                            <label for="FormAdressPr">Адрес проживания</label>
-                            
-                            {% for error in form.addresspr.errors %}
-                            <span style="color: red;">{{ error }}</span>
-                            {% endfor %}
-                        </div>
-                        <!-- addresreg -->
-                        <div class="md-form">
-                            {{ form.addressreg(class_="form-control", id="FormAdressReg") }}<br>
-                            <label for="FormAdressReg">Адрес регистрации</label>
-                            
-                            {% for error in form.addressreg.errors %}
-                            <span style="color: red;">{{ error }}</span>
-                            {% endfor %}
-                        </div>
+                        {{ macros.render_input(form_field = form.addresspr, id = 'FormAdressPr', label = 'Адрес регистрации') }}
+                        {{ macros.render_input(form_field = form.addressreg, id = 'FormAdressReg', label = 'Адрес регистрации') }}
                     </div>  
                 </div>
                     

@@ -1,0 +1,17 @@
+{#
+    Можно передавать сюда и другие параметры - они будут поставляться напрямую в стандартный конструктор
+    Пример: profile.html 'rows="3"'
+    Use sample
+    {{ macros.render_input(form_field = form.<field_name>, id = '<id>', class = '<class for input; default - form-control>', 
+                            label = '<label text; default - "">', class_for_label='<class for input; default - "">',
+                            type = '<input type; default - "text">')}}
+#}
+{% macro render_input(form_field, id, class='form-control', label='', class_for_label='', class_for_wrapper='md-form', type = 'text') -%}
+    <div class="{{class_for_wrapper}}">
+        {{ form_field(class_=class, id=id, type=type, *args, **kwargs) }}<br/>
+        <label for="{{id}}" class="{{class_for_label}}">{{label}}</label>
+        {% for error in form_field.errors %}
+        <span style="color: red;">{{ error }}</span>
+        {% endfor %}
+    </div>
+{%- endmacro %}
