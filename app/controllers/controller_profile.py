@@ -24,7 +24,7 @@ def OwnerProfile(db):
             flash('Все изменения сохранены!', 'success')
             return render_template('profile.html', form=form, user=user)
         elif len(form.errors) > 0:
-            flash('Проверьте правильность введенных данный', 'danger')
+            flash('Проверьте правильность введенных данных', 'danger')
         return render_template('profile.html', form=form, user=user)
     return redirect(url_for('login'))
 
@@ -49,6 +49,6 @@ def WalkerProfile(db):
             flash('Все изменения сохранены!', 'success')
             return render_template('walker_profile.html', form=form, user=user)
         elif len(form.errors) > 0:     
-            flash('Проверьте правильность введенных данный', 'danger')
+            flash('Проверьте правильность введенных данных', 'danger')
         return render_template('walker_profile.html', form=form, user=user)
     return redirect(url_for('login'))

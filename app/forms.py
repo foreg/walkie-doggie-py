@@ -46,8 +46,8 @@ class UserProfileForm(FlaskForm):
 class WalkerProfileForm(FlaskForm):
     addresspr= StringField('Addresspr',validators=[DataRequired(message='Заполните поле адрес проживания!')])
     addressreg= StringField('Addressreg',validators=[DataRequired(message='Заполните поле адрес регистрации!')])
-    height= StringField('Height',validators=[DataRequired(message='Заполните поле рост!'),Regexp('^1|2[\d]{2}$', message = "Неправильно введен рост!")])
-    weight= StringField('Weight',validators=[DataRequired(message='Заполните поле вес!'),Regexp('\d+$', message = "Неправильно введен вес!")])
+    height= StringField('Height',validators=[DataRequired(message='Заполните поле рост!'),Regexp('^[12]\d{2}$', message = "Неправильно введен рост!")])
+    weight= StringField('Weight',validators=[DataRequired(message='Заполните поле вес!'),Regexp('^\d{2,3}$', message = "Неправильно введен вес!")])
     gender= SelectField('Gender', choices=[('муж.', 'муж.'), ('жен.', 'жен.')])
     rating=StringField('Rating',validators=[DataRequired(message='Заполните поле рейтинг!')])
     series=StringField('Series',validators=[DataRequired(message='Заполните поле серия!'),Regexp('^[\d]{4}$', message = "Неправильно введена серия!")])

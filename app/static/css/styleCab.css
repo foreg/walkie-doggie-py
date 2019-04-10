@@ -181,6 +181,10 @@ a.nav-link:hover, a.nav-link:focus {
 
 /* Profile Page */
 
+.md-form .prefix.active, .md-form textarea~label.active {
+    color: #757575 !important;
+}
+
 /* Required Tag Style */
 
 input:required ~ label:after, select:required ~ label:after{
