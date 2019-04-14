@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for,request
 from flask_login import current_user, login_user, logout_user
 from app.forms import LoginForm, RegistrationForm, UserProfileForm
 from app.models import User, Role, User_roles
@@ -24,15 +24,16 @@ def Login():
     if current_user.is_authenticated:
         # return render_template('profile.html', user=user, form=formUser)
         return redirect(url_for('profile', user=user))
-    form = LoginForm()
+    email = request.args.get('email')
+    form = LoginForm(email=email)
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user is None or not user.check_password(form.password.data):
             flash('Неправильный логин или пароль!','danger')
-            return redirect(url_for('login'))
+            return redirect(url_for('login', email=form.email.data))
         if not user.isConfirmed:
             flash('Подтвердите свой email, перейдя по ссылке в письме','info')
-            return redirect(url_for('login'))
+            return redirect(url_for('login', email=form.email.data))
         login_user(user, remember=form.remember_me.data)
         # return render_template('profile.html', user=user, form=formUser)
         return redirect(url_for('profile', user=user))
@@ -58,7 +59,7 @@ def Register():
         db.session.commit()
         flash('Вы успешно зарегистрировались!','success')
 
-        return redirect(url_for('login'))
+        return redirect(url_for('login', email=user.email))
     return render_template('register.html', form=form)
 
 def Logout():
@@ -79,4 +80,4 @@ def Confirm(token):
         db.session.add(user)
         db.session.commit()
         flash('Аккаунт подтвержден!', 'success')
-    return redirect(url_for('profile'))
+    return redirect(url_for('login', email=email))
