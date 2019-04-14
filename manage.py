@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from app.models import Role, User
+from app.models import Role, User, Breed
 from config import Config
 
 
@@ -34,10 +34,17 @@ def seedUsers():
     db.session.commit()
     print('seedUsers done')
 
+def seedBreeds():
+    breed1 = Breed(name='овчарка', info='описание овчарка')
+    db.session.add(breed1)
+    db.session.commit()
+    print('seedBreeds done')
+
 if __name__ == "__main__":
     #seedRoles()
     #seedUsers()
-    # Uncomment folowing strings to seed dedicated tables
+    #seedBreeds()
+    # Uncomment one or more of the folowing strings to seed dedicated tables
     # and then run python manage.py in commandLine
     
     

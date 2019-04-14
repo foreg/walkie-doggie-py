@@ -29,7 +29,7 @@ class User(UserMixin, db.Model):
     roles = db.relationship('User_roles', backref='user', lazy='dynamic')
     walker_id = db.Column(db.Integer, db.ForeignKey('walker.id'))
     walker_info = db.relationship('Walker', backref='user')
-    pets = db.relationship('Pet', backref='user')
+    pets = db.relationship('Pet', backref='user', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -90,3 +90,5 @@ class Breed(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String(50)) 
     info=db.Column(db.Text) 
+
+    pets = db.relationship('Pet', backref='breed', lazy='dynamic')

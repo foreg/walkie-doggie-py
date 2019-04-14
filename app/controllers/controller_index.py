@@ -15,30 +15,6 @@ def Index():
 def Walker():
     return render_template('walker.html')
 
-
-@login_required
-def PetProfile(db):
-    if current_user.is_authenticated:
-        user = current_user
-        
-        pet = Pet() 
-        form=PetProfileForm(obj=pet)
-        
-        if form.validate_on_submit():
-             
-            errors, successfully = fill_entity(pet, form)
-            print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(pet, errors, successfully))   
-            db.session.add(pet)
-        
-            db.session.commit()
-            flash('Все изменения сохранены!', 'success')
-            return render_template('pet_profile.html',user=user,form=form)
-        elif len(form.errors) > 0:
-            flash('Проверьте правильность введенных данных', 'danger')
-        return render_template('pet_profile.html',user=user,form=form)
-    return redirect(url_for('login'))
-    
-
 @login_required
 def UserProfile():
     user = current_user
