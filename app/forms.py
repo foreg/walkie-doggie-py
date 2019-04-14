@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField,DateField,SelectField,TextAreaField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo,Regexp
-from app.models import User
+from app.models import User,Pet
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 
@@ -81,3 +81,13 @@ class WalkerProfileForm(FlaskForm):
         kwargs['obj'].addresspr = kwargs['obj'].address_pr
         kwargs['obj'].addressreg = kwargs['obj'].address_reg
         super().__init__(**kwargs)
+
+class PetProfileForm(FlaskForm):
+    name= StringField('Name',validators=[DataRequired(message='Заполните поле кличка!')])
+    gender= SelectField('Gender', choices=[('кобель', 'кобель'), ('сука', 'сука')])
+    age= StringField('Age',validators=[DataRequired(message='Заполните поле возраст!'),Regexp('^[1-9]\d{0,2}$', message = "Неправильно введен возраст!")])
+    weight= StringField('Weight',validators=[DataRequired(message='Заполните поле вес!'),Regexp('^[1-9]\d{0,2}$', message = "Неправильно введен вес!")])
+    info=TextAreaField('Text')
+    submit = SubmitField('Save')
+    
+    ignored_fields = set(['submit', 'csrf_token'])

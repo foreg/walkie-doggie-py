@@ -17,6 +17,10 @@ def index():
 def walker():
     return controller_index.Walker()
 
+@app.route('/pet', methods=['GET', 'POST'])
+def pet_profile():
+    return controller_index.PetProfile(db)
+
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     become = request.args.get('become')

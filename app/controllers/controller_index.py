@@ -1,10 +1,10 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user
-from app.forms import LoginForm, RegistrationForm, UserProfileForm
-from app.models import User, Role, User_roles
+from app.forms import LoginForm, RegistrationForm, UserProfileForm, PetProfileForm
+from app.models import User, Role, User_roles, Pet
 from app.token import generate_confirmation_token, confirm_token
 from app.email import send_email
-from app.utils import login_required
+from app.utils import login_required, fill_entity
 from app import db
 import datetime
 
@@ -14,6 +14,30 @@ def Index():
 
 def Walker():
     return render_template('walker.html')
+
+
+@login_required
+def PetProfile(db):
+    if current_user.is_authenticated:
+        user = current_user
+        
+        pet = Pet() 
+        form=PetProfileForm(obj=pet)
+        
+        if form.validate_on_submit():
+             
+            errors, successfully = fill_entity(pet, form)
+            print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(pet, errors, successfully))   
+            db.session.add(pet)
+        
+            db.session.commit()
+            flash('Все изменения сохранены!', 'success')
+            return render_template('pet_profile.html',user=user,form=form)
+        elif len(form.errors) > 0:
+            flash('Проверьте правильность введенных данных', 'danger')
+        return render_template('pet_profile.html',user=user,form=form)
+    return redirect(url_for('login'))
+    
 
 @login_required
 def UserProfile():

@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
-from app.forms import UserProfileForm,WalkerProfileForm
+from app.forms import UserProfileForm,WalkerProfileForm,PetProfileForm
 from app.models import load_user, Walker
 from app.utils import login_required, fill_entity
 from app.constants import Roles
@@ -27,6 +27,7 @@ def OwnerProfile(db):
             flash('Проверьте правильность введенных данных', 'danger')
         return render_template('profile.html', form=form, user=user)
     return redirect(url_for('login'))
+
 
 @login_required
 def WalkerProfile(db):
