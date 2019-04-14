@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user
 from app import app, db
-from app.controllers import controller_index, controller_profile
+from app.controllers import controller_index, controller_profile, controller_pets
 from app.constants import Roles
 
 @app.route('/test')
@@ -16,6 +16,10 @@ def index():
 @app.route('/walker')
 def walker():
     return controller_index.Walker()
+
+@app.route('/pets/<int(signed=True):pet_id>', methods=['GET', 'POST'])
+def pet_profile(pet_id):
+    return controller_pets.PetProfile(pet_id)
 
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():

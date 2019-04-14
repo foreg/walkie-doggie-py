@@ -29,6 +29,7 @@ class User(UserMixin, db.Model):
     roles = db.relationship('User_roles', backref='user', lazy='dynamic')
     walker_id = db.Column(db.Integer, db.ForeignKey('walker.id'))
     walker_info = db.relationship('Walker', backref='user')
+    pets = db.relationship('Pet', backref='user', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -74,3 +75,23 @@ class User_roles(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     role_id = db.Column(db.Integer, db.ForeignKey('role.id'))
+
+class Pet(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String(50))
+    gender=db.Column(db.String(10))
+    age=db.Column(db.Integer)
+    weight=db.Column(db.String(10))
+    info=db.Column(db.Text)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    breed_id = db.Column(db.Integer, db.ForeignKey('breed.id'))
+
+class Breed(db.Model): 
+    id = db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String(50)) 
+    info=db.Column(db.Text) 
+
+    pets = db.relationship('Pet', backref='breed', lazy='dynamic')
+
+    def __repr__(self):
+        return '<Breed {}>'.format(self.id) 

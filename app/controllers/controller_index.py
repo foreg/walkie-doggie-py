@@ -1,10 +1,10 @@
 from flask import render_template, flash, redirect, url_for,request
 from flask_login import current_user, login_user, logout_user
-from app.forms import LoginForm, RegistrationForm, UserProfileForm
-from app.models import User, Role, User_roles
+from app.forms import LoginForm, RegistrationForm, UserProfileForm, PetProfileForm
+from app.models import User, Role, User_roles, Pet
 from app.token import generate_confirmation_token, confirm_token
 from app.email import send_email
-from app.utils import login_required
+from app.utils import login_required, fill_entity
 from app import db
 import datetime
 

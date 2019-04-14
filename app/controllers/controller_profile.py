@@ -6,7 +6,6 @@ from app.utils import login_required, fill_entity
 from app.constants import Roles
 
 
-
 def Test():
     return render_template('test.html')
 
