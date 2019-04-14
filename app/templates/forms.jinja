@@ -6,12 +6,18 @@
                             label = '<label text; default - "">', class_for_label='<class for input; default - "">',
                             type = '<input type; default - "text">')}}
 #}
-{% macro render_input(form_field, id, class='form-control', label='', class_for_label='', class_for_wrapper='md-form', type = 'text') -%}
-    <div class="{{class_for_wrapper}}">
+{% macro render_input(form_field, id, class='form-control', label='', class_for_label='', class_for_wrapper='md-form', type = 'text', toolText = '') -%}
+    <div class="{{class_for_wrapper}} d-flex align-items-center">
         {{ form_field(class_=class, id=id, type=type, *args, **kwargs) }}<br/>
-        <label for="{{id}}" class="{{class_for_label}}">{{label}}</label>
-        {% for error in form_field.errors %}
-        <span style="color: red;">{{ error }}</span>
-        {% endfor %}
+        {% if not form_field.errors %}
+            <label for="{{id}}" class="{{class_for_label}}">{{label}}</label>
+        {% else %}
+            <label for="{{id}}" class="{{class_for_label}} danger">{{label}}</label>
+        {% endif %}
+        {% if toolText != '' %}
+        <div class="far tooltipClass">
+            <span class="tooltiptext">{{toolText}}</span>
+        </div>
+        {% endif %}
     </div>
 {%- endmacro %}

@@ -17,6 +17,10 @@ li{
 	list-style: none;
 }
 
+span{
+	border:0;
+}
+
 /* Fonts */
 @font-face {
 	font-family: 'Futura PT Light';
@@ -63,10 +67,6 @@ li{
 /* End Fonts */
 
 /* NavBars Override Rules */
-span{
-	border:0;
-}
-
 .browser-default.custom-select{
 	border-top: none !important;
 	border-right: none !important;
@@ -151,7 +151,6 @@ a.nav-link:hover, a.nav-link:focus {
 
 .cards-roles .card .card-body{
     height: 35vh !important;
-    /* height: 264.2px; */
 }
 
 @media (max-width: 767px){
@@ -192,6 +191,10 @@ input:required ~ label:after, select:required ~ label:after{
 	color: #dc3545;
 }
 
+.danger{
+	color: #dc3545 !important;
+}
+
 .correctLabel{
 	top: -1.7rem !important;
     left: 0.1rem !important;
@@ -212,4 +215,59 @@ input:required ~ label:after, select:required ~ label:after{
 }
 .mt-raiting{
     margin-top: 3.225rem!important;
+}
+/* End Profile Page */
+
+/* ToolTips */
+
+.tooltipClass:after{
+	content: "\f059"
+} 
+
+.far.tooltipClass{
+	font-size: 1.2rem;
+}
+
+.tooltipClass {
+	position: relative;
+	left: 18px;
+}
+
+.tooltipClass .tooltiptext {
+	visibility: hidden;
+	width: 120px;
+	background-color: #222632;
+	color: #fff;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px;
+	font-size: 1rem;
+	font-family: sans-serif;
+	position: absolute;
+	z-index: 1;
+	bottom: 125%;
+	left: 50%;
+	margin-left: -60px;
+	opacity: 0;
+	transition: opacity 0.3s;
+}
+  
+.tooltipClass .tooltiptext::after {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	margin-left: -5px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: #555 transparent transparent transparent;
+}
+
+.tooltipClass:hover{
+	color: #222632;
+}
+  
+.tooltipClass:hover .tooltiptext {
+	visibility: visible;
+	opacity: 1;
 }
