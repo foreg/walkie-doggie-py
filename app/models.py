@@ -92,3 +92,6 @@ class Breed(db.Model):
     info=db.Column(db.Text) 
 
     pets = db.relationship('Pet', backref='breed', lazy='dynamic')
+
+    def __repr__(self):
+        return '<Breed {}>'.format(self.id) 

@@ -42,6 +42,10 @@
                     <div class="col-md-2 col-xs-12">
                         {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес') }}
                     </div>
+                    <div class="col-md-2 col-xs-12">
+                        {{ macros.render_input(form_field = form.breed_id, id = 'FormBreedId', class = 'browser-default custom-select', 
+                            class_for_label = 'correctLabel', label = 'Порода') }}
+                    </div>
                 </div>
  
                 <div class="row d-flex justify-content-center flex-row">

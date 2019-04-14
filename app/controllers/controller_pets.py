@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user
 from app.forms import PetProfileForm
-from app.models import Pet
+from app.models import Pet, Breed
 from app.utils import login_required, fill_entity
 from app import db
 
@@ -18,7 +18,6 @@ def PetProfile(id):
         errors, successfully = fill_entity(pet, form)
         print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(pet, errors, successfully)) 
         pet.user_id = user.id 
-        pet.breed_id = 1 # todo add select on form to choose pet's breed  
         db.session.add(pet)        
         db.session.commit()
         flash('Все изменения сохранены!', 'success')

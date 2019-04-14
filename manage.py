@@ -36,7 +36,11 @@ def seedUsers():
 
 def seedBreeds():
     breed1 = Breed(name='овчарка', info='описание овчарка')
+    breed2 = Breed(name='мопс', info='описание мопс')
+    breed3 = Breed(name='сиба-ину', info='описание сиба-ину')
     db.session.add(breed1)
+    db.session.add(breed2)
+    db.session.add(breed3)
     db.session.commit()
     print('seedBreeds done')
 
