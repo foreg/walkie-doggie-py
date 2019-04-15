@@ -235,7 +235,7 @@ input:required ~ label:after, select:required ~ label:after{
 
 .tooltipClass .tooltiptext {
 	visibility: hidden;
-	width: 120px;
+	width: 12vw;
 	background-color: #222632;
 	color: #fff;
 	text-align: center;
@@ -247,7 +247,7 @@ input:required ~ label:after, select:required ~ label:after{
 	z-index: 1;
 	bottom: 125%;
 	left: 50%;
-	margin-left: -60px;
+	margin-left: -6vw;
 	opacity: 0;
 	transition: opacity 0.3s;
 }
