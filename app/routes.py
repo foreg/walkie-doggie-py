@@ -21,6 +21,10 @@ def walker():
 def pet_profile(pet_id):
     return controller_pets.PetProfile(pet_id)
 
+@app.route('/all_pets',methods=['GET', 'POST'])
+def all_pets():
+    return controller_pets.AllPets()
+
 @app.route('/profile', methods=['GET', 'POST'])
 def profile():
     become = request.args.get('become')

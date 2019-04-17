@@ -25,3 +25,9 @@ def PetProfile(id):
     elif len(form.errors) > 0:
         flash('Проверьте правильность введенных данных', 'danger')
     return render_template('pet_profile.html',user=user,form=form)
+
+@login_required
+def AllPets():
+    user = current_user
+    Pet.query.all()
+    return render_template('all_pets.html',user=user,items=Pet.query.all())

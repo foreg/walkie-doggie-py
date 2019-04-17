@@ -85,8 +85,8 @@ class WalkerProfileForm(FlaskForm):
 class PetProfileForm(FlaskForm):
     name= StringField('Name',validators=[DataRequired(message='Заполните поле кличка!')])
     gender= SelectField('Gender', choices=[('кобель', 'кобель'), ('сука', 'сука')])
-    age= StringField('Age',validators=[DataRequired(message='Заполните поле возраст!'),Regexp('^\d{1,2}$', message = "Неправильно введен возраст!")])
-    weight= StringField('Weight',validators=[DataRequired(message='Заполните поле вес!'),Regexp('^\d{1,3}$', message = "Неправильно введен вес!")])
+    age= StringField('Age',validators=[DataRequired(message='Заполните поле возраст!'),Regexp('^[1-9]\d{0,1}$', message = "Неправильно введен возраст!")])
+    weight= StringField('Weight',validators=[DataRequired(message='Заполните поле вес!'),Regexp('^[1-9]\d{0,1}$', message = "Неправильно введен вес!")])
     breed_id = SelectField('Breed', choices=[(x.id,x.name) for x in Breed.query.all()], coerce=int)
     info=TextAreaField('Text')
     submit = SubmitField('Save')
