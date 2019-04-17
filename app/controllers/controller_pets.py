@@ -39,7 +39,7 @@ def PetProfile(id):
 @login_required
 def AllPets():
     user = current_user
-    items = Pet.query.all()
+    items = Pet.query.order_by(Pet.name).all()
     for item in items:
         if item.avatar_info:
             item.img = item.avatar_info.name
