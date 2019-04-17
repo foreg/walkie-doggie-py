@@ -28,29 +28,32 @@
             <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
                 {{ form.hidden_tag() }}
                 <div class="row d-flex justify-content-center flex-row mt-4">
-                    <div class="col-md-3 col-xs-12">
+                    <div class="col-md-5 col-xs-12">
                         {{ macros.render_input(form_field = form.name, id = 'FormName', 
                             label = 'Кличка',  type = 'text') }}
                     </div>
-                    <div class="col-md-3 col-xs-12">
-                        {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
-                            class_for_label = 'correctLabel', label = 'Выберите пол') }}
+                    <div class="col-md-5 col-xs-12">
+                            {{ macros.render_input(form_field = form.breed_id, id = 'FormBreedId', class = 'browser-default custom-select', 
+                                class_for_label = 'correctLabel', label = 'Порода') }}
                     </div>
-                    <div class="col-md-2 col-xs-12">
-                        {{ macros.render_input(form_field = form.age, id = 'FormAge', label = 'Возраст', toolText='Возвраст должен быть в диапазоне от 1 до 99') }}
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                        {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес', toolText='Вес должен быть в диапазоне от 1 до 99') }}
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                        {{ macros.render_input(form_field = form.breed_id, id = 'FormBreedId', class = 'browser-default custom-select', 
-                            class_for_label = 'correctLabel', label = 'Порода') }}
-                    </div>
+                    
                 </div>
  
                 <div class="row d-flex justify-content-center flex-row">
-                    <div class="col-md-9 col-xs-12">
-                      {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'Описание', rows="3") }}
+                    <div class="col-md-3 col-xs-12">
+                            {{ macros.render_input(form_field = form.age, id = 'FormAge', label = 'Возраст') }}
+                    </div>
+                    <div class="col-md-3 col-xs-12">
+                            {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес') }}
+                    </div>
+                    <div class="col-md-4 col-xs-12">
+                        {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
+                                class_for_label = 'correctLabel', label = 'Пол') }}
+                    </div>
+                </div>
+                <div class="row d-flex justify-content-center flex-row">
+                    <div class="col-md-10 col-xs-12">
+                        {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'Описание', rows="3") }}
                     </div>
                 </div>
                 {% if img and img != None %}

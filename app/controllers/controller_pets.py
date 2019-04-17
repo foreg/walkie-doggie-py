@@ -35,3 +35,9 @@ def PetProfile(id):
     if img:
         img = img.name
     return render_template('pet_profile.html',user=user,form=form, img=img)
+
+@login_required
+def AllPets():
+    user = current_user
+    Pet.query.all()
+    return render_template('all_pets.html',user=user,items=Pet.query.all())
