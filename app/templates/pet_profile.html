@@ -25,7 +25,7 @@
             {% endif %}
         {% endwith %}
             <!-- Form -->
-            <form class="text-center" style="color: #757575;" action="" method="post">
+            <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
                 {{ form.hidden_tag() }}
                 <div class="row d-flex justify-content-center flex-row mt-4">
                     <div class="col-md-3 col-xs-12">
@@ -37,10 +37,10 @@
                             class_for_label = 'correctLabel', label = 'Выберите пол') }}
                     </div>
                     <div class="col-md-2 col-xs-12">
-                        {{ macros.render_input(form_field = form.age, id = 'FormAge', label = 'Возраст') }}
+                        {{ macros.render_input(form_field = form.age, id = 'FormAge', label = 'Возраст', toolText='Возвраст должен быть в диапазоне от 1 до 99') }}
                     </div>
                     <div class="col-md-2 col-xs-12">
-                        {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес') }}
+                        {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес', toolText='Вес должен быть в диапазоне от 1 до 99') }}
                     </div>
                     <div class="col-md-2 col-xs-12">
                         {{ macros.render_input(form_field = form.breed_id, id = 'FormBreedId', class = 'browser-default custom-select', 
@@ -53,6 +53,10 @@
                       {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'Описание', rows="3") }}
                     </div>
                 </div>
+                {% if img and img != None %}
+                    <img src="{{ url_for('static', filename='uploads/images/' + img)}}" class="w-25">
+                {% endif %}
+                {{ macros.render_input(form_field = form.avatar, id = 'FormAvatar', class="md-textarea form-control", label = 'Аватар', type='file') }}
                    
                   <!-- Sign in button -->
                 {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Сохранить") }}

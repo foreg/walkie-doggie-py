@@ -12,3 +12,4 @@ flask_script==2.0.6
 runp==0.0.2
 Flask-Mail==0.9.1
 pyopenssl==19.0.0
+Flask-Uploads==0.2.1

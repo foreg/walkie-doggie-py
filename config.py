@@ -15,3 +15,4 @@ class Config(object):
     MAIL_USERNAME = 'walkiedoggie72@gmail.com'
     MAIL_PASSWORD = 'dimasNorm444'
     MAIL_DEFAULT_SENDER = 'walkiedoggie72@gmail.com'
+    UPLOADED_IMAGES_DEST = 'app/static/uploads/images/'

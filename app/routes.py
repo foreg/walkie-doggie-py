@@ -1,8 +1,9 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user
 from app import app, db
 from app.controllers import controller_index, controller_profile, controller_pets
 from app.constants import Roles
+from config import Config
 
 @app.route('/test')
 def test():
@@ -61,3 +62,9 @@ def logout():
 @app.route('/confirm/<string:token>')
 def confirm_email(token):
     return controller_index.Confirm(token)
+
+@app.route('/_uploads/images/<filename>')
+def send_file(filename):
+    # response = send_from_directory(app.config['UPLOADED_IMAGES_DEST'], filename)
+    response = send_from_directory('app/static/uploads/images/', filename)
+    return response
