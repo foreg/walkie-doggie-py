@@ -39,5 +39,8 @@ def PetProfile(id):
 @login_required
 def AllPets():
     user = current_user
-    Pet.query.all()
-    return render_template('all_pets.html',user=user,items=Pet.query.all())
+    items = Pet.query.all()
+    for item in items:
+        if item.avatar_info:
+            item.img = item.avatar_info.name
+    return render_template('all_pets.html',user=user,items=items)
