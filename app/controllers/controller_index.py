@@ -36,7 +36,7 @@ def Login():
             return redirect(url_for('login', email=form.email.data))
         login_user(user, remember=form.remember_me.data)
         # return render_template('profile.html', user=user, form=formUser)
-        return redirect(url_for('profile', user=user))
+        return redirect(url_for('profile'))
     return render_template('login.html', form=form)
 
 def Register():

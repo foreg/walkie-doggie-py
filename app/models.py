@@ -29,6 +29,8 @@ class User(UserMixin, db.Model):
     roles = db.relationship('User_roles', backref='user', lazy='dynamic')
     walker_id = db.Column(db.Integer, db.ForeignKey('walker.id'))
     walker_info = db.relationship('Walker', backref='user')
+    avatar_id = db.Column(db.Integer, db.ForeignKey('file.id'))
+    avatar_info = db.relationship('File', backref='user')
     pets = db.relationship('Pet', backref='user', lazy='dynamic')
 
     def set_password(self, password):
@@ -85,6 +87,8 @@ class Pet(db.Model):
     info=db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     breed_id = db.Column(db.Integer, db.ForeignKey('breed.id'))
+    avatar_id = db.Column(db.Integer, db.ForeignKey('file.id'))
+    avatar_info = db.relationship('File', backref='pet')
 
 class Breed(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
@@ -95,3 +99,7 @@ class Breed(db.Model):
 
     def __repr__(self):
         return '<Breed {}>'.format(self.id) 
+
+class File(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String(50))

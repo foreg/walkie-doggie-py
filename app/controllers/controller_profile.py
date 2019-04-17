@@ -1,9 +1,10 @@
-from flask import render_template, flash, redirect, url_for
+from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user
 from app.forms import UserProfileForm,WalkerProfileForm
-from app.models import load_user, Walker
+from app.models import load_user, Walker, File
 from app.utils import login_required, fill_entity
 from app.constants import Roles
+from app import images
 
 
 def Test():
@@ -17,14 +18,23 @@ def OwnerProfile(db):
         if form.validate_on_submit():
             errors, successfully = fill_entity(user, form)
             print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(user, errors, successfully))   
+            if request.files['avatar'].filename != '':
+                filename = images.save(request.files['avatar'])
+                f = File(name=filename)
+                db.session.add(f)
+                db.session.commit()
+                user.avatar_id = f.id
             db.session.add(user)
             db.session.commit()
             user.add_role(Roles.owner)
             flash('Все изменения сохранены!', 'success')
-            return render_template('profile.html', form=form, user=user)
+            # return render_template('profile.html', form=form, user=user)
         elif len(form.errors) > 0:
             flash('Проверьте правильность введенных данных', 'danger')
-        return render_template('profile.html', form=form, user=user)
+        img = File.query.filter_by(id=user.avatar_id).first()
+        if img:
+            img = img.name
+        return render_template('profile.html', form=form, user=user, img=img)
     return redirect(url_for('login'))
 
 @login_required
