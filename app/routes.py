@@ -22,8 +22,12 @@ def walker():
 def pet_profile(pet_id):
     return controller_pets.PetProfile(pet_id)
 
-@app.route('/all_pets',methods=['GET', 'POST'])
-def all_pets():
+@app.route('/pets/<int(signed=True):pet_id>', methods=['DELETE'])
+def archive_pet(pet_id):
+    return controller_pets.ArchivePet(pet_id)
+
+@app.route('/pets',methods=['GET', 'POST'])
+def pets():
     return controller_pets.AllPets()
 
 @app.route('/profile', methods=['GET', 'POST'])
