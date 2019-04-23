@@ -184,6 +184,11 @@ a.nav-link:hover, a.nav-link:focus {
 	}
 }
 
+.display-none{
+    display: none !important;
+}
+
+
 .dropdown-menu.dropdown-primary{
 	left: -52px !important;
 }
