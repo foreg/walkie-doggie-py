@@ -32,15 +32,17 @@
                         <div class="button-group">  
                             <a href="#" class="btn btn-outline-black btn-rounded waves-effect medium"><i class="fas fa-paw"></i>Выгулять </a>
                         </div>
+                        <a class="popup-with-zoom-anim" href="#small-dialog" data-id="{{item.id}}"><i class="fas fa-times"></i></a><br>
                     </div> 
-                    <a class="popup-with-zoom-anim" href="#small-dialog" data-id="{{item.id}}">Open with fade-zoom animation</a><br>
                 </div>
                 {% endfor %}    
                 <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
                     <h1>Подтверждение действия</h1>
                     <p>Вы действительно хотите удалить информацию о собаке?</p>
-                    <button class="confirm">Да</button>
-                    <button class="dismiss">Нет</button>
+                    <div class="d-flex justify-content-center">
+                        <button class="confirm btn btn-success">Да</button>
+                        <button class="dismiss btn btn-danger">Нет</button>
+                    </div>
                 </div>            
             </form>                              
           </div> 
