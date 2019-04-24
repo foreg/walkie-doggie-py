@@ -8,6 +8,12 @@
 	position: relative;
 }
 
+.popup-with-zoom-anim {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    color: black;
+}
 
 /**
  * Fade-zoom animation for first dialog
