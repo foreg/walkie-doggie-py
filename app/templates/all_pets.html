@@ -4,6 +4,8 @@
 <main>
 <!-- <section id="intro" class="view intro register">
     <div class="mask rgba-black-strong flex-center"> -->
+<script src="{{url_for('static', filename='js/magnific-popup.min.js')}}"></script>
+<script src="{{url_for('static', filename='js/pets.js')}}"></script>
 <div class="container d-flex align-items-center justify-content-center">
   <div class="row d-flex justify-content-center w-75">
     <div class="card mt-5">
@@ -11,24 +13,35 @@
         <strong>Все питомцы</strong>
         </h5>
         <div class="card-body px-lg-5 pt-0">
+            <input id="myInput">
             <form class="text-center" action="" method="post">
                 {% for item in items %}
                 <div class="row d-flex justify-content-center flex-row mt-4 form-outline-black">
                     <div class="col-md-6 col-xs-12"> 
-                        {% if item.img %}
-                            <img src="{{ url_for('static', filename='uploads/images/' + item.img)}}" class="img-fluid">
-                        {% else %}
-                            <img src="{{ url_for('static', filename='img/dog.png')}}" class="img-fluid">
-                        {% endif %}
+                        <a href="{{ url_for('pet_profile', pet_id=item.id)}}">
+                            {% if item.img %}
+                                <img src="{{ url_for('static', filename='uploads/images/' + item.img)}}" class="img-fluid">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='img/dog.png')}}" class="img-fluid">
+                            {% endif %}
+                        </a>
                     </div>
                     <div class="flex-direction-column col-md-6 justify-content-center">
-                        <span class="my-3"><span class="gray-text">Кличка:</span> {{ item.name }}</span>
+                        <span class="gray-text">Кличка:</span>
+                        <span class="my-3 item">{{ item.name }}</span>
                         <div class="button-group">  
                             <a href="#" class="btn btn-outline-black btn-rounded waves-effect medium"><i class="fas fa-paw"></i>Выгулять </a>
                         </div>
                     </div> 
+                    <a class="popup-with-zoom-anim" href="#small-dialog" data-id="{{item.id}}">Open with fade-zoom animation</a><br>
                 </div>
-                {% endfor %}                
+                {% endfor %}    
+                <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                    <h1>Подтверждение действия</h1>
+                    <p>Вы действительно хотите удалить информацию о собаке?</p>
+                    <button class="confirm">Да</button>
+                    <button class="dismiss">Нет</button>
+                </div>            
             </form>                              
           </div> 
         </div>

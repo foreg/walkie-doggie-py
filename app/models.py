@@ -89,6 +89,7 @@ class Pet(db.Model):
     breed_id = db.Column(db.Integer, db.ForeignKey('breed.id'))
     avatar_id = db.Column(db.Integer, db.ForeignKey('file.id'))
     avatar_info = db.relationship('File', backref='pet')
+    archiveDate = db.Column(db.DateTime(4))
 
 class Breed(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
