@@ -22,7 +22,7 @@ $(document).ready(function(){
     });
 
     $('.confirm').click(function(){
-        let pet_id = $(this).parent().data('id');
+        let pet_id = $(this).parent().parent().data('id');
         $.ajax({
             url: '/pets/' + pet_id,
             type: 'DELETE',

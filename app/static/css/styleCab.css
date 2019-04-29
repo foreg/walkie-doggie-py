@@ -73,6 +73,10 @@ span{
 	flex-direction: column;
 }
 
+.w-85{
+    width: 85% !important;
+}
+
 /* End Fonts */
 
 /* NavBars Override Rules And Bootstrap too */
