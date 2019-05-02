@@ -3,72 +3,132 @@
 {% import 'forms.jinja' as macros %}
 {% block content %}
 <main>
-<!-- <section id="intro" class="view intro register">
-    <div class="mask rgba-black-strong flex-center"> -->
-      <div class="container d-flex align-items-center justify-content-center">
-        <div class="row d-flex justify-content-center w-75">
-                <!-- text-left -->
-          <!-- Material form login -->
-            <div class="card mt-5">
-            <h5 class="card-header info-color white-text text-center py-4">
-            <strong>Профиль</strong>
-            </h5>
-            <!--Card content-->
-            <div class="card-body px-lg-5 pt-0">
-            <!-- Form -->
-            {% with messages = get_flashed_messages(with_categories=true) %}
-              <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
-                {% if messages %}
-                    {% for category, message in messages %}
-                    <div class="alert alert-{{category}} alert-dismissible" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <!-- <strong>Title</strong> --> {{ message }}
-                    </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-            <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
-                {{ form.hidden_tag() }}
-                <div class="row d-flex justify-content-center flex-row mt-4">
-                  <div class="col-md-3 col-xs-12">
-                    {{ macros.render_input(form_field = form.surname, id = 'FormSurname', label = 'Фамилия') }}
-                  </div>
-                  <div class="col-md-3 col-xs-12">
-                    {{ macros.render_input(form_field = form.name, id = 'FormName', label = 'Имя') }}
-                  </div>
-                  <div class="col-md-3 col-xs-12">
-                    {{ macros.render_input(form_field = form.middlename, id = 'FormMiddlename', label = 'Отчество') }}
-                  </div>
-                </div>
-                <div class="row d-flex justify-content-center flex-row">
-                  <div class="col-md-6 col-xs-12">
-                    {{ macros.render_input(form_field = form.address, id = 'FormAdress', label = 'Адрес', toolText = 'Введите ваш фактический адрес проживания') }}
-                  </div>
-                  <div class="col-md-3 col-xs-12">
-                    {{ macros.render_input(form_field = form.phone, id = 'FormPhone', label = 'Телефон', toolText = 'Введите ваш телефон в формате 8xxxxxxxxxx') }}
-                  </div>
-                </div>
-                <div class="row d-flex justify-content-center flex-row">
-                  <div class="col-md-9 col-xs-12">
-                    {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'О себе', rows="3") }}
-                  </div>
-                </div>
-                {% if img and img != None %}
-                    <img src="{{ url_for('static', filename='uploads/images/' + img)}}" class="w-25">
-                {% endif %}
-                {{ macros.render_input(form_field = form.avatar, id = 'FormAvatar', class="md-textarea form-control", label = 'Аватар', type='file') }}
-                  <!-- Sign in button -->
-                  {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Сохранить") }}
-                  <!-- <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Войти</button> -->
-                </form>
-            </div>
+<section class="main-profile">
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+          <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ message }}
+          </div>
+          {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-4 d-flex flex-direction-column align-items-center profile-img-block px-2 mr-3
+      pa-top-img profile-block h-100">
+        <img src="{{img}}" class="profile-img pb-2">
+        <a class="ajax-popup-link btn mx-0 w-100" href="#small-dialog" data-id="{{user.id}}">Редактировать</a>
+      </div>
+      <div class="col-md-8 pt-2 px-4 profile-block">
+        <div class="profile-header">
+          <h2 class="h2-profile">{{user.surname}} {{user.name}}</h2>
+          <span class="span-profile">{{user.info}}</span>
         </div>
-      <!-- Material form login -->
+        <hr>
+        <div class="row d-flex flex-direction-row">
+          <div class="col-md-3 d-flex flex-direction-column">
+            <span class="gray-text span-profile mb-3">Адрес:</span>
+            <span class="gray-text span-profile">Телефон:</span>
+          </div>
+          <div class="col-md-9 d-flex flex-direction-column">
+              <span class="span-profile mb-3">{{user.address}}</span>
+              <span class="span-profile">{{user.phone}}</span>
+          </div>
+        </div>
+        <hr>
+        <!-- <div class="profile-pets"> -->
+        <div class="row d-flex flex-direction-column pb-3">
+          <div class="pet-header">
+            <h2 class="h2-profile col-md-12 mb-3">Мои питомцы</h2>
+          </div>
+          <div class="d-flex flex-direction-row">
+          {% for pet in pets %}
+            <div class="col-md-4 container-pet-card">
+              <div class="card pet-card">
+                <div class="img-dog-container d-flex justify-content-center m-2">
+                  {% if pet.avatar_id %}
+                  <img class="card-img-top pet-img" src="{{ url_for('static', filename='uploads/images/' + pet.avatar_info.name)}}">
+                  {% else %}
+                  <img class="card-img-top pet-img" src="{{ url_for('static', filename='img/dog.png')}}">
+                  {% endif %}
+                </div>
+                
+                <div class="card-body pet-action d-flex flex-direction-column justify-content-center">
+                  <h4 class="card-title text-center pet-title">{{pet.name}}</h4>
+                  <a href="#" class="btn btn-primary">Выгулять</a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
         </div>
       </div>
-    <!-- </div>
-</section> -->
+    </div>
+  </div>
+</section>
+
+
+<div id="small-dialog" class="zoom-anim-dialog mfp-hide profile-popup">
+  <div class="container d-flex align-items-center justify-content-center px-0">
+    <div class="row d-flex justify-content-center w-100">
+      <div class="card card-popup mt-5">
+        <h5 class="card-header info-color white-text text-center py-4">
+          <strong>Профиль</strong>
+        </h5>
+        <div class="card-body px-lg-5 pt-0">
+          <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
+            {{ form.hidden_tag() }}
+            <div class="row d-flex justify-content-center flex-row mt-4">
+              <div class="col-md-3 col-xs-12">
+                {{ macros.render_input(form_field = form.surname, id = 'FormSurname', label = 'Фамилия') }}
+              </div>
+              <div class="col-md-3 col-xs-12">
+                {{ macros.render_input(form_field = form.name, id = 'FormName', label = 'Имя') }}
+              </div>
+              <div class="col-md-3 col-xs-12">
+                {{ macros.render_input(form_field = form.middlename, id = 'FormMiddlename', label = 'Отчество') }}
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center flex-row">
+              <div class="col-md-6 col-xs-12">
+                {{ macros.render_input(form_field = form.address, id = 'FormAdress', label = 'Адрес', toolText = 'Введите ваш фактический адрес проживания') }}
+              </div>
+              <div class="col-md-3 col-xs-12">
+                {{ macros.render_input(form_field = form.phone, id = 'FormPhone', label = 'Телефон', toolText = 'Введите ваш телефон в формате 8xxxxxxxxxx') }}
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center flex-row">
+              <div class="col-md-9 col-xs-12">
+                {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'О себе', rows="3") }}
+              </div>
+            </div>
+
+            <div class="row d-flex justify-content-center flex-row">
+              <div class="col-md-6 col-xs-12">
+                {% if img and img != None %}
+                <img src="{{img}}" class="w-50">
+                {% endif %}
+              </div>
+              <div class="col-md-6 col-xs-12">
+                {{ macros.render_input(form_field = form.avatar, id = 'FormAvatar', class="md-textarea form-control", label = 'Аватар', class_for_label = 'file-input', type='file') }}
+                <div class="controls-profile">
+                  {{ form.submit(class_="btn confirm btn-success my-4 waves-effect z-depth-0", value="Сохранить") }}
+                  <span class="dismiss btn btn-danger">Отмена</span>
+                </div>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+      </div>
+    </div>
+  </div>
+</div>
 </main>
+<script src="{{url_for('static', filename='js/profile.js')}}"></script>
 <script type="text/javascript">
   data = {
   token: "3283e59c98911c85fa289a756dfeebd62efe57b4",
