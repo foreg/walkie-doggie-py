@@ -16,18 +16,17 @@
       {% endif %}
     {% endwith %}
     <div class="row d-flex justify-content-center">
-      <div class="col-md-6 d-flex flex-direction-column align-items-center profile-img-block px-2 mr-3
-      pa-top-img profile-block h-100">
-      
-        <a class="ajax-popup-link btn mx-0 w-100" href="#small-dialog" data-id="{{pet}}">Редактировать</a>
-      </div>
-      <div class="col-md-8 pt-2 px-4 profile-block">
-        <div class="profile-header">  
-            {% if pet.avatar_id %} 
+     <div class="col-md-6 d-flex flex-direction-column align-items-center profile-img-block px-2 mr-3
+      pa-top-img profile-block h-160">
+          {% if pet.avatar_id %} 
             <img class="card-img-top pet-img" src="{{ url_for('static', filename='uploads/images/' + pet.avatar_info.name)}}">
             {% else %}
             <img class="card-img-top pet-img" src="{{ url_for('static', filename='img/dog.png')}}">
             {% endif %}
+        </div>
+      <div class="col-md-6 pt-2 px-4 profile-block">
+        <div class="profile-header">  
+            
           <h2 class="h2-profile">{{pet.name}} </h2>
           <span class="span-profile">{{pet.info}}</span>
         </div>
@@ -35,16 +34,22 @@
         <div class="row d-flex flex-direction-row">
           <div class="col-md-3 d-flex flex-direction-column">
             <span class="gray-text span-profile mb-3">Порода:</span>
-            <span class="gray-text span-profile">Возраст:</span>
+            <span class="gray-text span-profile mb-3">Пол:</span>
+            <span class="gray-text span-profile mb-3">Возраст:</span>
+            <span class="gray-text span-profile mb-3">Вес:</span>
           </div>
           <div class="col-md-9 d-flex flex-direction-column">
+              <span class="span-profile mb-3">{{breed}}</span>
               <span class="span-profile mb-3">{{pet.gender}}</span>
-              <span class="span-profile">{{pet.age}}</span>
+              <span class="span-profile mb-3">{{pet.age}}</span>
+              <span class="span-profile mb-3">{{pet.weight}}</span>
           </div>
         </div>
         <hr>
-        
+        <div class="row d-flex justify-content-center py-2">
+        <a class="ajax-popup-link btn mx-0  w-100" href="#small-dialog" >Редактировать</a>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -109,7 +114,7 @@
       </div>
     </div>
   </div>
-</div>
+
 </main>
 <script src="{{url_for('static', filename='js/profile.js')}}"></script>
 {% endblock %}
