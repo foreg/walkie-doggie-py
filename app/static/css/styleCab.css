@@ -385,7 +385,11 @@ input:required ~ label:after, select:required ~ label:after{
 }
 
 .pet-img{
-	max-width: 200px;
+	max-width: 100%;
+}
+
+.pet-img-stock{
+	max-width: 75%;
 }
 
 .btn.btn-primary, .btn.btn-primary:focus, .btn.btn-primary:active{
@@ -411,7 +415,7 @@ input:required ~ label:after, select:required ~ label:after{
 }
 
 .card-img-top.pet-img{
-	padding: 15px;
+	border-radius: 4px;
     align-self: center;
 }
 
@@ -421,6 +425,10 @@ input:required ~ label:after, select:required ~ label:after{
 
 .container-pet-card{
 	max-height: 330px;
+}
+
+.container-pet-card:nth-child(2){
+	/* padding-left:  */
 }
 
 .button.mfp-close{

@@ -51,7 +51,7 @@
                   {% if pet.avatar_id %}
                   <img class="card-img-top pet-img" src="{{ url_for('static', filename='uploads/images/' + pet.avatar_info.name)}}">
                   {% else %}
-                  <img class="card-img-top pet-img" src="{{ url_for('static', filename='img/dog.png')}}">
+                  <img class="card-img-top pet-img-stock" src="{{ url_for('static', filename='img/dog.png')}}">
                   {% endif %}
                 </div>
                 
