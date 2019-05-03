@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user
 from app.forms import UserProfileForm,WalkerProfileForm
-from app.models import load_user, Walker, File
+from app.models import load_user, Walker, File, Pet
 from app.utils import login_required, fill_entity
 from app.constants import Roles
 from app import images
@@ -34,7 +34,9 @@ def OwnerProfile(db):
         img = File.query.filter_by(id=user.avatar_id).first()
         if img:
             img = img.name
-        return render_template('profile.html', form=form, user=user, img=img)
+        pets = Pet.query.filter_by(user_id=user.id, archiveDate=None).limit(3).all()
+        return render_template('profile.html', form=form, user=user,
+            img=url_for('static', filename='uploads/images/' + img), pets=pets)
     return redirect(url_for('login'))
 
 @login_required

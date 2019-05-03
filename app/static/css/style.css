@@ -102,7 +102,7 @@ section.mb-5{
 }
 
 .btn-primary.dropdown-toggle:hover{
-	border-bottom: 3px solid #ea4e00;
+	border-bottom: 3px solid #de4303;
 }
 
 .dropdown .dropdown-menu .dropdown-item:active, .dropdown .dropdown-menu 
@@ -110,7 +110,7 @@ section.mb-5{
 .dropdown-item:active, .dropleft .dropdown-menu .dropdown-item:hover, .dropright .dropdown-menu 
 .dropdown-item:active, .dropright .dropdown-menu .dropdown-item:hover, 
 .dropup .dropdown-menu .dropdown-item:active, .dropup .dropdown-menu .dropdown-item:hover{
-	background-color: #222632 !important;
+	background-color: #1d3a84 !important;
 	font-size: 14px;
     font-weight: 400;
     font-family: "Futura PT Book";
@@ -121,13 +121,13 @@ section.mb-5{
 .btn-primary:not(:disabled):not(.disabled).active, 
 .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
 	background-color: transparent !important;
-	border-bottom: 3px solid #ea4e00;
+	border-bottom: 3px solid #de4303;
 }
 
 .btn-primary:not(:disabled):not(.disabled).active,
 .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
 	background-color: transparent !important;
-	border-bottom: 3px solid #ea4e00;
+	border-bottom: 3px solid #de4303;
  }
 
 .animated-icon {
@@ -151,7 +151,7 @@ section.mb-5{
 	position: absolute;
 	height: 3px;
 	width: 100%;
-	background: #f3e5f5;
+	background: #e9ebf7;
 	border-radius: 9px;
 	opacity: 1;
 	left: 0;
@@ -230,7 +230,7 @@ section.mb-5{
 }
 .btn.btn-flat{
 	font-size: 1.1rem !important;
-	color: #000 !important;
+	color: #202539 !important;
 	border:none !important;
 }
 
@@ -240,7 +240,7 @@ section.mb-5{
 }
 
 .top-nav-collapse {
-	background-color: #222632;
+	background-color: #1d3a84;
 }
 
 .navbar {
@@ -252,7 +252,7 @@ section.mb-5{
 }
 
 .navbar-dark .navbar-nav .nav-link{
-	color: #fff;
+	color: #e9ebf7 !important;
 	font-size: 20px;
 	font-weight: 400;
 	font-family: "Futura PT Book";
@@ -263,8 +263,8 @@ a.nav-link{
 }
 
 a.nav-link:hover, a.nav-link:focus {
-	color: #fff !important;
-	border-bottom: 3px solid #ff691e;
+	color: #e9ebf7 !important;
+	border-bottom: 3px solid #de4303;
 }
 
 @media (min-width: 768px){
@@ -425,7 +425,7 @@ a.nav-link:hover, a.nav-link:focus {
 }
 
 .card-text.name{
-	color: #000 !important;
+	color: #202539 !important;
 	font-size: 1rem !important;
 }
 
@@ -483,7 +483,7 @@ a.nav-link:hover, a.nav-link:focus {
 }
 
 .h5-color, .md-accordion .card .card-body{
-	color: #000 !important;
+	color: #202539 !important;
 }
 .md-accordion .card .card-body{
 	font-size: 1rem;
@@ -511,11 +511,11 @@ a.nav-link:hover, a.nav-link:focus {
 	}
 
 	.card.active .card-header{
-		background: #222632 !important;
+		background: #1d3a84 !important;
 	}
 
 	.card.active .card-header .h5-color{
-		color: #fff !important;
+		color: #e9ebf7 !important;
 	}
 
 	.card-header{
@@ -532,7 +532,7 @@ a.nav-link:hover, a.nav-link:focus {
 /* Footer */
 
 .social{
-	color: #fff;
+	color: #e9ebf7;
 	font-size: 2rem;
 }
 
@@ -543,19 +543,19 @@ a.nav-link:hover, a.nav-link:focus {
     bottom: 0;
     height: 2px;
     width: 106px;
-    background: #13bfb1;
+    background: #1d3a84;
 }
 
 .footer{
-	background: #222632;
+	background: #1d3a84;
 }
 
 .footer h5{
 	padding-left: 10px;
-    border-left: 3px solid #fff;
+    border-left: 3px solid #e9ebf7;
     padding-bottom: 6px;
     margin-bottom: 20px;
-    color: #fff;
+    color: #e9ebf7;
 }
 
 .footer a {
@@ -563,7 +563,7 @@ a.nav-link:hover, a.nav-link:focus {
 }
 
 .footer ul.quick-links li a{
-	color:#fff;
+	color:#e9ebf7;
 }
 
 .footer ul.quick-links li{
@@ -589,21 +589,21 @@ a.nav-link:hover, a.nav-link:focus {
 
 /* Login Form */
 .info-color{
-	background-color: #ff691e !important;
+	background-color: #de4303 !important;
 }
 .btn-outline-info {
 	border: unset !important;
-	background-color: #ff691e !important;
-    color: #fff!important;
+	background-color: #de4303 !important;
+    color: #e9ebf7 !important;
 }
 
 .btn-outline-info:hover, .btn-outline-info:visited{
-	color: #fff!important;
+	color: #e9ebf7 !important;
 	-webkit-transition: .25s ease-in-out;
 	-moz-transition: .25s ease-in-out;
 	-o-transition: .25s ease-in-out;
 	transition: .25s ease-in-out;
-	background-color: #ea4e00 !important;
+	background-color: #de4303 !important;
 }
 
 .intro.login{
