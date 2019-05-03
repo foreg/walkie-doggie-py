@@ -48,7 +48,8 @@
             <div class="col-md-4 container-pet-card">
               <div class="card pet-card">
                 <div class="img-dog-container d-flex justify-content-center m-2">
-                  {% if pet.avatar_id %}
+                    <a href="{{ url_for('pet_profile', pet_id=pet.id)}}">
+                  {% if pet.avatar_id %} 
                   <img class="card-img-top pet-img" src="{{ url_for('static', filename='uploads/images/' + pet.avatar_info.name)}}">
                   {% else %}
                   <img class="card-img-top pet-img" src="{{ url_for('static', filename='img/dog.png')}}">
