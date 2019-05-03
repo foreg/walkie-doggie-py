@@ -321,7 +321,7 @@ input:required ~ label:after, select:required ~ label:after{
 }
 
 .mfp-bg.my-mfp-zoom-in.mfp-ready{
-	height: 120vh !important;
+	height: 130vh !important;
 }
 
 /* Main Content */
@@ -335,7 +335,9 @@ input:required ~ label:after, select:required ~ label:after{
 .controls-profile{
 	display: flex;
     align-items: center;
-    justify-content: flex-start;
+	justify-content: flex-start;
+	position: absolute;
+	bottom: -25px;
 }
 
 .btn-success.confirm{
@@ -349,6 +351,12 @@ input:required ~ label:after, select:required ~ label:after{
 
 .pa-top-img{
 	max-width: 225px;
+	padding: 0.7rem 0;
+}
+
+.pa-top-img-pet{
+	max-width: 500px;
+	height: 100%;
 	padding: 0.7rem 0;
 }
 
@@ -388,6 +396,10 @@ input:required ~ label:after, select:required ~ label:after{
 	max-width: 200px;
 }
 
+.pet-page-img{
+	max-width: 540px;
+}
+
 .btn.btn-primary, .btn.btn-primary:focus, .btn.btn-primary:active{
 	background: #de4303 !important;
 	border-radius: 4px;
@@ -420,7 +432,7 @@ input:required ~ label:after, select:required ~ label:after{
 }
 
 .container-pet-card{
-	max-height: 330px;
+	max-height: 280px;
 }
 
 .button.mfp-close{

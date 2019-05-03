@@ -35,10 +35,12 @@ def PetProfile(id):
     img = File.query.filter_by(id=pet.avatar_id).first()
     if img:
         img = img.name
+    else:
+        img = 'dog.png'
     breed = Breed.query.filter_by(id=pet.breed_id).first()
     if breed:
         breed = breed.name
-    return render_template('pet_profile.html',user=user,form=form, img=img,pet=pet,breed=breed)
+    return render_template('pet_profile.html',user=user,form=form, img='../static/uploads/images/' + img,pet=pet,breed=breed)
 
 @login_required
 def AllPets():
