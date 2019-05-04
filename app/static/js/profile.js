@@ -1,5 +1,5 @@
 $(document).ready(function(){ 
-    $.getScript("static/js/magnific-popup.min.js", () => {
+    $.getScript("../static/js/magnific-popup.min.js", () => {
         $('.ajax-popup-link').magnificPopup({
             type: 'inline',
             

@@ -3,41 +3,77 @@
 {% import 'forms.jinja' as macros %}
 {% block content %}
 <main>
-<!-- <section id="intro" class="view intro register">
-    <div class="mask rgba-black-strong flex-center"> -->
-<div class="container d-flex align-items-center justify-content-center">
-  <div class="row d-flex justify-content-center w-75">
-    <div class="card mt-5">
-        <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Профиль питомца</strong>
-        </h5>
-            <!--Card content-->
-        <div class="card-body px-lg-5 pt-0">
-        {% with messages = get_flashed_messages(with_categories=true) %}
-        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
-            {% if messages %}
-                {% for category, message in messages %}
-                <div class="alert alert-{{category}} alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <!-- <strong>Title</strong> --> {{ message }}
-                </div>
-                {% endfor %}
+<section class="main-profile">
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+          <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ message }}
+          </div>
+          {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <div class="row d-flex justify-content-center align-items-center">
+     <div class="col-md-6 d-flex flex-direction-column align-items-center profile-img-block px-2 mr-3
+      pa-top-img-pet profile-block justify-content-center">
+          {% if pet.avatar_id %} 
+            <img class="card-img-top pet-page-img" src="{{ url_for('static', filename='uploads/images/' + pet.avatar_info.name)}}">
+            {% else %}
+            <img class="card-img-top pet-page-img" src="{{ url_for('static', filename='img/dog.png')}}">
             {% endif %}
-        {% endwith %}
-            <!-- Form -->
-            <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
-                {{ form.hidden_tag() }}
-                <div class="row d-flex justify-content-center flex-row mt-4">
-                    <div class="col-md-5 col-xs-12">
-                        {{ macros.render_input(form_field = form.name, id = 'FormName', 
-                            label = 'Кличка',  type = 'text') }}
-                    </div>
-                    <div class="col-md-5 col-xs-12">
-                            {{ macros.render_input(form_field = form.breed_id, id = 'FormBreedId', class = 'browser-default custom-select', 
-                                class_for_label = 'correctLabel', label = 'Порода') }}
-                    </div>
-                    
+        </div>
+      <div class="col-md-6 pt-2 px-4 profile-block">
+        <div class="profile-header">  
+            
+          <h2 class="h2-profile">{{pet.name}} </h2>
+          <span class="span-profile">{{pet.info}}</span>
+        </div>
+        <hr>
+        <div class="row d-flex flex-direction-row">
+          <div class="col-md-3 d-flex flex-direction-column">
+            <span class="gray-text span-profile mb-3">Порода:</span>
+            <span class="gray-text span-profile mb-3">Пол:</span>
+            <span class="gray-text span-profile mb-3">Возраст:</span>
+            <span class="gray-text span-profile mb-3">Вес:</span>
+          </div>
+          <div class="col-md-9 d-flex flex-direction-column">
+              <span class="span-profile mb-3">{{breed}}</span>
+              <span class="span-profile mb-3">{{pet.gender}}</span>
+              <span class="span-profile mb-3">{{pet.age}}</span>
+              <span class="span-profile mb-3">{{pet.weight}}</span>
+          </div>
+        </div>
+        <hr>
+        <div class="row d-flex justify-content-center py-2">
+        <a class="ajax-popup-link btn mx-0  w-100" href="#small-dialog" >Редактировать</a>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<div id="small-dialog" class="zoom-anim-dialog mfp-hide profile-popup">
+  <div class="container d-flex align-items-center justify-content-center">
+    <div class="row d-flex justify-content-center">
+      <div class="card mt-5">
+        <h5 class="card-header info-color white-text text-center py-4">
+          <strong>Профиль питомца</strong>
+        </h5>
+        <div class="card-body px-lg-5 pt-0">
+          <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
+              {{ form.hidden_tag() }}
+              <div class="row d-flex justify-content-center flex-row mt-4">
+                <div class="col-md-5 col-xs-12">
+                  {{ macros.render_input(form_field = form.name, id = 'FormName', 
+                  label = 'Кличка',  type = 'text') }}
                 </div>
+                    <div class="col-md-5 col-xs-12">
+                      {{ macros.render_input(form_field = form.breed_id, id = 'FormBreedId', class = 'browser-default custom-select', 
+                      class_for_label = 'correctLabel', label = 'Порода') }}
+                    </div>
+              </div>
  
                 <div class="row d-flex justify-content-center flex-row">
                     <div class="col-md-3 col-xs-12">
@@ -56,18 +92,29 @@
                         {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'Описание', rows="3") }}
                     </div>
                 </div>
-                {% if img and img != None %}
-                    <img src="{{ url_for('static', filename='uploads/images/' + img)}}" class="w-25">
-                {% endif %}
-                {{ macros.render_input(form_field = form.avatar, id = 'FormAvatar', class="md-textarea form-control", label = 'Аватар', type='file') }}
-                   
-                  <!-- Sign in button -->
-                {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Сохранить") }}
-            </form>
-        </div> 
+             
+            <div class="row d-flex justify-content-center flex-row">
+                    <div class="col-md-4 col-xs-12">
+                      {% if img and img != None %}
+                      <img src="{{img}}" class="w-100">
+                      {% endif %}
+                    </div>
+                    <div class="col-md-6 col-xs-12">
+                      {{ macros.render_input(form_field = form.avatar, id = 'FormAvatar', class="md-textarea form-control", label = 'Аватар', class_for_label = 'file-input', type='file') }}
+                      <div class="controls-profile">
+                        {{ form.submit(class_="btn confirm btn-success my-4 waves-effect z-depth-0", value="Сохранить") }}
+                        <span class="dismiss btn btn-danger">Отмена</span>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </form>
+              </div>
+              <button title="Close (Esc)" type="button" class="mfp-close">×</button>
       </div>
     </div>
   </div>
-</div>
+
 </main>
+<script src="{{url_for('static', filename='js/profile.js')}}"></script>
 {% endblock %}
