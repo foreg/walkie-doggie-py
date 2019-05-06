@@ -29,7 +29,7 @@ def PetProfile(id):
         db.session.add(pet)        
         db.session.commit()
         flash('Все изменения сохранены!', 'success')
-        return redirect(url_for('pet_profile', pet_id=pet.id))
+        #return redirect(url_for('pets', pet.id)) #pet_id=
     elif len(form.errors) > 0:
         flash('Проверьте правильность введенных данных', 'danger')
     img = File.query.filter_by(id=pet.avatar_id).first()
@@ -41,6 +41,41 @@ def PetProfile(id):
     if breed:
         breed = breed.name
     return render_template('pet_profile.html',user=user,form=form, img='../static/uploads/images/' + img,pet=pet,breed=breed)
+
+@login_required
+def AddProfile(id):
+    user = current_user        
+    pet = Pet() if id == -1 else Pet.query.filter_by(id=id, archiveDate=None).first() 
+    if pet is None:
+        flash('Питомец не найден', 'danger')
+        return redirect(url_for('pets'))
+    form=PetProfileForm(obj=pet)
+    if form.validate_on_submit():             
+        errors, successfully = fill_entity(pet, form)
+        print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(pet, errors, successfully)) 
+        if request.files['avatar'].filename != '':
+            filename = images.save(request.files['avatar'])
+            f = File(name=filename)
+            db.session.add(f)
+            db.session.commit()
+            pet.avatar_id = f.id
+        pet.user_id = user.id 
+        db.session.add(pet)        
+        db.session.commit()
+        flash('Все изменения сохранены!', 'success')
+        return redirect(url_for('pets', pet_id=pet.id))
+    elif len(form.errors) > 0:
+        flash('Проверьте правильность введенных данных', 'danger')
+    img = File.query.filter_by(id=pet.avatar_id).first()
+    if img:
+        img = img.name
+    else:
+        img = 'dog.png'
+    breed = Breed.query.filter_by(id=pet.breed_id).first()
+    if breed:
+        breed = breed.name
+    return render_template('add_pet.html',user=user,form=form, img='../static/uploads/images/' + img,pet=pet,breed=breed)
+
 
 @login_required
 def AllPets():

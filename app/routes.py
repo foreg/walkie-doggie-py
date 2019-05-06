@@ -26,6 +26,10 @@ def pet_profile(pet_id):
 def archive_pet(pet_id):
     return controller_pets.ArchivePet(pet_id)
 
+@app.route('/add_pet/<int(signed=True):pet_id>', methods=['GET', 'POST'])
+def add_pet(pet_id):
+    return controller_pets.AddProfile(pet_id)
+
 @app.route('/pets',methods=['GET', 'POST'])
 def pets():
     return controller_pets.AllPets()
