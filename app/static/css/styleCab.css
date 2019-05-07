@@ -272,6 +272,11 @@ input:required ~ label:after, select:required ~ label:after{
 	left: 18px;
 }
 
+.tooltipClass.profile-tool {
+    position: relative;
+    left: 2px;
+}
+
 .tooltipClass .tooltiptext {
 	visibility: hidden;
 	width: 12vw;
@@ -290,6 +295,8 @@ input:required ~ label:after, select:required ~ label:after{
 	opacity: 0;
 	transition: opacity 0.3s;
 }
+
+
   
 .tooltipClass .tooltiptext::after {
 	content: "";
@@ -313,7 +320,16 @@ input:required ~ label:after, select:required ~ label:after{
 
 /* POPUP Override Rules */
 
-#small-dialog.profile-popup{
+#small-dialog-employee{
+	background: white;
+    padding: 20px 30px;
+    text-align: left;
+    max-width: 400px;
+    margin: 40px auto;
+    position: relative;
+}
+
+#small-dialog.profile-popup, #small-dialog-employee.profile-popup{
 	background: unset !important;
 	max-width: 55% !important;
 	padding: 0 !important;
@@ -354,9 +370,13 @@ input:required ~ label:after, select:required ~ label:after{
 	padding: 0.7rem 0;
 }
 
-.pa-top-img-pet{
+.pet-profile-block{
 	max-width: 500px;
-	height: 100%;
+	padding: 0.7rem 0;
+}
+
+.second-profile-block{
+	max-width: 35vw;
 	padding: 0.7rem 0;
 }
 
@@ -376,6 +396,10 @@ input:required ~ label:after, select:required ~ label:after{
 	-moz-transition: .30s ease-in-out;
 	-o-transition: .30s ease-in-out;
 	transition: .30s ease-in-out;
+}
+
+.card.box-shadow-unset {
+	box-shadow: unset !important;
 }
 
 .h2-profile{

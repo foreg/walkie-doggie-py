@@ -17,14 +17,14 @@
     {% endwith %}
     <div class="row d-flex justify-content-center align-items-center">
      <div class="col-md-6 d-flex flex-direction-column align-items-center profile-img-block px-2 mr-3
-      pa-top-img-pet profile-block justify-content-center">
+pet-profile-block profile-block justify-content-center align-self-end">
           {% if pet.avatar_id %} 
             <img class="card-img-top pet-page-img" src="{{ url_for('static', filename='uploads/images/' + pet.avatar_info.name)}}">
             {% else %}
             <img class="card-img-top pet-page-img" src="{{ url_for('static', filename='img/dog.png')}}">
             {% endif %}
         </div>
-      <div class="col-md-6 pt-2 px-4 profile-block">
+      <div class="col-md-6 pt-2 px-4 profile-block second-profile-block">
         <div class="profile-header">  
             
           <h2 class="h2-profile">{{pet.name}} </h2>
@@ -52,7 +52,107 @@
     </div>
     </div>
   </div>
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="col-md-6 pet-profile-block profile-block mr-3 mt-2">
+      <h2 class="text-center mb-2">Активный выгул</h2>
+      <div class="card box-shadow-unset px-2 d-flex align-items-center">
+        <div class="view view-cascade overlay w-75">
+          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+        <div class="card-body card-body-cascade text-center">
+          <h4 class="card-title"><strong>Billy Coleman</strong>
+            <div class="far tooltipClass profile-tool">
+              <span class="tooltiptext">Данный волкер сейчас выгуливает {{pet.name}}</span>
+            </div>
+          </h4>
+          <!-- <h6 class="font-weight-bold indigo-text py-2">Выгульщик</h6> -->
+          <p class="card-text">Профессиональный волкер с 10-летним стажем
+          </p>
+        </div>
+        <div class="text-center">
+          <a class="ajax-popup-link-employee mx-0 w-100" href="#small-dialog-employee">
+            <span class="font-weight-bold indigo-text">
+              <i class="fal fa-cog"></i> Детали выгула  
+            </span>
+          </a> 
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 profile-block second-profile-block pt-2 px-4 d-flex flex-direction-column align-self-start mt-2">
+        <h2 class="text-center mb-2">История выгулов</h2>
+        <table class="table table-hover table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Выгульщик</th>
+                <th>Адрес</th>
+                <th>Дата</th>
+                <th>Время</th>
+                <th>Цена</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Слепченко В.П.</td>
+                  <td>Харьковская 27</td>
+                  <td>05.05.2019 14:15</td>
+                  <td>90 минут</td>
+                  <td>350р.</td>
+                </tr>
+        </table>
+    </div>
+  </div>
 </section>
+
+<div id="small-dialog-employee" class="zoom-anim-dialog mfp-hide profile-popup">
+    <div class="container d-flex align-items-center justify-content-center">
+      <div class="row d-flex justify-content-center">
+        <div class="card mt-5">
+          <h5 class="card-header info-color white-text text-center py-4">
+            <strong>Детали выгула</strong>
+          </h5>
+          <div class="card-body px-lg-5 pt-0">
+            <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
+              {{ form.hidden_tag() }}
+              <div class="row d-flex justify-content-center flex-row mt-4">
+                <div class="col-md-5 col-xs-12">
+                  {{ macros.render_input(form_field = form.name, id = 'FormName', 
+                  label = 'Кличка',  type = 'text') }}
+                </div>
+                  <div class="col-md-5 col-xs-12">
+                    {{ macros.render_input(form_field = form.breed_id, id = 'FormBreedId', class = 'browser-default custom-select', 
+                    class_for_label = 'correctLabel', label = 'Порода') }}
+                  </div>
+              </div>
+  
+                <div class="row d-flex justify-content-center flex-row">
+                  <div class="col-md-3 col-xs-12">
+                          {{ macros.render_input(form_field = form.age, id = 'FormAge', label = 'Возраст') }}
+                  </div>
+                  <div class="col-md-3 col-xs-12">
+                          {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес') }}
+                  </div>
+                  <div class="col-md-4 col-xs-12">
+                      {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
+                              class_for_label = 'correctLabel', label = 'Пол') }}
+                  </div>
+                </div>
+                <div class="row d-flex justify-content-center flex-row">
+                  <div class="col-md-10 col-xs-12">
+                      {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'Описание', rows="3") }}
+                  </div>
+                </div>
+            </form>
+          </div>
+          <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <div id="small-dialog" class="zoom-anim-dialog mfp-hide profile-popup">
   <div class="container d-flex align-items-center justify-content-center">
@@ -114,6 +214,8 @@
       </div>
     </div>
   </div>
+</div>
+
 
 </main>
 <script src="{{url_for('static', filename='js/profile.js')}}"></script>
