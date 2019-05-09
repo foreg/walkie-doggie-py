@@ -26,7 +26,7 @@ def RequestPage(pet_id, request_id):
         request.status_id = RequestStatuses.created
         db.session.add(request)        
         db.session.commit()
-        pet_request = Pet_requests(pet_id=pet_id, request_id=request.id)
+        pet_request = Pet_requests(pet_id=pet_id, request_id=request.id) if request_id == -1 else Pet_requests.query.filter_by(pet_id=pet_id, request_id=request.id).first() 
         db.session.add(pet_request)        
         db.session.commit()
         flash('Все изменения сохранены!', 'success')

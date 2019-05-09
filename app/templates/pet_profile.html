@@ -97,7 +97,7 @@ pet-profile-block profile-block justify-content-center align-self-end">
             </thead>
             <tbody>
                 {% for request in requests%}
-                    <tr>
+                    <tr class="request" data-id="{{request.id}}">
                       <th scope="row">1</th>
                       <td>Слепченко В.П.</td>
                       <td>{{request.address}}</td>
