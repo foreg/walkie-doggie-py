@@ -94,3 +94,12 @@ class PetProfileForm(FlaskForm):
     submit = SubmitField('Save')
     
     ignored_fields = set(['submit', 'csrf_token'])
+
+class RequestForm(FlaskForm):
+    walkStartDate = DateField('WalkStartDate',validators=[DataRequired(message='Выберите дату!')])
+    walkDuration = StringField('WalkDuration',validators=[DataRequired(message='Заполните продолжительность!'),Regexp('^\d{2,3}$', message = "Неправильно введеа продолжительность!")])
+    address = StringField('Addres',validators=[DataRequired(message='Заполните поле адрес!')])
+    startingPrice = StringField('StartingPrice',validators=[DataRequired(message='Заполните начальную цену!'),Regexp('^\d{2,4}$', message = "Неправильно введена начальная цена!")])
+    submit = SubmitField('Save')
+    
+    ignored_fields = set(['submit', 'csrf_token'])

@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
-from app.models import Role, User, Breed
+from app.models import Role, User, Breed, Status
 from config import Config
 
 
@@ -28,6 +28,18 @@ def seedRoles():
     db.session.commit()
     print('seedRoles done')
 
+def seedRequestStatuses():
+    status1 = Status(id=1, key='created', name='Заявка создана')
+    status2 = Status(id=2, key='auctionStarted', name='Аукцион начался')
+    status3 = Status(id=3, key='auctionEnded', name='Аукцион закончился')
+    status4 = Status(id=4, key='ended', name='Заявка завершена')
+    db.session.add(status1)
+    db.session.add(status2)
+    db.session.add(status3)
+    db.session.add(status4)
+    db.session.commit()
+    print('seedStatuses done')
+
 def seedUsers():
     user = User(email='1', password_hash='1')
     db.session.add(user)
@@ -48,6 +60,7 @@ if __name__ == "__main__":
     #seedRoles()
     #seedUsers()
     #seedBreeds()
+    #seedRequestStatuses()
     # Uncomment one or more of the folowing strings to seed dedicated tables
     # and then run python manage.py in commandLine
     

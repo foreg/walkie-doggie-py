@@ -85,12 +85,15 @@ class Pet(db.Model):
     age=db.Column(db.Integer)
     weight=db.Column(db.String(10))
     info=db.Column(db.Text)
+    avatar_info = db.relationship('File', backref='pet')
+    archiveDate = db.Column(db.DateTime(4))
+
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     breed_id = db.Column(db.Integer, db.ForeignKey('breed.id'))
     avatar_id = db.Column(db.Integer, db.ForeignKey('file.id'))
-    avatar_info = db.relationship('File', backref='pet')
-    archiveDate = db.Column(db.DateTime(4))
+
     requests = db.relationship('Pet_requests', backref='pet', lazy='dynamic')
+
 class Breed(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String(50)) 
@@ -115,24 +118,26 @@ class Request(db.Model):
     address=db.Column(db.Text)
     startingPrice=db.Column(db.Integer)
     finalPrice=db.Column(db.Integer)
-    walker_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    status_id = db.Column(db.Integer, db.ForeignKey('status.id'))
     ownerEndMarkDate=db.Column(db.DateTime(4))
     walkerEndMarkDate=db.Column(db.DateTime(4))
-    pets = db.relationship('Pet', backref='request', lazy='dynamic')
 
+    walker_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    status_id = db.Column(db.Integer, db.ForeignKey('status.id'))
+
+    pets = db.relationship('Pet_requests', backref='request', lazy='dynamic')
     
 class Status(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
-    name=db.Column(db.String(50)) 
-    description=db.Column(db.Text) 
+    key=db.Column(db.String(50)) 
+    name=db.Column(db.Text) 
 
     requests = db.relationship('Request', backref='status', lazy='dynamic')
 
 class Bet(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
-    summ=db.Column(db.Integer) 
+    summ=db.Column(db.Integer)
     creationDate=db.Column(db.DateTime(4), default=datetime.datetime.now())
+
     request_id = db.Column(db.Integer, db.ForeignKey('request.id'))
     walker_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 

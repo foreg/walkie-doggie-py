@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, Response
 from flask_login import current_user
 from app.forms import PetProfileForm
-from app.models import Pet, Breed, File
+from app.models import Pet, Breed, File, Pet_requests
 from app.utils import login_required, fill_entity
 from app import db
 from app import images
@@ -40,7 +40,9 @@ def PetProfile(id):
     breed = Breed.query.filter_by(id=pet.breed_id).first()
     if breed:
         breed = breed.name
-    return render_template('pet_profile.html',user=user,form=form, img='../static/uploads/images/' + img,pet=pet,breed=breed)
+
+    requests = [row.request for row in Pet_requests.query.filter_by(pet_id=pet.id).all()]
+    return render_template('pet_profile.html',user=user,form=form, img='../static/uploads/images/' + img,pet=pet,breed=breed, requests=requests)
 
 @login_required
 def AddProfile(id):

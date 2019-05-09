@@ -58,7 +58,7 @@
                 
                 <div class="card-body pet-action d-flex flex-direction-column justify-content-center">
                   <h4 class="card-title text-center pet-title">{{pet.name}}</h4>
-                  <a href="#" class="btn btn-primary">Выгулять</a>
+                  <a href="{{ url_for('pet_request', pet_id=pet.id, request_id=-1)}}" class="btn btn-primary">Выгулять</a>
                 </div>
               </div>
             </div>
