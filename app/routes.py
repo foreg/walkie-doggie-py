@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user
 from app import app, db
-from app.controllers import controller_index, controller_profile, controller_pets
+from app.controllers import controller_index, controller_profile, controller_pets, controller_requests
 from app.constants import Roles
 from config import Config
 
@@ -21,6 +21,10 @@ def walker():
 @app.route('/pets/<int(signed=True):pet_id>', methods=['GET', 'POST'])
 def pet_profile(pet_id):
     return controller_pets.PetProfile(pet_id)
+
+@app.route('/pets/<int:pet_id>/requests/<int(signed=True):request_id>', methods=['GET', 'POST'])
+def pet_request(pet_id, request_id):
+    return controller_requests.RequestPage(pet_id, request_id)
 
 @app.route('/pets/<int(signed=True):pet_id>', methods=['DELETE'])
 def archive_pet(pet_id):
@@ -75,7 +79,7 @@ def logout():
 def confirm_email(token):
     return controller_index.Confirm(token)
 
-@app.route('/_uploads/images/<filename>')
+@app.route('/_uploads/images/<filename>') # не используется
 def send_file(filename):
     # response = send_from_directory(app.config['UPLOADED_IMAGES_DEST'], filename)
     response = send_from_directory('app/static/uploads/images/', filename)

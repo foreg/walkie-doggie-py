@@ -36,7 +36,7 @@ def OwnerProfile(db):
             img = img.name
         pets = Pet.query.filter_by(user_id=user.id, archiveDate=None).limit(3).all()
         return render_template('profile.html', form=form, user=user,
-            img=url_for('static', filename='uploads/images/' + img), pets=pets)
+            img=url_for('static', filename='uploads/images/' + str(img)), pets=pets)
     return redirect(url_for('login'))
 
 @login_required

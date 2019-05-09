@@ -49,4 +49,11 @@ $(document).ready(function(){
         $.magnificPopup.close()
     });
 
+    $('.request').click((e)=>{
+        let id = $(e.target).data('id');
+        if (id == undefined)
+            id = $(e.target).parent().data('id')
+        location.href += '/requests/' + id;
+    });
+
 });

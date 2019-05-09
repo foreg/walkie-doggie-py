@@ -1,0 +1,41 @@
+{% extends "base_roles.html" %}
+
+{% import 'forms.jinja' as macros %}
+{% block content %}
+
+<div class="container d-flex align-items-center justify-content-center px-0">
+    <div class="row d-flex justify-content-center w-100">
+      <div class="card card-popup mt-5">
+        <h5 class="card-header info-color white-text text-center py-4">
+          <strong>Заявка</strong>
+        </h5>
+        <div class="card-body px-lg-5 pt-0">
+          <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
+            {{ form.hidden_tag() }}
+            <div class="row d-flex justify-content-center flex-row mt-4">
+              <div class="col-md-4 col-xs-12">
+                {{ macros.render_input(form_field = form.walkStartDate, id = 'WalkStartDate', label = 'Начало прогулки',
+                    class_for_label = 'correctLabel', type = 'date') }}
+              </div>
+              <div class="col-md-3 col-xs-12">
+                {{ macros.render_input(form_field = form.walkDuration, id = 'WalkDuration', label = 'Продолжительность') }}
+              </div>
+              <div class="col-md-3 col-xs-12">
+                {{ macros.render_input(form_field = form.address, id = 'Address', label = 'Адрес') }}
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center flex-row">
+              <div class="col-md-6 col-xs-12">
+                {{ macros.render_input(form_field = form.startingPrice, id = 'StartingPrice', label = 'Начальная цена')}}
+              </div>
+              <div class="controls-profile">
+                {{ form.submit(class_="btn confirm btn-success my-4 waves-effect z-depth-0", value="Сохранить") }}
+                <span class="dismiss btn btn-danger">Отмена</span>
+              </div>      
+          </form>
+        </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+      </div>
+    </div>
+  </div>
+{% endblock %}

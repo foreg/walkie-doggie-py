@@ -48,6 +48,7 @@ pet-profile-block profile-block justify-content-center align-self-end">
         <hr>
         <div class="row d-flex justify-content-center py-2">
         <a class="ajax-popup-link btn mx-0  w-100" href="#small-dialog" >Редактировать</a>
+        <a href="{{ url_for('pet_request', pet_id=pet.id, request_id=-1)}}" class="btn btn-primary">Выгулять</a>
       </div>
     </div>
     </div>
@@ -95,14 +96,16 @@ pet-profile-block profile-block justify-content-center align-self-end">
               </tr>
             </thead>
             <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Слепченко В.П.</td>
-                  <td>Харьковская 27</td>
-                  <td>05.05.2019 14:15</td>
-                  <td>90 минут</td>
-                  <td>350р.</td>
-                </tr>
+                {% for request in requests%}
+                    <tr class="request" data-id="{{request.id}}">
+                      <th scope="row">1</th>
+                      <td>Слепченко В.П.</td>
+                      <td>{{request.address}}</td>
+                      <td>{{request.walkStartDate}}</td>
+                      <td>{{request.walkDuration}} минут</td>
+                      <td>{{ request.finalPrice  if request.finalPrice else request.startingPrice }}р.</td>
+                    </tr>
+                {% endfor %}
         </table>
     </div>
   </div>
