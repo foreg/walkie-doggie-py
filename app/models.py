@@ -90,7 +90,7 @@ class Pet(db.Model):
     avatar_id = db.Column(db.Integer, db.ForeignKey('file.id'))
     avatar_info = db.relationship('File', backref='pet')
     archiveDate = db.Column(db.DateTime(4))
-
+    requests = db.relationship('Pet_requests', backref='pet', lazy='dynamic')
 class Breed(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String(50)) 
@@ -104,3 +104,60 @@ class Breed(db.Model):
 class File(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name=db.Column(db.String(50))
+
+class Request(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    creationDate=db.Column(db.DateTime(4), default=datetime.datetime.now())
+    walkStartDate=db.Column(db.DateTime(4))
+    walkDuration=db.Column(db.Integer)
+    auctionStartDate=db.Column(db.DateTime(4))
+    auctionEndDate=db.Column(db.DateTime(4))
+    address=db.Column(db.Text)
+    startingPrice=db.Column(db.Integer)
+    finalPrice=db.Column(db.Integer)
+    walker_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    status_id = db.Column(db.Integer, db.ForeignKey('status.id'))
+    ownerEndMarkDate=db.Column(db.DateTime(4))
+    walkerEndMarkDate=db.Column(db.DateTime(4))
+    pets = db.relationship('Pet', backref='request', lazy='dynamic')
+
+    
+class Status(db.Model): 
+    id = db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String(50)) 
+    description=db.Column(db.Text) 
+
+    requests = db.relationship('Request', backref='status', lazy='dynamic')
+
+class Bet(db.Model): 
+    id = db.Column(db.Integer, primary_key=True)
+    summ=db.Column(db.Integer) 
+    creationDate=db.Column(db.DateTime(4), default=datetime.datetime.now())
+    request_id = db.Column(db.Integer, db.ForeignKey('request.id'))
+    walker_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class Pet_requests(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
+    request_id = db.Column(db.Integer, db.ForeignKey('request.id'))
+
+# class Review(db.Model): 
+#     id = db.Column(db.Integer, primary_key=True)
+#     comment=db.Column(db.Text) 
+#     rating=db.Column(db.Integer) 
+#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+#     walker_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+#     violations = db.relationship('Review_violations', backref='review', lazy='dynamic')
+
+
+# class Violation(db.Model): 
+#     id = db.Column(db.Integer, primary_key=True)
+#     name=db.Column(db.String(50)) 
+#     description=db.Column(db.Text) 
+
+#     reviews = db.relationship('Review', backref='violation', lazy='dynamic')
+
+# class Review_violations(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     review_id = db.Column(db.Integer, db.ForeignKey('review.id'))
+#     violation_id = db.Column(db.Integer, db.ForeignKey('violation.id'))
