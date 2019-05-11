@@ -32,4 +32,5 @@ def RequestPage(pet_id, request_id):
         flash('Все изменения сохранены!', 'success')
     elif len(form.errors) > 0:
         flash('Проверьте правильность введенных данных', 'danger')
+    # referrer = request.headers.get("Referer")
     return render_template('request.html',user=user,form=form,request=request)
