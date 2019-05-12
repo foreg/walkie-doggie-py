@@ -57,7 +57,7 @@ def seedBreeds():
     print('seedBreeds done')
 
 if __name__ == "__main__":
-    seedRequestStatuses()
+    #seedRequestStatuses()
     #seedRoles()
     #seedUsers()
     #seedBreeds()
