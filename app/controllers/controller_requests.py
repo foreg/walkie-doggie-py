@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request, jsonify, Response
+from flask import render_template, flash, redirect, url_for, request as flask_request, jsonify, Response
 from flask_login import current_user
 from app.forms import RequestForm
 from app.models import Pet, Request, Pet_requests
@@ -32,4 +32,5 @@ def RequestPage(pet_id, request_id):
         flash('Все изменения сохранены!', 'success')
     elif len(form.errors) > 0:
         flash('Проверьте правильность введенных данных', 'danger')
-    return render_template('request.html',user=user,form=form,request=request)
+    referrer = flask_request.headers.get("Referer")
+    return render_template('request.html',user=user,form=form,request=request, referrer=referrer)
