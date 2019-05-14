@@ -100,7 +100,7 @@ pet-profile-block profile-block justify-content-center align-self-end">
                       <th scope="row">1</th>
                       <td>Слепченко В.П.</td>
                       <td>{{request.address}}</td>
-                      <td>{{request.walkStartDate}}</td>
+                      <td>{{request.walkStartDate.strftime('%d.%m.%Y')}}</td>
                       <td>{{request.walkDuration}} минут</td>
                       <td>{{ request.finalPrice  if request.finalPrice else request.startingPrice }}р.</td>
                     </tr>
