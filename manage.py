@@ -57,10 +57,10 @@ def seedBreeds():
     print('seedBreeds done')
 
 if __name__ == "__main__":
-    seedRequestStatuses()
-    seedRoles()
-    seedUsers()
-    seedBreeds()
+    #seedRequestStatuses()
+    #seedRoles()
+    #seedUsers()
+    #seedBreeds()
     # Uncomment one or more of the folowing strings to seed dedicated tables
     # and then run python manage.py in commandLine
     
