@@ -52,7 +52,7 @@ pet-profile-block profile-block justify-content-center align-self-end">
               <span class="span-profile mb-3">{{pet.weight}}</span>
           </div>
           <div class="col-md-12 d-flex justify-content-center history-block">
-            <a href="#small-dialog">Показать историю выгулов</a>
+            <a href="{{ url_for('pet_history', pet_id=pet.id)}}">Показать историю выгулов</a>
           </div>
         </div>
         <hr>
