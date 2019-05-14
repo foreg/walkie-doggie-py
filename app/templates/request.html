@@ -28,7 +28,7 @@
                     class_for_label = 'correctLabel', type = 'date') }}
               </div>
               <div class="col-md-6 col-xs-12">
-                {{ macros.render_input(form_field = form.walkDuration, id = 'WalkDuration', label = 'Продолжительность') }}
+                {{ macros.render_input(form_field = form.walkDuration, id = 'WalkDuration', label = 'Продолжительность', toolText = 'Введите продолжительность прогулки в мин.') }}
               </div>
               <div class="col-md-12 col-xs-12">
                 {{ macros.render_input(form_field = form.address, id = 'Address', label = 'Адрес') }}
@@ -36,7 +36,7 @@
             </div>
             <div class="row d-flex flex-row">
               <div class="col-md-6 col-xs-12">
-                {{ macros.render_input(form_field = form.startingPrice, id = 'StartingPrice', label = 'Начальная цена')}}
+                {{ macros.render_input(form_field = form.startingPrice, id = 'StartingPrice', label = 'Начальная цена', toolText = 'Введите начальную цену в руб.')}}
               </div>
               <div class="col-md-12 col-xs-12 controls-profile-request">
                 {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Сохранить") }}
