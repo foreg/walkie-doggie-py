@@ -22,6 +22,10 @@ def walker():
 def pet_profile(pet_id):
     return controller_pets.PetProfile(pet_id)
 
+@app.route('/pets/history/<int(signed=True):pet_id>', methods=['GET', 'POST'])
+def pet_history(pet_id):
+    return controller_pets.PetHistory(pet_id)
+
 @app.route('/pets/<int:pet_id>/requests/<int(signed=True):request_id>', methods=['GET', 'POST'])
 def pet_request(pet_id, request_id):
     return controller_requests.RequestPage(pet_id, request_id)

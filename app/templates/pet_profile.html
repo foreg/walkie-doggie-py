@@ -2,9 +2,9 @@
 
 {% import 'forms.jinja' as macros %}
 {% block content %}
-<main>
-<section class="main-profile">
-  <div class="container">
+<main class="d-flex hv-100 justify-content-center">
+<section class="main-profile d-flex align-items-center w-100">
+  <div class="container-fluid">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
           {% for category, message in messages %}
@@ -16,18 +16,25 @@
       {% endif %}
     {% endwith %}
     <div class="row d-flex justify-content-center align-items-center">
-     <div class="col-md-6 d-flex flex-direction-column align-items-center profile-img-block px-2 mr-3
+     <div class="col-md-6 col-lg-6 d-flex flex-direction-column align-items-center profile-img-block px-2 mr-3
 pet-profile-block profile-block justify-content-center align-self-end">
           {% if pet.avatar_id %} 
-            <img class="card-img-top pet-page-img" src="{{ url_for('static', filename='uploads/images/' + pet.avatar_info.name)}}">
+            <img class="card-img-top" src="{{ url_for('static', filename='uploads/images/' + pet.avatar_info.name)}}">
             {% else %}
-            <img class="card-img-top pet-page-img" src="{{ url_for('static', filename='img/dog.png')}}">
+            <img class="card-img-top" src="{{ url_for('static', filename='img/dog.png')}}">
             {% endif %}
         </div>
-      <div class="col-md-6 pt-2 px-4 profile-block second-profile-block">
+      <div class="col-md-6 col-lg-6 pt-2 px-4 profile-block second-profile-block">
         <div class="profile-header">  
             
-          <h2 class="h2-profile">{{pet.name}} </h2>
+          <h2 class="h2-profile">
+            {{pet.name}}
+            <a class="ajax-popup-link-active" href="#small-dialog-active">
+              <div class="far tooltipClass status profile-tool">
+                  <span class="tooltiptext">{{pet.name}} сейчас гуляет. Нажмите для более подробной инфо</span>
+              </div>
+            </a>   
+          </h2>
           <span class="span-profile">{{pet.info}}</span>
         </div>
         <hr>
@@ -44,117 +51,99 @@ pet-profile-block profile-block justify-content-center align-self-end">
               <span class="span-profile mb-3">{{pet.age}}</span>
               <span class="span-profile mb-3">{{pet.weight}}</span>
           </div>
+          <div class="col-md-12 d-flex justify-content-center history-block">
+            <a href="#small-dialog">Показать историю выгулов</a>
+          </div>
         </div>
         <hr>
         <div class="row d-flex justify-content-center py-2">
-        <a class="ajax-popup-link btn mx-0  w-100" href="#small-dialog" >Редактировать</a>
+        <a class="ajax-popup-link btn mx-0" href="#small-dialog" >Редактировать</a>
         <a href="{{ url_for('pet_request', pet_id=pet.id, request_id=-1)}}" class="btn btn-primary">Выгулять</a>
       </div>
     </div>
     </div>
   </div>
-  <div class="row d-flex justify-content-center align-items-center">
-    <div class="col-md-6 pet-profile-block profile-block mr-3 mt-2">
-      <h2 class="text-center mb-2">Активный выгул</h2>
-      <div class="card box-shadow-unset px-2 d-flex align-items-center">
-        <div class="view view-cascade overlay w-75">
-          <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap">
-          <a>
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
-        <div class="card-body card-body-cascade text-center">
-          <h4 class="card-title"><strong>Billy Coleman</strong>
-            <div class="far tooltipClass profile-tool">
-              <span class="tooltiptext">Данный волкер сейчас выгуливает {{pet.name}}</span>
-            </div>
-          </h4>
-          <p class="card-text">Профессиональный волкер с 10-летним стажем
-          </p>
-        </div>
-        <div class="text-center">
-          <a class="ajax-popup-link-employee mx-0 w-100" href="#small-dialog-employee">
-            <span class="font-weight-bold indigo-text">
-              <i class="fal fa-cog"></i> Детали выгула  
-            </span>
-          </a> 
+<div id="small-dialog-active" class="zoom-anim-dialog mfp-hide profile-popup">
+  <div class="container d-flex align-items-center justify-content-center mt-5">
+    <div class="row d-flex justify-content-center">
+      <div class="col-md-12 pa-0">
+        <h5 class="card-header info-color white-text text-center py-4">Активный выгул</h5>
+        <div class="card box-shadow-unset px-2 d-flex align-items-center pt-4">
+          <div class="view view-cascade overlay w-75">
+            <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap">
+            <a>
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <div class="card-body card-body-cascade text-center">
+            <h4 class="card-title"><strong>Billy Coleman</strong>
+              <div class="far tooltipClass profile-tool">
+                <span class="tooltiptext">Данный волкер сейчас выгуливает {{pet.name}}</span>
+              </div>
+            </h4>
+            <p class="card-text">Профессиональный волкер с 10-летним стажем
+            </p>
+          </div>
+          <div class="text-center mb-4">
+            <a class="ajax-popup-link-employee mx-0 w-100" href="#small-dialog-employee">
+              <span class="font-weight-bold indigo-text">
+                <i class="fal fa-cog"></i> Детали выгула  
+              </span>
+            </a> 
+          </div>
         </div>
       </div>
     </div>
-    <div class="col-md-6 profile-block second-profile-block pt-2 px-4 d-flex flex-direction-column align-self-start mt-2">
-        <h2 class="text-center mb-2">История выгулов</h2>
-        <table class="table table-hover table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Выгульщик</th>
-                <th>Адрес</th>
-                <th>Дата</th>
-                <th>Время</th>
-                <th>Цена</th>
-              </tr>
-            </thead>
-            <tbody>
-                {% for request in requests%}
-                    <tr class="request" data-id="{{request.id}}">
-                      <th scope="row">1</th>
-                      <td>Слепченко В.П.</td>
-                      <td>{{request.address}}</td>
-                      <td>{{request.walkStartDate}}</td>
-                      <td>{{request.walkDuration}} минут</td>
-                      <td>{{ request.finalPrice  if request.finalPrice else request.startingPrice }}р.</td>
-                    </tr>
-                {% endfor %}
-        </table>
-    </div>
-  </div>
+    <button title="Close (Esc)" type="button" class="mfp-close active">×</button>
+  </div>  
+</div>
 </section>
 
 <div id="small-dialog-employee" class="zoom-anim-dialog mfp-hide profile-popup">
-    <div class="container d-flex align-items-center justify-content-center">
-      <div class="row d-flex justify-content-center">
-        <div class="card mt-5">
-          <h5 class="card-header info-color white-text text-center py-4">
-            <strong>Детали выгула</strong>
-          </h5>
-          <div class="card-body px-lg-5 pt-0">
-            <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
-              {{ form.hidden_tag() }}
-              <div class="row d-flex justify-content-center flex-row mt-4">
-                <div class="col-md-5 col-xs-12">
-                  {{ macros.render_input(form_field = form.name, id = 'FormName', 
-                  label = 'Кличка',  type = 'text') }}
-                </div>
-                  <div class="col-md-5 col-xs-12">
-                    {{ macros.render_input(form_field = form.breed_id, id = 'FormBreedId', class = 'browser-default custom-select', 
-                    class_for_label = 'correctLabel', label = 'Порода') }}
-                  </div>
+  <div class="container d-flex align-items-center justify-content-center">
+    <div class="row d-flex justify-content-center">
+      <div class="card mt-5">
+        <h5 class="card-header info-color white-text text-center py-4">
+          <strong>Детали выгула</strong>
+        </h5>
+        <div class="card-body px-lg-5 pt-0">
+          <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
+            {{ form.hidden_tag() }}
+            <div class="row d-flex justify-content-center flex-row mt-4">
+              <div class="col-md-5 col-xs-12">
+                {{ macros.render_input(form_field = form.name, id = 'FormName', 
+                label = 'Кличка',  type = 'text') }}
               </div>
-  
-                <div class="row d-flex justify-content-center flex-row">
-                  <div class="col-md-3 col-xs-12">
-                          {{ macros.render_input(form_field = form.age, id = 'FormAge', label = 'Возраст') }}
-                  </div>
-                  <div class="col-md-3 col-xs-12">
-                          {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес') }}
-                  </div>
-                  <div class="col-md-4 col-xs-12">
-                      {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
-                              class_for_label = 'correctLabel', label = 'Пол') }}
-                  </div>
+                <div class="col-md-5 col-xs-12">
+                  {{ macros.render_input(form_field = form.breed_id, id = 'FormBreedId', class = 'browser-default custom-select', 
+                  class_for_label = 'correctLabel', label = 'Порода') }}
                 </div>
-                <div class="row d-flex justify-content-center flex-row">
-                  <div class="col-md-10 col-xs-12">
-                      {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'Описание', rows="3") }}
-                  </div>
+            </div>
+
+              <div class="row d-flex justify-content-center flex-row">
+                <div class="col-md-3 col-xs-12">
+                        {{ macros.render_input(form_field = form.age, id = 'FormAge', label = 'Возраст') }}
                 </div>
-            </form>
-          </div>
-          <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+                <div class="col-md-3 col-xs-12">
+                        {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес') }}
+                </div>
+                <div class="col-md-4 col-xs-12">
+                    {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
+                            class_for_label = 'correctLabel', label = 'Пол') }}
+                </div>
+              </div>
+              <div class="row d-flex justify-content-center flex-row">
+                <div class="col-md-10 col-xs-12">
+                    {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'Описание', rows="3") }}
+                </div>
+              </div>
+          </form>
         </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
       </div>
     </div>
   </div>
+</div>
 
 <div id="small-dialog" class="zoom-anim-dialog mfp-hide profile-popup">
   <div class="container d-flex align-items-center justify-content-center">
@@ -176,43 +165,41 @@ pet-profile-block profile-block justify-content-center align-self-end">
                       class_for_label = 'correctLabel', label = 'Порода', toolText='Введите первую букву породы на русском языке для фильтрации списка' ) }}
                     </div>
               </div>
- 
-                <div class="row d-flex justify-content-center flex-row">
-                    <div class="col-md-3 col-xs-12">
-                            {{ macros.render_input(form_field = form.age, id = 'FormAge', label = 'Возраст') }}
-                    </div>
-                    <div class="col-md-3 col-xs-12">
-                            {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес') }}
-                    </div>
-                    <div class="col-md-4 col-xs-12">
-                        {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
-                                class_for_label = 'correctLabel', label = 'Пол') }}
-                    </div>
-                </div>
-                <div class="row d-flex justify-content-center flex-row">
-                    <div class="col-md-10 col-xs-12">
-                        {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'Описание', rows="3") }}
-                    </div>
-                </div>
-             
-            <div class="row d-flex justify-content-center flex-row">
-                    <div class="col-md-4 col-xs-12">
-                      {% if img and img != None %}
-                      <img src="{{img}}" class="w-100">
-                      {% endif %}
-                    </div>
-                    <div class="col-md-6 col-xs-12">
-                      {{ macros.render_input(form_field = form.avatar, id = 'FormAvatar', class="md-textarea form-control", label = 'Аватар', class_for_label = 'file-input', type='file') }}
-                      <div class="controls-profile">
-                        {{ form.submit(class_="btn confirm btn-success my-4 waves-effect z-depth-0", value="Сохранить") }}
-                        <span class="dismiss btn btn-danger">Отмена</span>
-                      </div>
+              <div class="row d-flex justify-content-center flex-row">
+                  <div class="col-md-3 col-xs-12">
+                          {{ macros.render_input(form_field = form.age, id = 'FormAge', label = 'Возраст') }}
+                  </div>
+                  <div class="col-md-3 col-xs-12">
+                          {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес') }}
+                  </div>
+                  <div class="col-md-4 col-xs-12">
+                      {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
+                              class_for_label = 'correctLabel', label = 'Пол') }}
+                  </div>
+              </div>
+              <div class="row d-flex justify-content-center flex-row">
+                  <div class="col-md-10 col-xs-12">
+                      {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'Описание', rows="3") }}
+                  </div>
+              </div>
+            
+              <div class="row d-flex justify-content-center flex-row">
+                  <div class="col-md-4 col-xs-12">
+                    {% if img and img != None %}
+                    <img src="{{img}}" class="w-100">
+                    {% endif %}
+                  </div>
+                  <div class="col-md-6 col-xs-12">
+                    {{ macros.render_input(form_field = form.avatar, id = 'FormAvatar', class="md-textarea form-control", label = 'Аватар', class_for_label = 'file-input', type='file') }}
+                    <div class="controls-profile">
+                      {{ form.submit(class_="btn confirm btn-success my-4 waves-effect z-depth-0", value="Сохранить") }}
+                      <span class="dismiss btn btn-danger">Отмена</span>
                     </div>
                   </div>
-                  
-                </form>
-              </div>
-              <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+                </div>
+          </form>
+        </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
       </div>
     </div>
   </div>

@@ -90,6 +90,11 @@ span{
 /* End Fonts */
 
 /* NavBars Override Rules And Bootstrap too */
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #e9ebf7;
+}
+
 .browser-default.custom-select{
 	border-top: none !important;
 	border-right: none !important;
@@ -268,9 +273,13 @@ input:required ~ label:after, select:required ~ label:after{
 
 /* ToolTips */
 
-.tooltipClass:after{
+.tooltipClass::after{
 	content: "\f059"
-} 
+}
+
+.tooltipClass.status::after{
+	content: "\f6d4";
+}
 
 .far.tooltipClass{
 	font-size: 1.2rem;
@@ -345,6 +354,14 @@ input:required ~ label:after, select:required ~ label:after{
 	position: unset !important;
 }
 
+#small-dialog-active.profile-popup{
+	background: unset !important;
+	max-width: 55% !important;
+	padding: 0 !important;
+	position: relative !important;
+	left: 25%;
+}
+
 .mfp-bg.my-mfp-zoom-in.mfp-ready{
 	height: 130vh !important;
 }
@@ -365,6 +382,20 @@ input:required ~ label:after, select:required ~ label:after{
 	bottom: -25px;
 }
 
+.history-block{
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+}
+
+.history-block:hover{
+	-webkit-transition: .30s ease-in-out;
+	-moz-transition: .30s ease-in-out;
+	-o-transition: .30s ease-in-out;
+	transition: .30s ease-in-out;
+	background: rgba(0, 0, 0, 0.1);
+}
+
 .controls-profile-request{
 	display: flex;
     align-items: center;
@@ -379,6 +410,17 @@ input:required ~ label:after, select:required ~ label:after{
 	top: 2.8% !important;
 }
 
+.mfp-close-btn-in .mfp-close, .mfp-close-btn-in .mfp-close:active, .mfp-close.active{
+	right: 3% !important;
+}
+
+@media (min-width: 992px){
+	.col-lg-6.pet-profile-block {
+		-ms-flex: 0 0 48%;
+		flex: 0 0 48%;
+		max-width: 50%;
+	}
+}
 
 
 .pa-top-img{
@@ -388,7 +430,6 @@ input:required ~ label:after, select:required ~ label:after{
 }
 
 .pet-profile-block{
-	max-width: 500px;
 	padding: 0.7rem 0;
 }
 
@@ -435,10 +476,6 @@ input:required ~ label:after, select:required ~ label:after{
 
 .pet-img{
 	max-width: 200px;
-}
-
-.pet-page-img{
-	max-width: 540px;
 }
 
 .btn.btn-primary, .btn.btn-primary:focus, .btn.btn-primary:active{

@@ -9,6 +9,16 @@ from datetime import datetime
 
 
 @login_required
+def PetHistory(id):
+    user = current_user        
+    pet = Pet() if id == -1 else Pet.query.filter_by(id=id, archiveDate=None).first() 
+    if pet is None:
+        flash('Питомец не найден', 'danger')
+        return redirect(url_for('pets'))
+    requests = [row.request for row in Pet_requests.query.filter_by(pet_id=pet.id).all()]
+    return render_template('pet_history.html', user=user, pet=pet, requests=requests)
+
+@login_required
 def PetProfile(id):
     user = current_user        
     pet = Pet() if id == -1 else Pet.query.filter_by(id=id, archiveDate=None).first() 
