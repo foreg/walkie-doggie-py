@@ -14,6 +14,7 @@ def RequestPage(pet_id, request_id):
     request = Request() if request_id == -1 else Request.query.filter_by(id=request_id).first() 
     pet = Pet.query.get(pet_id)
     request.address = pet.user.address
+    request.walkStartDate = datetime.now()
     if request is None:
         flash('Заявка не найдена', 'danger')
         return redirect(url_for('pets'))
