@@ -18,6 +18,10 @@ def index():
 def walker():
     return controller_index.Walker()
 
+@app.route('/userAgreement')
+def userAgreement():
+    return controller_index.UserAgreement()
+
 @app.route('/pets/<int(signed=True):pet_id>', methods=['GET', 'POST'])
 def pet_profile(pet_id):
     return controller_pets.PetProfile(pet_id)

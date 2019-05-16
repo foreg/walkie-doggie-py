@@ -15,6 +15,9 @@ def Index():
 def Walker():
     return render_template('walker.html')
 
+def UserAgreement():
+    return render_template('UserAgreement.html') 
+
 @login_required
 def UserProfile():
     user = current_user
