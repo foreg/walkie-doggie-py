@@ -58,9 +58,9 @@
                           </div>
                           <div class="col-md-6 col-xs-12 d-flex justify-content-center flex-column">
                               {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Зарегистрироваться") }}
-                              <p>Регистрируясь на нашем сервисе <br /> вы принимаете <a href="#">Пользовательское соглашение</a>
+                              <p>Регистрируясь на нашем сервисе <br /> вы принимаете <a href="{{ url_for('userAgreement') }}">Пользовательское соглашение</a>
                               <br />
-                              </p>
+                             И даёте  <a href="{{ url_for('userAgreement') }}">согласие на обработку персональных данных</a> </p>
                           </div>
                         </div>
                     </form>
