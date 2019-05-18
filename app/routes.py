@@ -32,7 +32,7 @@ def pet_history(pet_id):
 
 @app.route('/profile/history/<int(signed=True):user_id>', methods=['GET', 'POST'])
 def bets_history(user_id):
-    return controller_requests.Betsistory(user_id)
+    return controller_requests.BetsHistory(user_id)
 
 @app.route('/pets/<int:pet_id>/requests/<int(signed=True):request_id>', methods=['GET', 'POST'])
 def pet_request(pet_id, request_id):

@@ -10,10 +10,17 @@ from datetime import datetime, timedelta
 
 
 @login_required
-def Betsistory(user_id):
+def BetsHistory(user_id):
     user = current_user        
-    bets = Bet.query.filter_by(walker_id=user_id).all() 
-    return render_template('bets_history.html', user=user, bets=bets)
+    bets = Bet.query.filter_by(walker_id=user_id).all()
+    current_bets = []
+    past_bets = []
+    for bet in bets:
+        if bet.request.status_id == RequestStatuses.auctionStarted:
+            current_bets.append(bet)
+        else:
+            past_bets.append(bet)
+    return render_template('bets_history.html', user=user, current_bets=current_bets, past_bets=past_bets)
 
 @login_required
 def RequestPage(pet_id, request_id):
@@ -88,3 +95,9 @@ def EndRequestAuction(request_id):
     request.finalPrice = request.lowest_bet().summ
     db.session.add(request)        
     db.session.commit()
+
+# ALTER TABLE public.request ALTER COLUMN "auctionEndDate" TYPE timestamp USING "auctionEndDate"::timestamp;
+# ALTER TABLE public.request ALTER COLUMN "auctionStartDate" TYPE timestamp USING "auctionStartDate"::timestamp;
+# ALTER TABLE public.request ALTER COLUMN "ownerEndMarkDate" TYPE timestamp USING "ownerEndMarkDate"::timestamp;
+# ALTER TABLE public.request ALTER COLUMN "walkStartDate" TYPE timestamp USING "walkStartDate"::timestamp;
+# ALTER TABLE public.request ALTER COLUMN "walkerEndMarkDate" TYPE timestamp USING "walkerEndMarkDate"::timestamp;

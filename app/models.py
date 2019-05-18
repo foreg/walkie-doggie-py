@@ -110,16 +110,16 @@ class File(db.Model):
 
 class Request(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    creationDate=db.Column(db.TIMESTAMP(timezone=True), default=datetime.datetime.now())
-    walkStartDate=db.Column(db.TIMESTAMP())
+    creationDate=db.Column(db.DateTime(), default=datetime.datetime.now())
+    walkStartDate=db.Column(db.DateTime())
     walkDuration=db.Column(db.Integer)
-    auctionStartDate=db.Column(db.TIMESTAMP())
-    auctionEndDate=db.Column(db.TIMESTAMP())
+    auctionStartDate=db.Column(db.DateTime())
+    auctionEndDate=db.Column(db.DateTime())
     address=db.Column(db.Text)
     startingPrice=db.Column(db.Integer)
     finalPrice=db.Column(db.Integer)
-    ownerEndMarkDate=db.Column(db.TIMESTAMP())
-    walkerEndMarkDate=db.Column(db.TIMESTAMP())
+    ownerEndMarkDate=db.Column(db.DateTime())
+    walkerEndMarkDate=db.Column(db.DateTime())
 
     walker_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     status_id = db.Column(db.Integer, db.ForeignKey('status.id'))
