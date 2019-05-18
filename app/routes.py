@@ -34,6 +34,10 @@ def pet_history(pet_id):
 def pet_request(pet_id, request_id):
     return controller_requests.RequestPage(pet_id, request_id)
 
+@app.route('/pets/<int:pet_id>/requests/<int:request_id>/<int(signed=True):bet_id>', methods=['GET', 'POST'])
+def pet_request_bet(pet_id, request_id, bet_id):
+    return controller_requests.BetForRequestPage(pet_id, request_id, bet_id)
+
 @app.route('/pets/<int(signed=True):pet_id>', methods=['DELETE'])
 def archive_pet(pet_id):
     return controller_pets.ArchivePet(pet_id)
@@ -92,3 +96,7 @@ def send_file(filename):
     # response = send_from_directory(app.config['UPLOADED_IMAGES_DEST'], filename)
     response = send_from_directory('app/static/uploads/images/', filename)
     return response
+
+@app.route('/current_requests')
+def current_requests():
+    return controller_requests.CurrentRequests()
