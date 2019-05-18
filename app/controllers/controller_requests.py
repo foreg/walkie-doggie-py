@@ -10,6 +10,12 @@ from datetime import datetime, timedelta
 
 
 @login_required
+def Betsistory(user_id):
+    user = current_user        
+    bets = Bet.query.filter_by(walker_id=user_id).all() 
+    return render_template('bets_history.html', user=user, bets=bets)
+
+@login_required
 def RequestPage(pet_id, request_id):
     user = current_user        
     request = Request() if request_id == -1 else Request.query.filter_by(id=request_id).first() 

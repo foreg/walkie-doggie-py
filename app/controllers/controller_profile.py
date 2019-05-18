@@ -51,7 +51,9 @@ def WalkerProfile(db):
                 'addressreg': 'address_reg',
             }
             errors, successfully = fill_entity(walker, form, aliases=aliases)
-            print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(walker, errors, successfully))   
+            print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(walker, errors, successfully))
+            walker.rating = 0
+            walker.score = 0     
             db.session.add(walker)
             user.walker_info = walker
             user.add_role(Roles.walker)
@@ -61,5 +63,9 @@ def WalkerProfile(db):
             return render_template('walker_profile.html', form=form, user=user)
         elif len(form.errors) > 0:     
             flash('Проверьте правильность введенных данных', 'danger')
-        return render_template('walker_profile.html', form=form, user=user)
+        img = File.query.filter_by(id=user.avatar_id).first()
+        if img:
+            img = img.name
+        return render_template('walker_profile.html', form=form, user=user,
+            img=url_for('static', filename='uploads/images/' + str(img)))
     return redirect(url_for('login'))

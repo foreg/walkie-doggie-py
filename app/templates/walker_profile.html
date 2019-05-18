@@ -3,80 +3,143 @@
 {% import 'forms.jinja' as macros %}
 {% block content %}
 <main>
-<!-- <section id="intro" class="view intro register">
-    <div class="mask rgba-black-strong flex-center"> -->
-<div class="container d-flex align-items-center justify-content-center">
-  <div class="row d-flex justify-content-center w-75">
-    <div class="card mt-5">
-        <h5 class="card-header info-color white-text text-center py-4">
-        <strong>Профиль выгульщика</strong>
-        </h5>
-            <!--Card content-->
-        <div class="card-body px-lg-5 pt-0">
+<section class="main-profile">
+    <div class="container">
         {% with messages = get_flashed_messages(with_categories=true) %}
-        <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
-            {% if messages %}
-                {% for category, message in messages %}
-                <div class="alert alert-{{category}} alert-dismissible" role="alert">
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <!-- <strong>Title</strong> --> {{ message }}
-                </div>
-                {% endfor %}
-            {% endif %}
+                    {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
         {% endwith %}
-            <!-- Form -->
-            <form class="text-center" style="color: #757575;" action="" method="post">
-                {{ form.hidden_tag() }}
-                <div class="row d-flex justify-content-center flex-row mt-4">
-                    <div class="col-md-4 col-xs-12">
-                        {{ macros.render_input(form_field = form.birthDate, id = 'FormBirthDate', 
-                            label = 'Дата рождения', class_for_label = 'correctLabel', type = 'date', toolText='Для работы в Walkie-Doggie вы должны достичь 18-летнего возраста') }}
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-4 d-flex flex-direction-column align-items-center profile-img-block px-2 mr-3
+        pa-top-img profile-block">
+            <img src="{{img}}" class="profile-img pb-2">
+            <a class="ajax-popup-link btn mx-0 w-100" href="#small-dialog" data-id="{{user.id}}">Редактировать</a>
+            </div>
+            <div class="col-md-8 pt-2 px-4 profile-block">
+                <div class="profile-header">
+                    <h2 class="h2-profile">{{user.surname}} {{user.name}}</h2>
+                    <span class="span-profile">{{user.info}}</span>
+                </div>
+                <hr>
+                <div class="row d-flex flex-direction-row">
+                    <div class="col-md-3 d-flex flex-direction-column">
+                        <span class="gray-text span-profile mb-3">Адрес:</span>
+                        <span class="gray-text span-profile">Телефон:</span>
                     </div>
-                    <div class="col-md-2 col-xs-12">
-                        {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
-                            class_for_label = 'correctLabel', label = 'Ваш пол') }}
+                    <div class="col-md-9 d-flex flex-direction-column">
+                        <span class="span-profile mb-3">{{user.address}}</span>
+                        <span class="span-profile">{{user.phone}}</span>
                     </div>
-                    <div class="col-md-2 col-xs-12">
-                        {{ macros.render_input(form_field = form.height, id = 'FormHeight', label = 'Рост', toolText='Рост должен быть в границах от 100 до 299') }}
-                    </div>
-                    <div class="col-md-2 col-xs-12">
-                        {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес', toolText='Вес должен быть в границах от 100 до 999') }}
+                    <div class="col-md-12 d-flex justify-content-center history-block">
+                        <a href="{{ url_for('bets_history', user_id = user.id)}}">Показать актуальные ставки</a>
                     </div>
                 </div>
-                <div class="row d-flex justify-content-center flex-row">
-                    <div class="col-md-3 col-xs-12">
-                        {{ macros.render_input(form_field = form.series, id = 'FormSeries', label = 'Серия паспорта', toolText='Введите 4 цифры серии вашего паспорта') }}
+                <hr>
+                <!-- <div class="row d-flex flex-direction-column pb-3">
+                    <div class="pet-header">
+                        <h2 class="h2-profile col-md-12 mb-3">Мои ставки</h2>
                     </div>
-                    <div class="col-md-3 col-xs-12">
-                        {{ macros.render_input(form_field = form.number, id = 'FormNumber', label = 'Номер паспорта', toolText='Введите 6 цифр номера вашего паспорта') }}
+                    <div class="d-flex flex-direction-row">
+                        {% for pet in pets %}
+                        <div class="col-md-4 container-pet-card">
+                            <div class="card pet-card">
+                                <div class="img-dog-container d-flex justify-content-center m-2">
+                                    <a href="{{ url_for('pet_profile', pet_id=pet.id)}}">
+                                    {% if pet.avatar_id %} 
+                                    <img class="card-img-top pet-img" src="{{ url_for('static', filename='uploads/images/' + pet.avatar_info.name)}}">
+                                    {% else %}
+                                    <img class="card-img-top pet-img" src="{{ url_for('static', filename='img/dog.png')}}">
+                                    {% endif %}
+                                </div>
+                                <div class="card-body pet-action d-flex flex-direction-column justify-content-center">
+                                    <h4 class="card-title text-center pet-title">{{pet.name}}</h4>
+                                    <a href="{{ url_for('pet_request', pet_id=pet.id, request_id=-1)}}" class="btn btn-primary">Выгулять</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
                     </div>
-                    <div class="col-md-4 col-xs-12 pr-0">
-                        {{ macros.render_input(form_field = form.issueDate, id = 'FormIssueDate', 
-                            label = 'Дата выдачи', class_for_label="correctLabel", type='date') }}
-                    </div>
-                </div>
-                <div class="row d-flex justify-content-center flex-row">
-                    <div class="col-md-10 col-xs-12">
-                        {{ macros.render_input(form_field = form.issuedBy, id = 'FormIssuedBy', 
-                            label = 'Кем выдан', class_for_wrapper='md-form my-0') }}
-                    </div>
-                </div>  
-                <div class="row d-flex justify-content-center flex-row">
-                    <div class="col-md-10 col-xs-12">
-                        {{ macros.render_input(form_field = form.addresspr, id = 'FormAdressPr', label = 'Адрес проживания', toolText='Введите ваш фактический адрес проживания') }}
-                        {{ macros.render_input(form_field = form.addressreg, id = 'FormAdressReg', label = 'Адрес регистрации', toolText='Введите ваш адрес регистрации указанный в паспорте') }}
-                    </div>  
-                </div>
-                    
-                  <!-- Sign in button -->
-                {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Сохранить") }}
-            </form>
-        </div> 
-      </div>
+                </div> -->
+            </div>
+        </div>
     </div>
-  </div>
+</section>
+<div id="small-dialog" class="zoom-anim-dialog mfp-hide profile-popup">
+    <div class="container d-flex align-items-center justify-content-center">
+        <div class="row d-flex justify-content-center">
+            <div class="card">
+                <h5 class="card-header info-color white-text text-center py-4">
+                <strong>Профиль выгульщика</strong>
+                </h5>
+                <div class="card-body px-lg-5 pt-0">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                    <!-- Categories: success (green), info (blue), warning (yellow), danger (red) -->
+                        {% if messages %}
+                            {% for category, message in messages %}
+                            <div class="alert alert-{{category}} alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <!-- <strong>Title</strong> --> {{ message }}
+                            </div>
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    <form class="text-center" style="color: #757575;" action="" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="row d-flex justify-content-center flex-row mt-4">
+                            <div class="col-md-4 col-xs-12">
+                                {{ macros.render_input(form_field = form.birthDate, id = 'FormBirthDate', 
+                                    label = 'Дата рождения', class_for_label = 'correctLabel', type = 'date', toolText='Для работы в Walkie-Doggie вы должны достичь 18-летнего возраста') }}
+                            </div>
+                            <div class="col-md-2 col-xs-12">
+                                {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
+                                    class_for_label = 'correctLabel', label = 'Ваш пол') }}
+                            </div>
+                            <div class="col-md-2 col-xs-12">
+                                {{ macros.render_input(form_field = form.height, id = 'FormHeight', label = 'Рост', toolText='Рост должен быть в границах от 100 до 299') }}
+                            </div>
+                            <div class="col-md-2 col-xs-12">
+                                {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес', toolText='Вес должен быть в границах от 100 до 999') }}
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center flex-row">
+                            <div class="col-md-3 col-xs-12">
+                                {{ macros.render_input(form_field = form.series, id = 'FormSeries', label = 'Серия паспорта', toolText='Введите 4 цифры серии вашего паспорта') }}
+                            </div>
+                            <div class="col-md-3 col-xs-12">
+                                {{ macros.render_input(form_field = form.number, id = 'FormNumber', label = 'Номер паспорта', toolText='Введите 6 цифр номера вашего паспорта') }}
+                            </div>
+                            <div class="col-md-4 col-xs-12 pr-0">
+                                {{ macros.render_input(form_field = form.issueDate, id = 'FormIssueDate', 
+                                    label = 'Дата выдачи', class_for_label="correctLabel", type='date') }}
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center flex-row">
+                            <div class="col-md-10 col-xs-12">
+                                {{ macros.render_input(form_field = form.issuedBy, id = 'FormIssuedBy', 
+                                    label = 'Кем выдан', class_for_wrapper='md-form my-0') }}
+                            </div>
+                        </div>  
+                        <div class="row d-flex justify-content-center flex-row">
+                            <div class="col-md-10 col-xs-12">
+                                {{ macros.render_input(form_field = form.addresspr, id = 'FormAdressPr', label = 'Адрес проживания', toolText='Введите ваш фактический адрес проживания') }}
+                                {{ macros.render_input(form_field = form.addressreg, id = 'FormAdressReg', label = 'Адрес регистрации', toolText='Введите ваш адрес регистрации указанный в паспорте') }}
+                            </div>  
+                        </div>
+                        {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Сохранить") }}
+                    </form>
+                </div> 
+            </div>
+        </div>
+    </div>
 </div>
 </main>
+<script src="{{url_for('static', filename='js/profile.js')}}"></script>
 <script type="text/javascript">
     data = {
         token: "3283e59c98911c85fa289a756dfeebd62efe57b4",
