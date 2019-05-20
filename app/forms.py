@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField,DateField,SelectField,TextAreaField, FileField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo,Regexp
+from wtforms.fields.html5 import DateTimeLocalField
 from app.models import User, Pet, Breed
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
@@ -96,10 +97,16 @@ class PetProfileForm(FlaskForm):
     ignored_fields = set(['submit', 'csrf_token'])
 
 class RequestForm(FlaskForm):
-    walkStartDate = DateField('WalkStartDate',validators=[DataRequired(message='Выберите дату!')])
+    walkStartDate = DateTimeLocalField('WalkStartDate',format='%Y-%m-%dT%H:%M', validators=[DataRequired(message='Выберите дату!')])
     walkDuration = StringField('WalkDuration',validators=[DataRequired(message='Заполните продолжительность!'),Regexp('^\d{2,3}$', message = "Неправильно введеа продолжительность!")])
     address = StringField('Addres',validators=[DataRequired(message='Заполните поле адрес!')])
     startingPrice = StringField('StartingPrice',validators=[DataRequired(message='Заполните начальную цену!'),Regexp('^\d{2,4}$', message = "Неправильно введена начальная цена!")])
+    submit = SubmitField('Save')
+    
+    ignored_fields = set(['submit', 'csrf_token'])
+
+class BetForm(FlaskForm):
+    summ = StringField('Summ',validators=[DataRequired(message='Заполните сумму!'),Regexp('^\d{2,5}$', message = "Неправильно введена сумма!")])
     submit = SubmitField('Save')
     
     ignored_fields = set(['submit', 'csrf_token'])

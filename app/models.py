@@ -110,21 +110,36 @@ class File(db.Model):
 
 class Request(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    creationDate=db.Column(db.DateTime(4), default=datetime.datetime.now())
-    walkStartDate=db.Column(db.DateTime(4))
+    creationDate=db.Column(db.DateTime(), default=datetime.datetime.now())
+    walkStartDate=db.Column(db.DateTime())
     walkDuration=db.Column(db.Integer)
-    auctionStartDate=db.Column(db.DateTime(4))
-    auctionEndDate=db.Column(db.DateTime(4))
+    auctionStartDate=db.Column(db.DateTime())
+    auctionEndDate=db.Column(db.DateTime())
     address=db.Column(db.Text)
     startingPrice=db.Column(db.Integer)
     finalPrice=db.Column(db.Integer)
-    ownerEndMarkDate=db.Column(db.DateTime(4))
-    walkerEndMarkDate=db.Column(db.DateTime(4))
+    ownerEndMarkDate=db.Column(db.DateTime())
+    walkerEndMarkDate=db.Column(db.DateTime())
 
     walker_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     status_id = db.Column(db.Integer, db.ForeignKey('status.id'))
 
     pets = db.relationship('Pet_requests', backref='request', lazy='dynamic')
+    bets = db.relationship('Bet', backref='request', lazy='dynamic')
+
+    
+
+    def lowest_bet(self):
+        class Object(object):
+            pass
+        try:
+            return min(self.bets.all(), key=lambda x: x.summ)
+        except:
+            obj = Object()
+            setattr(obj, 'summ', float("inf"))
+            setattr(obj, 'walker_id', -1)
+            return obj
+            
     
 class Status(db.Model): 
     id = db.Column(db.Integer, primary_key=True)

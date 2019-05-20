@@ -1,0 +1,46 @@
+{% extends "base_roles.html" %}
+
+{% block content %}
+<main>
+<div class="container d-flex align-items-center justify-content-center">
+  <div class="row d-flex justify-content-center w-75">
+    <div class="card mt-5 w-85">
+        <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Актуальные аукционы</strong>
+        </h5>
+        <div class="card-body px-lg-5 pt-0">
+            <form class="text-center" action="" method="post">
+                {% for request in requests %}
+                <div class="row d-flex justify-content-center flex-row mt-4 form-outline-black">
+                    <div class="col-md-6 col-xs-12"> 
+                        <a href="{# url_for('pet_profile', pet_id=item.id) #}">
+                            {% if request.pets[0].img %}
+                                <img src="{{ url_for('static', filename='uploads/images/' + request.pets[0].img)}}" class="img-fluid">
+                            {% else %}
+                                <img src="{{ url_for('static', filename='img/dog.png')}}" class="img-fluid">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="flex-direction-column col-md-6 justify-content-center">
+                        <span class="gray-text">Адрес:</span>
+                        <span class="my-2 item">{{ request.address }}</span>
+                        <span class="gray-text">Текущая ставка:</span>
+                        <span class="my-2 item">{{ request.lowest_bet().summ }}</span>
+                        <div class="button-group">
+                            <a href="{{ url_for('pet_request_bet', pet_id=request.pets[0].id, request_id=request.id, bet_id=-1) }}" 
+                                class="btn btn-outline-black btn-rounded waves-effect medium">
+                                <i class="fas fa-paw"></i>Сделать ставку 
+                            </a>
+                        </div>
+                    </div> 
+                </div>
+                {% endfor %}          
+            </form>                              
+          </div> 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+{% endblock %}
