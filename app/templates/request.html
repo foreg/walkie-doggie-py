@@ -20,26 +20,47 @@
           <strong>Заявка</strong>
         </h5>
         <div class="card-body px-lg-5 pt-0">
+          {% if request.status_id == None or request.status_id == 1 %}
+            {% set is_readonly = false %}
+          {% else %}
+            {% set is_readonly = true %}
+          {% endif %}
           <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
             {{ form.hidden_tag() }}
             <div class="row d-flex justify-content-center flex-row mt-4">
               <div class="col-md-6 col-xs-12">
                 {{ macros.render_input(form_field = form.walkStartDate, id = 'WalkStartDate', label = 'Начало прогулки',toolText = 'Введите дату начала прогулки. Учитывайте, что аукцион заканчивается за 1 час до выбранного времени.',
-                    class_for_label = 'correctLabel', type='datetime-local') }}
+                    class_for_label = 'correctLabel', type='datetime-local', readonly=is_readonly) }}
               </div>
               <div class="col-md-6 col-xs-12">
-                {{ macros.render_input(form_field = form.walkDuration, id = 'WalkDuration', label = 'Продолжительность', toolText = 'Введите продолжительность прогулки в мин.') }}
+                {{ macros.render_input(form_field = form.walkDuration, id = 'WalkDuration', label = 'Продолжительность', 
+                toolText = 'Введите продолжительность прогулки в мин.', readonly=is_readonly) }}
               </div>
               <div class="col-md-12 col-xs-12">
-                {{ macros.render_input(form_field = form.address, id = 'Address', label = 'Адрес') }}
+                {{ macros.render_input(form_field = form.address, id = 'Address', label = 'Адрес', readonly=is_readonly) }}
               </div>
             </div>
             <div class="row d-flex flex-row">
               <div class="col-md-6 col-xs-12">
-                {{ macros.render_input(form_field = form.startingPrice, id = 'StartingPrice', label = 'Начальная цена', toolText = 'Введите начальную цену в руб.')}}
+                {{ macros.render_input(form_field = form.startingPrice, id = 'StartingPrice', label = 'Начальная цена', 
+                toolText = 'Введите начальную цену в руб.', readonly=is_readonly)}}
               </div>
               <div class="col-md-12 col-xs-12 controls-profile-request">
-                {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Сохранить") }}
+                {% if is_readonly%}
+                  {% if request.status_id == 3 and request.walkStartDate < now %}
+                    {% if request.walker_id == user.id %}
+                      {% if request.walkerEndMarkDate == None %}
+                        {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Закончить выгул(выгульщик)") }}
+                      {% endif %}
+                    {% else %}
+                      {% if request.ownerEndMarkDate == None %}
+                        {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Закончить выгул(хозяин)") }} <!-- value не менять-->
+                      {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% else %}
+                  {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Сохранить") }}
+                {% endif %}
                 <a href="{{ referrer }}"><span class="dismiss btn btn-danger">Назад</span></a> 
               </div>
             </div>      

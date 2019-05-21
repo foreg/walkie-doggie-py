@@ -33,23 +33,34 @@ def RequestPage(pet_id, request_id):
         flash('Заявка не найдена', 'danger')
         return redirect(url_for('pets'))
     form=RequestForm(obj=request)
-    if form.validate_on_submit():             
-        errors, successfully = fill_entity(request, form)
-        print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(request, errors, successfully)) 
-        request.auctionStartDate = datetime.now()
-        request.auctionEndDate = request.walkStartDate - timedelta(hours=1)
-        request.status_id = RequestStatuses.auctionStarted
-        db.session.add(request)        
-        db.session.commit()
-        scheduler.add_job(func=EndRequestAuction, trigger='date', run_date=request.auctionEndDate, args=[request.id])
-        pet_request = Pet_requests(pet_id=pet_id, request_id=request.id) if request_id == -1 else Pet_requests.query.filter_by(pet_id=pet_id, request_id=request.id).first() 
-        db.session.add(pet_request)        
-        db.session.commit()
-        flash('Все изменения сохранены!', 'success')
-    elif len(form.errors) > 0:
-        flash('Проверьте правильность введенных данных', 'danger')
+    if request.status_id == None:
+        if form.validate_on_submit():
+            errors, successfully = fill_entity(request, form)
+            print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(request, errors, successfully)) 
+            request.auctionStartDate = datetime.now()
+            request.auctionEndDate = request.walkStartDate - timedelta(hours=1)
+            request.status_id = RequestStatuses.auctionStarted
+            db.session.add(request)        
+            db.session.commit()
+            scheduler.add_job(func=EndRequestAuction, trigger='date', run_date=request.auctionEndDate, args=[request.id])
+            pet_request = Pet_requests(pet_id=pet_id, request_id=request.id) if request_id == -1 else Pet_requests.query.filter_by(pet_id=pet_id, request_id=request.id).first() 
+            db.session.add(pet_request)        
+            db.session.commit()
+            flash('Все изменения сохранены!', 'success')
+        elif len(form.errors) > 0:
+            flash('Проверьте правильность введенных данных', 'danger')
+    else:
+        if form.validate_on_submit():
+            if flask_request.form['submit'] == 'Закончить выгул(выгульщик)':
+                request.walkerEndMarkDate = datetime.now()
+            if flask_request.form['submit'] == 'Закончить выгул(хозяин)':
+                request.ownerEndMarkDate = datetime.now()
+            if request.ownerEndMarkDate != None and request.walkerEndMarkDate != None:
+                request.status_id = RequestStatuses.ended
+            db.session.add(request)        
+            db.session.commit()
     referrer = flask_request.headers.get("Referer")
-    return render_template('request.html',user=user,form=form,request=request, referrer=referrer)
+    return render_template('request.html',user=user,form=form,request=request, referrer=referrer, now=datetime.now())
 
 @login_required
 def CurrentRequests():
@@ -75,14 +86,17 @@ def BetForRequestPage(pet_id, request_id, bet_id):
     if form.validate_on_submit():             
         errors, successfully = fill_entity(bet, form)
         print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(bet, errors, successfully)) 
-        if int(bet.summ) >= request.lowest_bet().summ:
-            flash('Нужно сделать ставку ниже, чем существующая', 'danger')
+        if request.status_id == RequestStatuses.auctionStarted:
+            if int(bet.summ) >= request.lowest_bet().summ:
+                flash('Нужно сделать ставку ниже, чем существующая', 'danger')
+            else:
+                bet.request_id = request.id
+                bet.walker_id = user.id
+                db.session.add(bet)        
+                db.session.commit()
+                flash('Все изменения сохранены!', 'success')
         else:
-            bet.request_id = request.id
-            bet.walker_id = user.id
-            db.session.add(bet)        
-            db.session.commit()
-            flash('Все изменения сохранены!', 'success')
+            flash('Нельзя сделать ставку на аукцион, который уже закончился', 'danger')
     elif len(form.errors) > 0:
         flash('Проверьте правильность введенных данных', 'danger')
     referrer = url_for('current_requests')

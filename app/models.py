@@ -33,6 +33,7 @@ class User(UserMixin, db.Model):
     avatar_id = db.Column(db.Integer, db.ForeignKey('file.id'))
     avatar_info = db.relationship('File', backref='user')
     pets = db.relationship('Pet', backref='user', lazy='dynamic')
+    bets = db.relationship('Bet', backref='walker', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
