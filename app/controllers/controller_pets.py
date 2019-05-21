@@ -19,6 +19,25 @@ def PetHistory(id):
     return render_template('pet_history.html', user=user, pet=pet, requests=requests)
 
 @login_required
+def PetShow(id):
+    user = current_user        
+    pet = Pet() if id == -1 else Pet.query.filter_by(id=id, archiveDate=None).first() 
+    if pet is None:
+        flash('Питомец не найден', 'danger')
+        return redirect(url_for('pets'))
+    img = File.query.filter_by(id=pet.avatar_id).first()
+    if img:
+        img = img.name
+    else:
+        img = 'dog.png'
+    breed = Breed.query.filter_by(id=pet.breed_id).first()
+    if breed:
+        breed = breed.name
+    requests = [row.request for row in Pet_requests.query.filter_by(pet_id=pet.id).all()]
+    referrer = url_for('current_requests')
+    return render_template('pet_show.html',user=user, img='../static/uploads/images/' + img,pet=pet,breed=breed,referrer=referrer, requests=requests)
+
+@login_required
 def PetProfile(id):
     user = current_user        
     pet = Pet() if id == -1 else Pet.query.filter_by(id=id, archiveDate=None).first() 

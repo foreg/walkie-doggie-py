@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request as flask_re
 from flask_login import current_user
 from sqlalchemy import and_
 from app.forms import RequestForm, BetForm
-from app.models import Pet, Request, Pet_requests, Bet
+from app.models import Pet, Request, Pet_requests, Bet, Walker
 from app.utils import login_required, fill_entity
 from app.constants import RequestStatuses, Roles
 from app import db, scheduler
@@ -99,7 +99,7 @@ def BetForRequestPage(pet_id, request_id, bet_id):
             flash('Нельзя сделать ставку на аукцион, который уже закончился', 'danger')
     elif len(form.errors) > 0:
         flash('Проверьте правильность введенных данных', 'danger')
-    referrer = url_for('current_requests') #flask_request.headers.get("Referer")
+    referrer = url_for('current_requests')
     return render_template('bet.html',user=user,form=form,bet=bet, referrer=referrer)
 
 def EndRequestAuction(request_id):
