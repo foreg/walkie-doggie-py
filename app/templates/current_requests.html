@@ -3,22 +3,91 @@
 {% block content %}
 <main>
 <div class="container d-flex align-items-center justify-content-center">
-  <div class="row d-flex justify-content-center w-75">
-    <div class="card mt-5 w-85">
+  <div class="row d-flex justify-content-center">
+    <div class="card mt-5">
         <h5 class="card-header info-color white-text text-center py-4">
         <strong>Актуальные аукционы</strong>
         </h5>
         <div class="card-body px-lg-5 pt-0">
-            <form class="text-center" action="" method="post">
+            <table id="dtBasicExample" class="table table-striped table-bordered bg-white" cellspacing="0" width="100%">
+                <thead>
+                <tr>
+                    <th class="th-photo">Фото 
+                        <div class="far tooltipClass">
+                            <span class="tooltiptext">
+                                Нажмите на фото питомца чтобы получить подробную информацию о нем
+                            </span>
+                        </div>
+                    </th>
+                    <th>Адрес</th>
+                    <th>Дата выгула</th>
+                    <th>Текущая ставка</th>
+                    <th>Поставил</th>
+                    <th>Время выгула</th>
+                    <th>Порода</th>
+                    <th>Пол</th>
+                    <th>Вес</th>
+                    <th>Ставка</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for request in requests %}
+                        <tr>
+                            <td>
+                                <a href="/petShow/{{request.pets[0].pet_id}}">
+                                    {% if request.pets[0].pet.avatar_info.name %}
+                                        <img src="{{ url_for('static', filename='uploads/images/' + request.pets[0].pet.avatar_info.name)}}" class="img-fluid">                                 
+                                    {% else %}
+                                        <img src="{{ url_for('static', filename='img/dog.png')}}" class="img-fluid">
+                                    {% endif %}
+                                 </a>
+                            </td>
+                            <td>
+                                {% set listDate = request.address.split(',') %}
+                                {{ listDate[2] }} {{ listDate[3] }}
+                                <!-- {{request.address}} -->
+                            </td>
+                            <td>{{request.auctionEndDate.strftime('%d.%m.%Y %H:%M')}}</td>
+                            <td>
+                                {% if request.lowest_bet().summ > 2147483647 %}
+                                    {{request.startingPrice}} руб.  
+                                {% else %}
+                                    {{request.lowest_bet().summ}} руб.
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if request.lowest_bet().walker %}
+                                   <!-- <span class="font-weight-bold">Волкер:</span> -->
+                                   {{request.lowest_bet().walker.name}} <br />
+                                   <span class="font-weight-bold">Рейтинг:</span>
+                                   {{request.lowest_bet().walker.walker_info.rating}}
+                                {% else %}
+                                    Ставок ещё не было
+                                {% endif %}
+                            </td>
+                            <td>
+                                {{request.walkDuration}} мин.
+                            </td>
+                            <td>{{request.pets[0].pet.breed.name}}</td>
+                            <td>{{request.pets[0].pet.gender}}</td>
+                            <td>{{request.pets[0].pet.weight}} кг.</td>
+                            <td>
+                                <a href="{{ url_for('pet_request_bet', pet_id=request.pets[0].id, request_id=request.id, bet_id=-1) }}" 
+                                class="btn btn-outline-black btn-rounded waves-effect medium">
+                                    <i class="fas fa-paw"></i>Сделать ставку 
+                                </a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- <form class="text-center" action="" method="post">
                 {% for request in requests %}
                 <div class="row d-flex justify-content-center flex-row mt-4 form-outline-black">
                     <div class="col-md-6 col-xs-12"> 
                         <a href="{# url_for('pet_profile', pet_id=item.id) #}">
-                            {% if request.pets[0].img %}
-                                <img src="{{ url_for('static', filename='uploads/images/' + request.pets[0].img)}}" class="img-fluid">
-                            {% else %}
-                                <img src="{{ url_for('static', filename='img/dog.png')}}" class="img-fluid">
-                            {% endif %}
+                            
                         </a>
                     </div>
                     <div class="flex-direction-column col-md-6 justify-content-center">
@@ -27,15 +96,12 @@
                         <span class="gray-text">Текущая ставка:</span>
                         <span class="my-2 item">{{ request.lowest_bet().summ }}</span>
                         <div class="button-group">
-                            <a href="{{ url_for('pet_request_bet', pet_id=request.pets[0].id, request_id=request.id, bet_id=-1) }}" 
-                                class="btn btn-outline-black btn-rounded waves-effect medium">
-                                <i class="fas fa-paw"></i>Сделать ставку 
-                            </a>
+                            
                         </div>
                     </div> 
                 </div>
                 {% endfor %}          
-            </form>                              
+            </form> -->
           </div> 
         </div>
       </div>
@@ -43,4 +109,5 @@
   </div>
 </div>
 </main>
+<script src="{{url_for('static', filename='js/history.js')}}"></script>
 {% endblock %}

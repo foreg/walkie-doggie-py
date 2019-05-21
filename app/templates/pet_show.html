@@ -1,0 +1,101 @@
+{% extends "base_roles.html" %}
+
+{% import 'forms.jinja' as macros %}
+{% block content %}
+<main class="d-flex hv-100 justify-content-center pt-0">
+<section class="main-profile d-flex align-items-center w-100">
+  <div class="container-fluid">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+          <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ message }}
+          </div>
+          {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <div class="row d-flex justify-content-center align-items-center">
+     <div class="col-md-6 col-lg-6 d-flex flex-direction-column align-items-center profile-img-block px-2 mr-3
+pet-profile-block profile-block justify-content-center align-self-end">
+          {% if pet.avatar_id %} 
+            <img class="card-img-top" src="{{ url_for('static', filename='uploads/images/' + pet.avatar_info.name)}}">
+            {% else %}
+            <img class="card-img-top" src="{{ url_for('static', filename='img/dog.png')}}">
+            {% endif %}
+        </div>
+      <div class="col-md-6 col-lg-6 pt-2 px-4 profile-block second-profile-block">
+        <div class="profile-header">  
+            
+          <h2 class="h2-profile">
+            {{pet.name}}
+            <a class="ajax-popup-link-active" href="#small-dialog-active">
+              <div class="far tooltipClass status profile-tool">
+                  <span class="tooltiptext">{{pet.name}} сейчас гуляет. Нажмите для более подробной инфо</span>
+              </div>
+            </a>   
+          </h2>
+          <span class="span-profile">{{pet.info}}</span>
+        </div>
+        <hr>
+        <div class="row d-flex flex-direction-row">
+          <div class="col-md-3 d-flex flex-direction-column">
+            <span class="gray-text span-profile mb-3">Порода:</span>
+            <span class="gray-text span-profile mb-3">Пол:</span>
+            <span class="gray-text span-profile mb-3">Возраст:</span>
+            <span class="gray-text span-profile mb-3">Вес:</span>
+          </div>
+          <div class="col-md-9 d-flex flex-direction-column">
+              <span class="span-profile mb-3">{{breed}}</span>
+              <span class="span-profile mb-3">{{pet.gender}}</span>
+              <span class="span-profile mb-3">{{pet.age}}</span>
+              <span class="span-profile mb-3">{{pet.weight}}</span>
+          </div>
+        </div>
+        <hr>
+        <div class="row d-flex justify-content-center py-2">
+            <a href="{{referrer}}" class="btn btn-primary">Назад</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="small-dialog-active" class="zoom-anim-dialog mfp-hide profile-popup">
+    <div class="container d-flex align-items-center justify-content-center mt-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-12 pa-0">
+          <h5 class="card-header info-color white-text text-center py-4">Активный выгул</h5>
+          <div class="card box-shadow-unset px-2 d-flex align-items-center pt-4">
+            <div class="view view-cascade overlay w-75">
+              <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/men.jpg" alt="Card image cap">
+              <a>
+                <div class="mask rgba-white-slight"></div>
+              </a>
+            </div>
+            <div class="card-body card-body-cascade text-center">
+              <h4 class="card-title"><strong>Billy Coleman</strong>
+                <div class="far tooltipClass profile-tool">
+                  <span class="tooltiptext">Данный волкер сейчас выгуливает {{pet.name}}</span>
+                </div>
+              </h4>
+              <p class="card-text">Профессиональный волкер с 10-летним стажем
+              </p>
+            </div>
+            <div class="text-center mb-4">
+              <a class="ajax-popup-link-employee mx-0 w-100" href="#small-dialog-employee">
+                <span class="font-weight-bold indigo-text">
+                  <i class="fal fa-cog"></i> Детали выгула  
+                </span>
+              </a> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <button title="Close (Esc)" type="button" class="mfp-close active">×</button>
+    </div>  
+  </div>
+</section>
+
+
+</main>
+<script src="{{url_for('static', filename='js/profile.js')}}"></script>
+{% endblock %}

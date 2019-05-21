@@ -29,6 +29,7 @@ class User(UserMixin, db.Model):
     roles = db.relationship('User_roles', backref='user', lazy='dynamic')
     walker_id = db.Column(db.Integer, db.ForeignKey('walker.id'))
     walker_info = db.relationship('Walker', backref='user')
+    bets = db.relationship('Bet', backref='walker', lazy='dynamic')
     avatar_id = db.Column(db.Integer, db.ForeignKey('file.id'))
     avatar_info = db.relationship('File', backref='user')
     pets = db.relationship('Pet', backref='user', lazy='dynamic')

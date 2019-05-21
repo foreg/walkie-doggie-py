@@ -26,6 +26,10 @@ def userAgreement():
 def pet_profile(pet_id):
     return controller_pets.PetProfile(pet_id)
 
+@app.route('/petShow/<int(signed=True):pet_id>', methods=['GET', 'POST'])
+def pet_show(pet_id):
+    return controller_pets.PetShow(pet_id)
+
 @app.route('/pets/history/<int(signed=True):pet_id>', methods=['GET', 'POST'])
 def pet_history(pet_id):
     return controller_pets.PetHistory(pet_id)

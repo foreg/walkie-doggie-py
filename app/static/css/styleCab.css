@@ -290,6 +290,16 @@ input:required ~ label:after, select:required ~ label:after{
 	left: 18px;
 }
 
+.th-photo > .tooltipClass{
+    left: 4px !important;
+	top: 3px;
+	margin-right: 10px;
+}
+
+.th-photo{
+	padding-right: 20px !important;
+}
+
 .tooltipClass.profile-tool {
     position: relative;
     left: 2px;
@@ -529,3 +539,49 @@ input[type=file]{
 .request{
 	cursor: pointer;
 }
+
+/* New Popup without JS */
+  .overlayPopup {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.7);
+	transition: opacity 500ms;
+	visibility: hidden;
+	opacity: 0;
+  }
+  .overlayPopup:target {
+	visibility: visible !important;
+	opacity: 1 !important;
+  }
+  
+  .popupPet {
+	margin: 70px auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 5px;
+	width: 30%;
+	position: relative;
+	transition: all 5s ease-in-out;
+  }
+  
+  .popupPet .close {
+	position: absolute;
+	top: 20px;
+	right: 30px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: #333;
+  }
+  .popupPet .close:hover {
+	color: #06D85F;
+  }
+  .popupPet .content_popup {
+	max-height: 30%;
+	overflow: auto;
+  }
+  
