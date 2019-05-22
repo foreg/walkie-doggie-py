@@ -47,6 +47,7 @@ def RequestPage(pet_id, request_id):
             db.session.add(pet_request)        
             db.session.commit()
             flash('Все изменения сохранены!', 'success')
+            return redirect(url_for('current_requests',user=user))
         elif len(form.errors) > 0:
             flash('Проверьте правильность введенных данных', 'danger')
     else:
@@ -95,6 +96,7 @@ def BetForRequestPage(pet_id, request_id, bet_id):
                 db.session.add(bet)        
                 db.session.commit()
                 flash('Все изменения сохранены!', 'success')
+                return redirect(url_for('current_requests',user=user))
         else:
             flash('Нельзя сделать ставку на аукцион, который уже закончился', 'danger')
     elif len(form.errors) > 0:
