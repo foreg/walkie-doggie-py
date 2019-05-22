@@ -52,7 +52,7 @@
                       {% if request.walkerEndMarkDate == None %}
                         {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Закончить выгул(выгульщик)") }}
                       {% endif %}
-                    {% else %}
+                    {% elif request.pets[0].pet.user_id == user.id %}
                       {% if request.ownerEndMarkDate == None %}
                         {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Закончить выгул(хозяин)") }} <!-- value не менять-->
                       {% endif %}
