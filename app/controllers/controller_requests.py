@@ -101,7 +101,8 @@ def BetForRequestPage(pet_id, request_id, bet_id):
             flash('Нельзя сделать ставку на аукцион, который уже закончился', 'danger')
     elif len(form.errors) > 0:
         flash('Проверьте правильность введенных данных', 'danger')
-    referrer = url_for('current_requests')
+    return_to =  flask_request.args.get('return_to')
+    referrer = url_for(return_to) if return_to else url_for('current_requests')
     return render_template('bet.html',user=user,form=form,bet=bet, referrer=referrer)
 
 def EndRequestAuction(request_id):

@@ -1,0 +1,12 @@
+{% extends "base_roles.html" %}
+
+{% block content %}
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/map.css') }}">
+</head>
+<div class="container_map">
+    <div id="map"></div>
+</div>
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script src="{{url_for('static', filename='js/map.js')}}" type="text/javascript"></script>
+{% endblock %}
