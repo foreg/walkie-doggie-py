@@ -106,7 +106,7 @@ def BetForRequestPage(pet_id, request_id, bet_id):
                 bet.walker_id = user.id
                 db.session.add(bet)        
                 db.session.commit()
-                flash('Все изменения сохранены!', 'success')
+                flash('Ставка принята!', 'success')
                 return redirect(url_for('current_requests',user=user))
         else:
             flash('Нельзя сделать ставку на аукцион, который уже закончился', 'danger')

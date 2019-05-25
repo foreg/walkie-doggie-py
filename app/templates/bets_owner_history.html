@@ -2,8 +2,8 @@
 
 {% import 'forms.jinja' as macros %}
 {% block content %}
-<main class="d-flex hv-100 justify-content-center">
-    <section class="main-profile d-flex align-items-center">
+<main class="d-flex justify-content-center">
+    <section class="main-profile d-flex align-items-center mt-4">
         <div class="container">
             <h2 class="my-4">Актуальные аукционы 
             </h2>
@@ -24,7 +24,6 @@
                             <th scope="row">{{ loop.index  }}</th>
                             <td>{{current_bet.summ}}</td>
                             <td>{{current_bet.walker.name}}</td>
-                            <!-- <td>{{current_bet.creationDate.strftime('%d.%m.%Y %H:%M')}}</td> -->
                             <td>{{current_bet.request.address}}</td>
                             <td>{{current_bet.request.walkDuration}} мин.</td>
                             <td>{{current_bet.request.pets[0].pet.name}}</td>
