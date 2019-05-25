@@ -10,6 +10,17 @@ from datetime import datetime, timedelta
 
 
 @login_required
+def BetsOwnerHistory(user_id):
+    user = current_user        
+    bets = Bet.query.all()
+    current_bets = []
+    for bet in bets:
+        if bet.request.status_id == RequestStatuses.auctionStarted and \
+        bet.request.pets[0].pet.user_id == user_id and bet.request.auctionEndDate >= datetime.now():
+            current_bets.append(bet)
+    return render_template('bets_owner_history.html', user=user, current_bets=current_bets)
+
+@login_required
 def BetsHistory(user_id):
     user = current_user        
     bets = Bet.query.filter_by(walker_id=user_id).all()
