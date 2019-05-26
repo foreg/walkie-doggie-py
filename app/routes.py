@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user
 from app import app, db
-from app.controllers import controller_index, controller_profile, controller_pets, controller_requests
+from app.controllers import controller_index, controller_profile, controller_pets, controller_requests, controller_map
 from app.constants import Roles
 from config import Config
 
@@ -112,3 +112,12 @@ def send_file(filename):
 @app.route('/current_requests')
 def current_requests():
     return controller_requests.CurrentRequests()
+
+@app.route('/map')
+def map():
+    return controller_map.ShowMap()
+
+@app.route('/getCoords')
+def get_coords():
+    return controller_map.GetCoords()
+
