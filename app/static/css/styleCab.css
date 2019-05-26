@@ -536,6 +536,10 @@ input[type=file]{
 	top: -1.7em !important;
 }
 
+.btn-indigo{
+	background: #224399 !important;
+}
+
 .request{
 	cursor: pointer;
 }
