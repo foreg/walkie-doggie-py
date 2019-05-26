@@ -38,6 +38,10 @@ def pet_history(pet_id):
 def bets_history(user_id):
     return controller_requests.BetsHistory(user_id)
 
+@app.route('/profile/ownerHistory/<int(signed=True):user_id>', methods=['GET', 'POST'])
+def bets_owner_history(user_id):
+    return controller_requests.BetsOwnerHistory(user_id)
+
 @app.route('/pets/<int:pet_id>/requests/<int(signed=True):request_id>', methods=['GET', 'POST'])
 def pet_request(pet_id, request_id):
     return controller_requests.RequestPage(pet_id, request_id)
