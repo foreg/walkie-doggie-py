@@ -29,22 +29,18 @@
                                 {{ macros.render_input(form_field = form.birthDate, id = 'FormBirthDate', 
                                     label = 'Дата рождения', class_for_label = 'correctLabel', type = 'date', toolText='Для работы в Walkie-Doggie вы должны достичь 18-летнего возраста') }}
                             </div>
-                            <div class="col-md-2 col-xs-12">
-                                {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
-                                    class_for_label = 'correctLabel', label = 'Ваш пол') }}
-                            </div>
-                            <div class="col-md-2 col-xs-12">
+                            <div class="col-md-4 col-xs-12">
                                 {{ macros.render_input(form_field = form.height, id = 'FormHeight', label = 'Рост', toolText='Рост должен быть в границах от 100 до 299') }}
                             </div>
-                            <div class="col-md-2 col-xs-12">
+                            <div class="col-md-4 col-xs-12">
                                 {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес', toolText='Вес должен быть в границах от 100 до 999') }}
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center flex-row">
-                            <div class="col-md-3 col-xs-12">
+                            <div class="col-md-4 col-xs-12">
                                 {{ macros.render_input(form_field = form.series, id = 'FormSeries', label = 'Серия паспорта', toolText='Введите 4 цифры серии вашего паспорта') }}
                             </div>
-                            <div class="col-md-3 col-xs-12">
+                            <div class="col-md-4 col-xs-12">
                                 {{ macros.render_input(form_field = form.number, id = 'FormNumber', label = 'Номер паспорта', toolText='Введите 6 цифр номера вашего паспорта') }}
                             </div>
                             <div class="col-md-4 col-xs-12 pr-0">
@@ -53,13 +49,13 @@
                             </div>
                         </div>
                         <div class="row d-flex justify-content-center flex-row">
-                            <div class="col-md-10 col-xs-12">
+                            <div class="col-md-12 col-xs-12">
                                 {{ macros.render_input(form_field = form.issuedBy, id = 'FormIssuedBy', 
                                     label = 'Кем выдан', class_for_wrapper='md-form my-0') }}
                             </div>
                         </div>  
                         <div class="row d-flex justify-content-center flex-row">
-                            <div class="col-md-10 col-xs-12">
+                            <div class="col-md-12 col-xs-12">
                                 {{ macros.render_input(form_field = form.addresspr, id = 'FormAdressPr', label = 'Адрес проживания', toolText='Введите ваш фактический адрес проживания') }}
                                 {{ macros.render_input(form_field = form.addressreg, id = 'FormAdressReg', label = 'Адрес регистрации', toolText='Введите ваш адрес регистрации указанный в паспорте') }}
                             </div>  

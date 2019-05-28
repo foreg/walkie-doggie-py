@@ -25,26 +25,30 @@
           <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
             {{ form.hidden_tag() }}
             <div class="row d-flex justify-content-center flex-row mt-4">
-              <div class="col-md-4 col-xs-12">
-                {{ macros.render_input(form_field = form.surname, id = 'FormSurname', label = 'Фамилия') }}
-              </div>
-              <div class="col-md-3 col-xs-12">
-                {{ macros.render_input(form_field = form.name, id = 'FormName', label = 'Имя') }}
-              </div>
-              <div class="col-md-3 col-xs-12">
-                {{ macros.render_input(form_field = form.middlename, id = 'FormMiddlename', label = 'Отчество') }}
+                <div class="col-md-3 col-xs-12">
+                  {{ macros.render_input(form_field = form.surname, id = 'FormSurname', label = 'Фамилия') }}
+                </div>
+                <div class="col-md-3 col-xs-12">
+                  {{ macros.render_input(form_field = form.name, id = 'FormName', label = 'Имя') }}
+                </div>
+                <div class="col-md-3 col-xs-12">
+                  {{ macros.render_input(form_field = form.middlename, id = 'FormMiddlename', label = 'Отчество') }}
+                </div>
+                <div class="col-md-3 col-xs-12">
+                  {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
+                      class_for_label = 'correctLabel', label = 'Ваш пол') }}
               </div>
             </div>
             <div class="row d-flex justify-content-center flex-row">
               <div class="col-md-6 col-xs-12">
                 {{ macros.render_input(form_field = form.address, id = 'FormAdress', label = 'Адрес', toolText = 'Введите ваш фактический адрес проживания') }}
               </div>
-              <div class="col-md-4 col-xs-12">
+              <div class="col-md-6 col-xs-12">
                 {{ macros.render_input(form_field = form.phone, id = 'FormPhone', label = 'Телефон', toolText = 'Введите ваш телефон в формате 8xxxxxxxxxx') }}
               </div>
             </div>
             <div class="row d-flex justify-content-center flex-row">
-              <div class="col-md-10 col-xs-12">
+              <div class="col-md-6 col-xs-12">
                 {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'О себе', rows="3") }}
               </div>
             </div>
