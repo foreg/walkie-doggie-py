@@ -4,6 +4,74 @@
 {% block content %}
 <main>
 <section class="main-profile">
+{% if user.surname == None %}
+  <div class="container d-flex align-items-center justify-content-center px-0">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+          <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            {{ message }}
+          </div>
+          {% endfor %}
+      {% endif %}
+    {% endwith %}
+    <div class="row d-flex justify-content-center w-100">
+      <div class="card card-popup mt-5">
+        <h5 class="card-header info-color white-text text-center py-4">
+          <strong>Профиль</strong>
+        </h5>
+        <div class="card-body px-lg-5 pt-0">
+          <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
+            {{ form.hidden_tag() }}
+            <div class="row d-flex justify-content-center flex-row mt-4">
+              <div class="col-md-4 col-xs-12">
+                {{ macros.render_input(form_field = form.surname, id = 'FormSurname', label = 'Фамилия') }}
+              </div>
+              <div class="col-md-3 col-xs-12">
+                {{ macros.render_input(form_field = form.name, id = 'FormName', label = 'Имя') }}
+              </div>
+              <div class="col-md-3 col-xs-12">
+                {{ macros.render_input(form_field = form.middlename, id = 'FormMiddlename', label = 'Отчество') }}
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center flex-row">
+              <div class="col-md-6 col-xs-12">
+                {{ macros.render_input(form_field = form.address, id = 'FormAdress', label = 'Адрес', toolText = 'Введите ваш фактический адрес проживания') }}
+              </div>
+              <div class="col-md-4 col-xs-12">
+                {{ macros.render_input(form_field = form.phone, id = 'FormPhone', label = 'Телефон', toolText = 'Введите ваш телефон в формате 8xxxxxxxxxx') }}
+              </div>
+            </div>
+            <div class="row d-flex justify-content-center flex-row">
+              <div class="col-md-10 col-xs-12">
+                {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'О себе', rows="3") }}
+              </div>
+            </div>
+
+            <div class="row d-flex justify-content-center flex-row">
+              <div class="col-md-4 col-xs-12">
+                {% if img and img != None %}
+                <img src="{{img}}" class="w-100">
+                {% endif %}
+              </div>
+              <div class="col-md-6 col-xs-12 d-flex align-items-center">
+                {{ macros.render_input(form_field = form.avatar, id = 'FormAvatar', class="md-textarea form-control", label = 'Аватар', class_for_label = 'file-input', type='file') }}
+                <div class="controls-profile">
+                  {{ form.submit(class_="btn confirm btn-success my-4 waves-effect z-depth-0", value="Сохранить") }}
+                  <span class="dismiss btn btn-danger">Отмена</span>
+                </div>
+              </div>
+            </div>
+            
+          </form>
+        </div>
+        <button title="Close (Esc)" type="button" class="mfp-close">×</button>
+      </div>
+    </div>
+  </div>
+</section>
+{% else %}
   <div class="container">
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
@@ -135,6 +203,8 @@
     </div>
   </div>
 </div>
+
+{% endif %}
 </main>
 <script src="{{url_for('static', filename='js/profile.js')}}"></script>
 <script type="text/javascript">

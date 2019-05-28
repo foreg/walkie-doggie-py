@@ -45,27 +45,52 @@ def WalkerProfile(db):
         user = current_user
         walker = user.walker_info if user.walker_info else Walker()
         form = WalkerProfileForm(obj=walker)
-        if form.validate_on_submit():
-            aliases = {
-                'addresspr': 'address_pr',
-                'addressreg': 'address_reg',
-            }
-            errors, successfully = fill_entity(walker, form, aliases=aliases)
-            print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(walker, errors, successfully))
-            walker.rating = 0
-            walker.score = 0     
-            db.session.add(walker)
-            user.walker_info = walker
-            user.add_role(Roles.walker)
-            db.session.add(user)
-            db.session.commit()
-            flash('Все изменения сохранены!', 'success')
-            return render_template('walker_profile.html', form=form, user=user)
-        elif len(form.errors) > 0:     
-            flash('Проверьте правильность введенных данных', 'danger')
-        img = File.query.filter_by(id=user.avatar_id).first()
-        if img:
-            img = img.name
-        return render_template('walker_profile.html', form=form, user=user,
+        if user.surname == None:
+            formUser = UserProfileForm(obj=user)
+            if formUser.validate_on_submit():
+                errors, successfully = fill_entity(user, formUser)
+                print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(user, errors, successfully))   
+                if request.files['avatar'].filename != '':
+                    filename = images.save(request.files['avatar'])
+                    f = File(name=filename)
+                    db.session.add(f)
+                    db.session.commit()
+                    user.avatar_id = f.id
+                db.session.add(user)
+                db.session.commit()
+                user.add_role(Roles.owner)
+                flash('Все изменения сохранены! Шаг 2. Заполните профиль волкера', 'info')
+                return render_template('walker_profile.html', form=form, user=user)
+            elif len(formUser.errors) > 0:
+                flash('Проверьте правильность введенных данных', 'danger')
+            img = File.query.filter_by(id=user.avatar_id).first()
+            flash('Шаг 1. Заполните профиль пользователя', 'info')
+            if img:
+                img = img.name
+            return render_template('profile.html', form=formUser, user=user,
             img=url_for('static', filename='uploads/images/' + str(img)))
+        else:
+            if form.validate_on_submit():
+                aliases = {
+                    'addresspr': 'address_pr',
+                    'addressreg': 'address_reg',
+                }
+                errors, successfully = fill_entity(walker, form, aliases=aliases)
+                print ("ENTITY {} FILLED WITH {} ERRORS, SUCCESSFULLY {}".format(walker, errors, successfully))
+                walker.rating = 0
+                walker.score = 0     
+                db.session.add(walker)
+                user.walker_info = walker
+                user.add_role(Roles.walker)
+                db.session.add(user)
+                db.session.commit()
+                flash('Все изменения сохранены!', 'success')
+                return render_template('walker_profile.html', form=form, user=user)
+            elif len(form.errors) > 0:     
+                flash('Проверьте правильность введенных данных', 'danger')
+            img = File.query.filter_by(id=user.avatar_id).first()
+            if img:
+                img = img.name
+            return render_template('walker_profile.html', form=form, user=user,
+                img=url_for('static', filename='uploads/images/' + str(img)))
     return redirect(url_for('login'))

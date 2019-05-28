@@ -477,7 +477,7 @@ input:required ~ label:after, select:required ~ label:after{
 	font-size: 0.95rem !important;
 }
 
-.alert.alert-success, .alert.alert-danger{
+.alert.alert-success, .alert.alert-info, .alert.alert-danger{
 	position: absolute;
     top: 61px;
     z-index: 1;

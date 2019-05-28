@@ -107,7 +107,10 @@ def BetForRequestPage(pet_id, request_id, bet_id):
                 db.session.add(bet)        
                 db.session.commit()
                 flash('Ставка принята!', 'success')
-                return redirect(url_for('current_requests',user=user))
+                return_to =  flask_request.args.get('return_to')
+                referrer = url_for(return_to, user=user) if return_to else url_for('current_requests', user=user)
+                return redirect(referrer)
+               # return redirect(url_for('current_requests',user=user))
         else:
             flash('Нельзя сделать ставку на аукцион, который уже закончился', 'danger')
     elif len(form.errors) > 0:
