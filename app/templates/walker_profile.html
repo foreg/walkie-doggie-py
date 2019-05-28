@@ -18,7 +18,16 @@
         <div class="row d-flex justify-content-center">
             <div class="col-md-4 d-flex flex-direction-column align-items-center profile-img-block px-2 mr-3
         pa-top-img profile-block">
-            <img src="{{img}}" class="profile-img pb-2">
+        {% if user.avatar_id %} 
+        <img class="profile-img pb-2" src="{{ url_for('static', filename='uploads/images/' + user.avatar_info.name)}}">
+        {% else %}
+            {% if user.gender =='жен.' %} 
+                 <img class="profile-img pb-2" src="{{ url_for('static', filename='uploads/images/female.jpg')}}">
+            {% else %}
+            <img class="profile-img pb-2" src="{{ url_for('static', filename='uploads/images/male.jpg')}}">
+            {% endif %}
+                 {% endif %}
+         
             <a class="ajax-popup-link btn mx-0 w-100" href="#small-dialog" data-id="{{user.id}}">Редактировать</a>
             </div>
             <div class="col-md-8 pt-2 px-4 profile-block">
@@ -71,14 +80,11 @@
                                 {{ macros.render_input(form_field = form.birthDate, id = 'FormBirthDate', 
                                     label = 'Дата рождения', class_for_label = 'correctLabel', type = 'date', toolText='Для работы в Walkie-Doggie вы должны достичь 18-летнего возраста') }}
                             </div>
-                            <div class="col-md-2 col-xs-12">
-                                {{ macros.render_input(form_field = form.gender, id = 'FormGender', class = 'browser-default custom-select', 
-                                    class_for_label = 'correctLabel', label = 'Ваш пол') }}
-                            </div>
-                            <div class="col-md-2 col-xs-12">
+                          
+                            <div class="col-md-3 col-xs-12">
                                 {{ macros.render_input(form_field = form.height, id = 'FormHeight', label = 'Рост', toolText='Рост должен быть в границах от 100 до 299') }}
                             </div>
-                            <div class="col-md-2 col-xs-12">
+                            <div class="col-md-3 col-xs-12">
                                 {{ macros.render_input(form_field = form.weight, id = 'FormWeight', label = 'Вес', toolText='Вес должен быть в границах от 100 до 999') }}
                             </div>
                         </div>
