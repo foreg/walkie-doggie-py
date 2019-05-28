@@ -34,6 +34,10 @@ def OwnerProfile(db):
         img = File.query.filter_by(id=user.avatar_id).first()
         if img:
             img = img.name
+        elif user.gender == 'муж.':
+            img = 'male.jpg'
+        elif user.gender == 'жен.':
+            img = 'female.jpg'
         pets = Pet.query.filter_by(user_id=user.id, archiveDate=None).limit(3).all()
         return render_template('profile.html', form=form, user=user,
             img=url_for('static', filename='uploads/images/' + str(img)), pets=pets)
