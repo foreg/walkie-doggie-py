@@ -42,6 +42,7 @@
                 </thead>
                 <tbody>
                     {% for request in requests %}
+                        {% if request.pets[0].pet.user_id != user.id %}
                         <tr>
                             <td>
                                 <a href="/petShow/{{request.pets[0].pet_id}}">
@@ -88,7 +89,7 @@
                                 </a>
                             </td>
                         </tr>
-
+                        {% endif %}
                     {% endfor %}
                 </tbody>
             </table>
