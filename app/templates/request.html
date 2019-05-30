@@ -56,12 +56,19 @@
                       {% if request.ownerEndMarkDate == None %}
                         {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Закончить выгул(хозяин)") }} <!-- value не менять-->
                       {% endif %}
+                     
                     {% endif %}
+                   
                   {% endif %}
+                  {% if request.ownerEndMarkDate != None %}
+                  <a href="{{ url_for('review', user=user)}}"><span class="dismiss btn btn-success">Отзыв</span></a> 
+                  <a href="{{ url_for('violation', user=user)}}"><span class="dismiss btn btn-danger">Нарушение</span></a> 
+                {% endif %}
                 {% else %}
                   {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Сохранить") }}
                 {% endif %}
                 <a href="{{ referrer }}"><span class="dismiss btn btn-danger">Назад</span></a> 
+               
               </div>
             </div>      
           </form>

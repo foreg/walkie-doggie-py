@@ -35,6 +35,8 @@ class User(UserMixin, db.Model):
     avatar_info = db.relationship('File', backref='user')
     pets = db.relationship('Pet', backref='user', lazy='dynamic')
     bets = db.relationship('Bet', backref='walker', lazy='dynamic')
+    # reviews = db.relationship('Review', backref='user', lazy='dynamic')
+    reviews = db.relationship('Review', backref='Review.walker_id',primaryjoin='User.id==Review.user_id', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -163,21 +165,21 @@ class Pet_requests(db.Model):
     pet_id = db.Column(db.Integer, db.ForeignKey('pet.id'))
     request_id = db.Column(db.Integer, db.ForeignKey('request.id'))
 
-# class Review(db.Model): 
-#     id = db.Column(db.Integer, primary_key=True)
-#     comment=db.Column(db.Text) 
-#     rating=db.Column(db.Integer) 
-#     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-#     walker_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-#     violations = db.relationship('Review_violations', backref='review', lazy='dynamic')
-
+class Review(db.Model): 
+    id = db.Column(db.Integer, primary_key=True)
+    rating=db.Column(db.Integer)
+    comment=db.Column(db.Text) 
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    walker_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship('User', foreign_keys='Review.user_id')
+    walker = db.relationship('User', foreign_keys='Review.walker_id')
+    # violations = db.relationship('Review_violations', backref='review', lazy='dynamic')
 
 # class Violation(db.Model): 
 #     id = db.Column(db.Integer, primary_key=True)
 #     name=db.Column(db.String(50)) 
 #     description=db.Column(db.Text) 
-
-#     reviews = db.relationship('Review', backref='violation', lazy='dynamic')
+#     reviews = db.relationship('Review_violations', backref='violation', lazy='dynamic')
 
 # class Review_violations(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)

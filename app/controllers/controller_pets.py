@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, Response
 from flask_login import current_user
 from app.forms import PetProfileForm
-from app.models import Pet, Breed, File, Pet_requests
+from app.models import User, Pet, Breed, File, Pet_requests
 from app.utils import login_required, fill_entity
 from app import db
 from app import images

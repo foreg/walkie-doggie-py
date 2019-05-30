@@ -1,0 +1,62 @@
+{% extends "base_roles.html" %}
+
+{% import 'forms.jinja' as macros %}
+{% block content %}
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<div class="container d-flex align-items-center justify-content-center px-0 hv-100">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+      {% for category, message in messages %}
+      <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        {{ message }}
+      </div>
+      {% endfor %}
+  {% endif %}
+{% endwith %}
+  <div class="row d-flex justify-content-center w-100 margin-from-nav">
+    <div class="card card-popup mt-5">
+      <h5 class="card-header info-color white-text text-center py-4">
+        <strong>Отзыв</strong>
+      </h5>
+      
+      <div class="card-body px-lg-5 pt-0">
+        <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
+          {{ form.hidden_tag() }}
+          <div class="row d-flex justify-content-center flex-row mt-4">
+            <div class="col-md-10 col-xs-12">
+              {{ macros.render_input(form_field = form.rating, id = 'Rating', label = 'Рейтинг') }}
+              <div class='rat'>
+                <div class="rating text-center center-content-center">
+                   
+                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" >5 stars</label>
+                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" >4 stars</label>
+                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" >3 stars</label>
+                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" >2 stars</label>
+                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1">1 star</label>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row d-flex justify-content-center flex-row">
+            <div class="col-md-10 col-xs-12 ">
+              {{ macros.render_input(form_field = form.comment, id = 'Сomment', label = 'Комментарий') }}
+            </div>
+          </div>
+          <div class="row d-flex flex-row">
+            <div class="col-md-12 col-xs-12 controls-profile-request">
+              {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Сохранить") }}
+              <a href="{{ referrer }}"><span class="dismiss btn btn-danger">Назад</span></a> 
+            </div>
+          </div>      
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
