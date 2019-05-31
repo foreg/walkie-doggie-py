@@ -15,8 +15,7 @@ def BetsOwnerHistory(user_id):
     bets = Bet.query.all()
     current_bets = []
     for bet in bets:
-        if bet.request.status_id == RequestStatuses.auctionStarted and \
-        bet.request.pets[0].pet.user_id == user_id and bet.request.auctionEndDate >= datetime.now():
+        if bet.request.pets[0].pet.user_id == user_id:
             current_bets.append(bet)
     return render_template('bets_owner_history.html', user=user, current_bets=current_bets)
 

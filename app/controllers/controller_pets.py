@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, Response
 from flask_login import current_user
 from app.forms import PetProfileForm
-from app.models import Pet, Breed, File, Pet_requests
+from app.models import User, Pet, Breed, File, Pet_requests
 from app.utils import login_required, fill_entity
 from app import db
 from app import images
@@ -57,7 +57,7 @@ def PetProfile(id):
         pet.user_id = user.id 
         db.session.add(pet)        
         db.session.commit()
-        flash('Все изменения сохранены!', 'success')
+        flash('Питомец успешно добавлен!', 'success')
         #return redirect(url_for('pets', pet.id)) #pet_id=
     elif len(form.errors) > 0:
         flash('Проверьте правильность введенных данных', 'danger')
@@ -94,7 +94,7 @@ def AddProfile(id):
         db.session.add(pet)        
         db.session.commit()
         flash('Все изменения сохранены!', 'success')
-        return redirect(url_for('pets', pet_id=pet.id))
+        return redirect(url_for('profile', become='owner'))
     elif len(form.errors) > 0:
         flash('Проверьте правильность введенных данных', 'danger')
     img = File.query.filter_by(id=pet.avatar_id).first()

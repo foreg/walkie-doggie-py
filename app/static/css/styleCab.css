@@ -434,7 +434,7 @@ input:required ~ label:after, select:required ~ label:after{
 
 
 .pa-top-img{
-	max-height: 390px;
+	max-height: 300px;
 	max-width: 225px;
 	padding: 0.7rem 0;
 }
@@ -588,4 +588,67 @@ input[type=file]{
 	max-height: 30%;
 	overflow: auto;
   }
+
+  
+  .rating {
+		float:center;
+  }
+
+  .rating:not(:checked) > input {
+	  position:absolute;
+	  top:-9999px;
+	  clip:rect(0,0,0,0);
+  }
+	.rat
+	{
+		float:center;	
+		margin-right: 15px;
+	}
+  .rating:not(:checked) > label {
+	  float:right;
+	  width:1em;
+	  /* padding:0 .1em; */
+	  overflow:hidden;
+	  white-space:nowrap;
+	  cursor:pointer;
+	  font-size:300%;
+	  /* line-height:1.2; */
+	  color:#ddd;
+  }
+
+  .rating:not(:checked) > label:before {
+	  content: '★ ';
+  }
+
+  .ratingContainer{
+	display: none !important;
+  }
+
+  .rating > input:checked ~ label {
+	  color: #de4303;
+	  
+  }
+
+  .rating:not(:checked) > label:hover,
+  .rating:not(:checked) > label:hover ~ label {
+	  color:  #de4303;
+	  
+  }
+
+  .rating > input:checked + label:hover,
+  .rating > input:checked + label:hover ~ label,
+  .rating > input:checked ~ label:hover,
+  .rating > input:checked ~ label:hover ~ label,
+  .rating > label:hover ~ input:checked ~ label {
+	  color: #de4303;
+	  
+  }
+
+  .rating > label:active {
+	  position:relative;
+	  top:2px;
+	
+  }
+
+  
   

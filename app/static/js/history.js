@@ -18,7 +18,7 @@ $(document).ready(function () {
             id = $(e.target).parent().data('id')
         if (pet_id == undefined)
             pet_id = $(e.target).parent().data('pet_id')
-        strHref = "http://127.0.0.1:5000/"
-        location.href = strHref + 'pets/' + pet_id + '/requests/' + id;
+        strHref = "http://localhost:5000/"
+        window.location.href = strHref + 'pets/' + pet_id + '/requests/' + id;
     });
 });

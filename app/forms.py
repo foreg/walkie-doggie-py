@@ -2,7 +2,8 @@ from flask_wtf import FlaskForm, RecaptchaField
 from wtforms import StringField, PasswordField, BooleanField, SubmitField,DateField,SelectField,TextAreaField, FileField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo,Regexp
 from wtforms.fields.html5 import DateTimeLocalField
-from app.models import User, Pet, Breed
+from app.models import User, Pet, Breed, Review
+# , Violation
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
 
@@ -107,6 +108,20 @@ class RequestForm(FlaskForm):
 
 class BetForm(FlaskForm):
     summ = StringField('Summ',validators=[DataRequired(message='Заполните сумму!'),Regexp('^\d{2,5}$', message = "Неправильно введена сумма!")])
+    submit = SubmitField('Save')
+    
+    ignored_fields = set(['submit', 'csrf_token'])
+
+class ReviewForm(FlaskForm):
+    rating = StringField('Rating')
+    comment = TextAreaField('Text')
+    submit = SubmitField('Save')
+    
+    ignored_fields = set(['submit', 'csrf_token'])
+
+class ViolationForm(FlaskForm):
+    name = StringField('Name')
+    description = TextAreaField('Text')
     submit = SubmitField('Save')
     
     ignored_fields = set(['submit', 'csrf_token'])

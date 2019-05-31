@@ -4,7 +4,7 @@
 {% block content %}
 
 <div class="container d-flex align-items-center justify-content-center px-0 hv-100">
-    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
         <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown" role="alert">
@@ -56,12 +56,19 @@
                       {% if request.ownerEndMarkDate == None %}
                         {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Закончить выгул(хозяин)") }} <!-- value не менять-->
                       {% endif %}
+                     
                     {% endif %}
+                   
                   {% endif %}
-                {% else %}
-                  {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Сохранить") }}
-                {% endif %}
-                <a href="{{ referrer }}"><span class="dismiss btn btn-danger">Назад</span></a> 
+                  {% if request.ownerEndMarkDate != None and request.pets[0].pet.user_id == user.id %}
+                    <a href="{{ url_for('review', review_id=-1, walker_id=request.walker_id)}}"><span class="dismiss btn btn-success">Отзыв</span></a> 
+                    <a href="{{ url_for('violation', violation_id=-1)}}"><span class="dismiss btn btn-danger">Нарушение</span></a> 
+                  {% endif %}
+                  {% else %}
+                    {{ form.submit(class_="btn confirm btn-success my-2 waves-effect z-depth-0", value="Сохранить") }}
+                  {% endif %}
+                <a href="{{ url_for('bets_owner_history', user_id=user.id) }}"><span class="dismiss btn btn-danger">Назад</span></a> 
+               
               </div>
             </div>      
           </form>

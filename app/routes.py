@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, send_from_directory
 from flask_login import current_user
 from app import app, db
-from app.controllers import controller_index, controller_profile, controller_pets, controller_requests, controller_map
+from app.controllers import controller_index, controller_profile, controller_pets, controller_requests, controller_map, controller_review
 from app.constants import Roles
 from config import Config
 
@@ -121,3 +121,10 @@ def map():
 def get_coords():
     return controller_map.GetCoords()
 
+@app.route('/review/<int(signed=True):review_id>', methods=['GET', 'POST'])
+def review(review_id):
+    return controller_review.AddReview(review_id)
+
+@app.route('/violation/<int(signed=True):violation_id>', methods=['GET', 'POST'])
+def violation(violation_id):
+    return controller_review.AddViolation(violation_id)
