@@ -130,7 +130,6 @@ class Request(db.Model):
 
     pets = db.relationship('Pet_requests', backref='request', lazy='dynamic')
     bets = db.relationship('Bet', backref='request', lazy='dynamic')
-
     
 
     def lowest_bet(self):
