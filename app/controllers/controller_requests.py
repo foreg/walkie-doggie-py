@@ -78,7 +78,6 @@ def CurrentRequests():
     user = current_user
     if not user.check_role(Roles.walker):
         return redirect(url_for('index'))
-    
     requests = Request.query.filter(and_(Request.auctionEndDate>=datetime.now(), Request.status_id==RequestStatuses.auctionStarted)).all()
     return render_template('current_requests.html', user=user,requests=requests)
 
