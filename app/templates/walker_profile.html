@@ -89,7 +89,7 @@
             {% if user.gender =='жен.' %} 
                  <img class="profile-img pb-2" src="{{ url_for('static', filename='uploads/images/female.jpg')}}">
             {% else %}
-            <img class="profile-img pb-2" src="{{ url_for('static', filename='uploads/images/male.jpg')}}">
+                <img class="profile-img pb-2" src="{{ url_for('static', filename='uploads/images/male.jpg')}}">
             {% endif %}
                  {% endif %}
          
@@ -103,12 +103,14 @@
                 <hr>
                 <div class="row d-flex flex-direction-row">
                     <div class="col-md-3 d-flex flex-direction-column">
-                        <span class="gray-text span-profile mb-3">Адрес:</span>
-                        <span class="gray-text span-profile">Телефон:</span>
+                        <span class="gray-text span-profile">Адрес:</span>
+                        <span class="gray-text span-profile my-3">Телефон:</span>
+                        <span class="gray-text span-profile mb-3">Рейтинг:</span>
                     </div>
                     <div class="col-md-9 d-flex flex-direction-column">
-                        <span class="span-profile mb-3">{{user.address}}</span>
-                        <span class="span-profile">{{user.phone}}</span>
+                        <span class="span-profile">{{user.address}}</span>
+                        <span class="span-profile my-3">{{user.phone}}</span>
+                        <span class="span-profile mb-3">{{user.walker_info.rating}}</span>
                     </div>
                     <div class="col-md-12 d-flex justify-content-center history-block">
                         <a href="{{ url_for('bets_history', user_id = user.id)}}">Показать актуальные ставки</a>

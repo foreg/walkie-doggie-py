@@ -57,7 +57,7 @@ def PetProfile(id):
         pet.user_id = user.id 
         db.session.add(pet)        
         db.session.commit()
-        flash('Все изменения сохранены!', 'success')
+        flash('Питомец успешно добавлен!', 'success')
         #return redirect(url_for('pets', pet.id)) #pet_id=
     elif len(form.errors) > 0:
         flash('Проверьте правильность введенных данных', 'danger')
@@ -94,7 +94,7 @@ def AddProfile(id):
         db.session.add(pet)        
         db.session.commit()
         flash('Все изменения сохранены!', 'success')
-        return redirect(url_for('pets', pet_id=pet.id))
+        return redirect(url_for('profile', become='owner'))
     elif len(form.errors) > 0:
         flash('Проверьте правильность введенных данных', 'danger')
     img = File.query.filter_by(id=pet.avatar_id).first()

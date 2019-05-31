@@ -173,15 +173,15 @@ class Review(db.Model):
     walker_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     user = db.relationship('User', foreign_keys='Review.user_id')
     walker = db.relationship('User', foreign_keys='Review.walker_id')
-    # violations = db.relationship('Review_violations', backref='review', lazy='dynamic')
+    violations = db.relationship('Review_violations', backref='review', lazy='dynamic')
 
-# class Violation(db.Model): 
-#     id = db.Column(db.Integer, primary_key=True)
-#     name=db.Column(db.String(50)) 
-#     description=db.Column(db.Text) 
-#     reviews = db.relationship('Review_violations', backref='violation', lazy='dynamic')
+class Violation(db.Model): 
+    id = db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String(50)) 
+    description=db.Column(db.Text) 
+    reviews = db.relationship('Review_violations', backref='violation', lazy='dynamic')
 
-# class Review_violations(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     review_id = db.Column(db.Integer, db.ForeignKey('review.id'))
-#     violation_id = db.Column(db.Integer, db.ForeignKey('violation.id'))
+class Review_violations(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    violation_id = db.Column(db.Integer, db.ForeignKey('violation.id'))
+    review_id = db.Column(db.Integer, db.ForeignKey('review.id'))

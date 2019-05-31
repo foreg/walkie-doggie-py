@@ -38,7 +38,7 @@ def OwnerProfile(db):
             img = 'male.jpg'
         elif user.gender == 'жен.':
             img = 'female.jpg'
-        pets = Pet.query.filter_by(user_id=user.id, archiveDate=None).limit(3).all()
+        pets = Pet.query.filter_by(user_id=user.id, archiveDate=None).all()
         return render_template('profile.html', form=form, user=user,
             img=url_for('static', filename='uploads/images/' + str(img)), pets=pets)
     return redirect(url_for('login'))
@@ -71,6 +71,10 @@ def WalkerProfile(db):
             flash('Шаг 1. Заполните профиль пользователя', 'info')
             if img:
                 img = img.name
+            elif user.gender == 'муж.':
+                img = 'male.jpg'
+            elif user.gender == 'жен.':
+                img = 'female.jpg'
             return render_template('profile.html', form=formUser, user=user,
             img=url_for('static', filename='uploads/images/' + str(img)))
         else:
@@ -95,6 +99,10 @@ def WalkerProfile(db):
             img = File.query.filter_by(id=user.avatar_id).first()
             if img:
                 img = img.name
+            elif user.gender == 'муж.':
+                img = 'male.jpg'
+            elif user.gender == 'жен.':
+                img = 'female.jpg'
             return render_template('walker_profile.html', form=form, user=user,
                 img=url_for('static', filename='uploads/images/' + str(img)))
     return redirect(url_for('login'))

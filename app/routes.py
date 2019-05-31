@@ -121,10 +121,10 @@ def map():
 def get_coords():
     return controller_map.GetCoords()
 
-@app.route('/review', methods=['GET', 'POST'])
-def review():
-    return controller_review.Review()
+@app.route('/review/<int(signed=True):review_id>', methods=['GET', 'POST'])
+def review(review_id):
+    return controller_review.AddReview(review_id)
 
-@app.route('/violation', methods=['GET', 'POST'])
-def violation():
-    return controller_review.Violation()
+@app.route('/violation/<int(signed=True):violation_id>', methods=['GET', 'POST'])
+def violation(violation_id):
+    return controller_review.AddViolation(violation_id)

@@ -2,11 +2,6 @@
 
 {% import 'forms.jinja' as macros %}
 {% block content %}
-<head>
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
 <div class="container d-flex align-items-center justify-content-center px-0 hv-100">
   {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
@@ -28,11 +23,11 @@
         <form class="text-center" style="color: #757575;" action="" method="post" enctype=multipart/form-data>
           {{ form.hidden_tag() }}
           <div class="row d-flex justify-content-center flex-row mt-4">
-            <div class="col-md-10 col-xs-12">
-              {{ macros.render_input(form_field = form.rating, id = 'Rating', label = 'Рейтинг') }}
-              <div class='rat'>
-                <div class="rating text-center center-content-center">
-                   
+            <div class="col-md-12 col-xs-12">
+              {{ macros.render_input(form_field = form.rating, id = 'Rating', class_for_wrapper='ratingContainer') }}
+                <div class='rat'>
+                  <label for="radioRating">Оценка</label>
+                  <div id="radioRating" class="rating text-center center-content-center">
                     <input type="radio" id="star5" name="rating" value="5" /><label for="star5" >5 stars</label>
                     <input type="radio" id="star4" name="rating" value="4" /><label for="star4" >4 stars</label>
                     <input type="radio" id="star3" name="rating" value="3" /><label for="star3" >3 stars</label>
@@ -43,7 +38,7 @@
             </div>
           </div>
           <div class="row d-flex justify-content-center flex-row">
-            <div class="col-md-10 col-xs-12 ">
+            <div class="col-md-12 col-xs-12 ">
               {{ macros.render_input(form_field = form.comment, id = 'Сomment', label = 'Комментарий') }}
             </div>
           </div>
@@ -58,5 +53,5 @@
     </div>
   </div>
 </div>
-
+<script src="{{url_for('static', filename='js/review.js')}}"></script>
 {% endblock %}
