@@ -1,24 +1,24 @@
 $(document).ready(function(){ 
     $("#myInput").on("keyup", function() { 
         var value = $(this).val().toLowerCase(); 
-        var items = $('.item'); 
+        var pets = $('.item'); 
         console.log(0); 
-        items.each(function(index){ 
-            if (items[index].innerHTML.startsWith(value)) { 
-                // $(items[index]).parent().parent().show(); 
-                $(items[index]).parent().parent().removeClass('display-none');
-                console.log($(items[index]).parent().parent()); 
+        pets.each(function(index){ 
+            if (pets[index].innerHTML.startsWith(value)) { 
+                // $(pets[index]).parent().parent().show(); 
+                $(pets[index]).parent().parent().removeClass('display-none');
+                console.log($(pets[index]).parent().parent()); 
             } 
             else { 
-                // $(items[index]).parent().parent().hide(); ч
-                $(items[index]).parent().parent().addClass('display-none');
-                console.log($(items[index]).parent().parent()); 
+                // $(pets[index]).parent().parent().hide(); ч
+                $(pets[index]).parent().parent().addClass('display-none');
+                console.log($(pets[index]).parent().parent()); 
             } 
         }) 
     }); 
 
     $('.popup-with-zoom-anim').click(function(){
-        $('#small-dialog').data('id', $(this).data('id'));
+        $('#small-dialog2').data('id', $(this).data('id'));
     });
 
     $('.confirm').click(function(){
