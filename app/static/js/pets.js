@@ -1,20 +1,33 @@
 $(document).ready(function(){ 
     $("#myInput").on("keyup", function() { 
         var value = $(this).val().toLowerCase(); 
-        var pets = $('.item'); 
-        console.log(0); 
-        pets.each(function(index){ 
-            if (pets[index].innerHTML.startsWith(value)) { 
-                // $(pets[index]).parent().parent().show(); 
-                $(pets[index]).parent().parent().removeClass('display-none');
-                console.log($(pets[index]).parent().parent()); 
+        var pets = $('.pet-title');
+        var checkEmpty = false;  
+        var nameDog = "";
+        pets.each(function(index){
+            nameDog = pets[index].innerText.toLowerCase();
+            if (nameDog.startsWith(value)) {
+                checkEmpty = true; 
+                $(pets[index]).closest('.container-pet-card').removeClass('display-none');
             } 
             else { 
-                // $(pets[index]).parent().parent().hide(); ч
-                $(pets[index]).parent().parent().addClass('display-none');
-                console.log($(pets[index]).parent().parent()); 
+                $(pets[index]).closest('.container-pet-card').addClass('display-none'); 
             } 
-        }) 
+        })
+        if (checkEmpty == false && value != ""){
+            if ($('#search').find('.search-popup').length > 0){
+                $('.search-popup').remove();
+                $('#search').append('<div class="col-md-12 search-popup"><p class="gray-text"> \
+                Питомца с таким именем не существует<br /> \ </p> </div>');
+            }
+            else{
+                $('#search').append('<div class="col-md-12 search-popup"><p class="gray-text"> \
+                Питомца с таким именем не существует<br /> \ </p> </div>');
+            }
+        }
+        else{
+            $('.search-popup').remove();
+        } 
     }); 
 
     $('.popup-with-zoom-anim').click(function(){
