@@ -1,24 +1,37 @@
 $(document).ready(function(){ 
     $("#myInput").on("keyup", function() { 
         var value = $(this).val().toLowerCase(); 
-        var items = $('.item'); 
-        console.log(0); 
-        items.each(function(index){ 
-            if (items[index].innerHTML.startsWith(value)) { 
-                // $(items[index]).parent().parent().show(); 
-                $(items[index]).parent().parent().removeClass('display-none');
-                console.log($(items[index]).parent().parent()); 
+        var pets = $('.pet-title');
+        var checkEmpty = false;  
+        var nameDog = "";
+        pets.each(function(index){
+            nameDog = pets[index].innerText.toLowerCase();
+            if (nameDog.startsWith(value)) {
+                checkEmpty = true; 
+                $(pets[index]).closest('.container-pet-card').removeClass('display-none');
             } 
             else { 
-                // $(items[index]).parent().parent().hide(); ч
-                $(items[index]).parent().parent().addClass('display-none');
-                console.log($(items[index]).parent().parent()); 
+                $(pets[index]).closest('.container-pet-card').addClass('display-none'); 
             } 
-        }) 
+        })
+        if (checkEmpty == false && value != ""){
+            if ($('#search').find('.search-popup').length > 0){
+                $('.search-popup').remove();
+                $('#search').append('<div class="col-md-12 search-popup"><p class="gray-text"> \
+                Питомца с таким именем не существует<br /> \ </p> </div>');
+            }
+            else{
+                $('#search').append('<div class="col-md-12 search-popup"><p class="gray-text"> \
+                Питомца с таким именем не существует<br /> \ </p> </div>');
+            }
+        }
+        else{
+            $('.search-popup').remove();
+        } 
     }); 
 
     $('.popup-with-zoom-anim').click(function(){
-        $('#small-dialog').data('id', $(this).data('id'));
+        $('#small-dialog2').data('id', $(this).data('id'));
     });
 
     $('.confirm').click(function(){

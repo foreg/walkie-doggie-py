@@ -111,11 +111,11 @@ def AddProfile(id):
 @login_required
 def AllPets():
     user = current_user
-    items = Pet.query.filter_by(archiveDate=None).order_by(Pet.name).all()
-    for item in items:
+    pets = Pet.query.filter_by(archiveDate=None).order_by(Pet.name).all()
+    for item in pets:
         if item.avatar_info:
             item.img = item.avatar_info.name
-    return render_template('all_pets.html',user=user,items=items)
+    return render_template('all_pets.html',user=user,pets=pets)
 
 @login_required
 def ArchivePet(id):

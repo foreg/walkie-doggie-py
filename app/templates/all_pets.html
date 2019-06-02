@@ -11,7 +11,7 @@
         <div class="card-body px-lg-5 pt-0">
             <input id="myInput">
             <form class="text-center" action="" method="post">
-                {% for item in items %}
+                {% for item in pets %}
                 <div class="row d-flex justify-content-center flex-row mt-4 form-outline-black">
                     <div class="col-md-6 col-xs-12"> 
                         <a href="{{ url_for('pet_profile', pet_id=item.id)}}">
@@ -32,7 +32,7 @@
                     </div> 
                 </div>
                 {% endfor %}    
-                <div id="small-dialog" class="zoom-anim-dialog mfp-hide">
+                <div id="small-dialog2" class="zoom-anim-dialog mfp-hide">
                     <h1>Подтверждение действия</h1>
                     <p>Вы действительно хотите удалить информацию о собаке?</p>
                     <div class="d-flex justify-content-center">
