@@ -173,6 +173,7 @@ class Review(db.Model):
     user = db.relationship('User', foreign_keys='Review.user_id')
     walker = db.relationship('User', foreign_keys='Review.walker_id')
     violations = db.relationship('Review_violations', backref='review', lazy='dynamic')
+    creationDate = db.Column(db.DateTime(4), default=datetime.datetime.now())
 
 class Violation(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
