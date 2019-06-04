@@ -463,6 +463,11 @@ input:required ~ label:after, select:required ~ label:after{
 	background: #224399 !important;
 }
 
+.badge-primary {
+	font-size: 1rem;
+    background-color: #1d3a84!important;
+}
+
 .ajax-popup-link:hover{
 	color: #fff !important;
 	background: #1d3a84 !important;
