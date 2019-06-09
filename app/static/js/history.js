@@ -5,11 +5,18 @@ $(document).ready(function () {
 
     $('body').on('click', '.request', (e) => {
     //$('.request').click((e)=>{
-        let id = $(e.target).data('id');
-        if (id == undefined)
-            id = $(e.target).parent().data('id')
-        strHref = location.href.replace('history/', '');
-        location.href = strHref + '/requests/' + id;
+        let walker_id = $(e.target).data('walker_id');
+        if (walker_id != undefined){
+            strHref = "http://localhost:5000/"
+            window.location.href = strHref + 'walkerShow/' + walker_id;
+        }
+        else{ 
+            let id = $(e.target).data('id');
+            if (id == undefined)
+                id = $(e.target).parent().data('id')
+            strHref = location.href.replace('history/', '');
+            location.href = strHref + '/requests/' + id;
+        }
     });
 
 

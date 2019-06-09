@@ -26,7 +26,7 @@
                    {% for request in requests %}
                         <tr class="request" data-id="{{request.id}}">
                         <th scope="row">{{ loop.index  }}</th>
-                        <td>{{request.walker.surname}} {{request.walker.name}}</td>
+                        <td data-walker_id="{{request.walker_id}}">{{request.walker.surname}} {{request.walker.name}}</td>
                         <td>{{request.address}}</td>
                         <td>{{request.walkStartDate.strftime('%d.%m.%Y')}}</td>
                         <td>{{request.walkDuration}} минут</td>
