@@ -682,5 +682,13 @@ input[type=file]{
 	  top:2px;
   }
 
+  .md-form{
+	  margin-bottom: 3rem !important;
+  }
+
+  .alert-profile{
+	  max-width: 400px !important;
+  }
+
   
   

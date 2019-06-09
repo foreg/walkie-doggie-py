@@ -19,3 +19,7 @@
 		margin-right: 1.5rem;
 	}
 }
+
+.alert-register{
+	max-width: 450px !important; 
+}

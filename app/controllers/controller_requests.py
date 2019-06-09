@@ -26,8 +26,9 @@ def BetsOwnerHistory(user_id):
     bets = Bet.query.all()
     current_bets = []
     for bet in bets:
-        if bet.request.pets[0].pet.user_id == user_id and bet.request.status_id == RequestStatuses.auctionEnded:
-            current_bets.append(bet)
+        if bet.request:
+            if bet.request.pets[0].pet.user_id == user_id and bet.request.status_id == RequestStatuses.auctionEnded:
+                current_bets.append(bet)
     return render_template('bets_owner_history.html', user=user, current_bets=current_bets)
 
 @login_required
@@ -67,8 +68,8 @@ def RequestPage(pet_id, request_id):
             pet_request = Pet_requests(pet_id=pet_id, request_id=request.id) if request_id == -1 else Pet_requests.query.filter_by(pet_id=pet_id, request_id=request.id).first() 
             db.session.add(pet_request)        
             db.session.commit()
-            flash('Все изменения сохранены!', 'success')
-            return redirect(url_for('current_requests',user=user))
+            flash('Заявка создана! После того как волкер возьмет заявку она отобразится в актуальных аукционах', 'success')
+            return redirect(url_for('profile',user=user))
         elif len(form.errors) > 0:
             flash('Проверьте правильность введенных данных', 'danger')
     else:
@@ -115,7 +116,8 @@ def BetForRequestPage(pet_id, request_id, bet_id):
                 bet.walker_id = user.id
                 db.session.add(bet)        
                 db.session.commit()
-                flash('Ставка принята!', 'success')
+                flash('Ставка принята! После окончания выгула необходимо зайти в профиль, в актуальные ставки и поставить\
+                 отметку об окончании выгула', 'success')
                 return_to =  flask_request.args.get('return_to')
                 referrer = url_for(return_to, user=user) if return_to else url_for('current_requests', user=user)
                 return redirect(referrer)

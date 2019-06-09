@@ -6,7 +6,7 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
-        <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown" role="alert">
+        <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown alert-profile" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             {{ message }}
         </div>
@@ -71,7 +71,7 @@
                                    <!-- <span class="font-weight-bold">Волкер:</span> -->
                                    {{request.lowest_bet().walker.name}} <br />
                                    <span class="font-weight-bold">Рейтинг:</span>
-                                   {{request.lowest_bet().walker.walker_info.rating}}
+                                   {{request.lowest_bet().walker.walker_info.rating|round(1)}}
                                 {% else %}
                                     Ставок ещё не было
                                 {% endif %}

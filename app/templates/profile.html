@@ -57,6 +57,8 @@
               <div class="col-md-4 col-xs-12">
                 {% if img and img != None %}
                 <img src="{{img}}" class="w-100">
+                {% else %}
+                <img src="{{ url_for('static', filename='uploads/images/male.jpg')}}" class="w-100">
                 {% endif %}
               </div>
               <div class="col-md-6 col-xs-12 d-flex align-items-center">
@@ -80,7 +82,7 @@
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
           {% for category, message in messages %}
-          <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown" role="alert">
+          <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown alert-profile" role="alert">
           <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             {{ message }}
           </div>

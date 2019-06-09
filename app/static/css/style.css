@@ -624,3 +624,7 @@ a.nav-link:hover, a.nav-link:focus {
     background-attachment: fixed;
     background-position: 100% 0px;
 }
+
+.alert.alert-register{
+	max-width: 450px !important; 
+}

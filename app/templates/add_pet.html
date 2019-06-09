@@ -54,11 +54,14 @@
                     <div class="col-md-10 col-xs-12">
                         {{ macros.render_input(form_field = form.info, id = 'FormInfo', class="md-textarea form-control", label = 'Описание', rows="3") }}
                     </div>
+                    <div class="col-md-10 col-xs-12">
+                        {% if img and img != None %}
+                        <img src="{{ url_for('static', filename='uploads/images/' + img)}}" class="w-25">
+                        {% endif %}
+                        {{ macros.render_input(form_field = form.avatar, id = 'FormAvatar', class="md-textarea form-control", label = 'Аватар', class_for_label = 'file-input', type='file') }}
+                    </div>
                 </div>
-                {% if img and img != None %}
-                    <img src="{{ url_for('static', filename='uploads/images/' + img)}}" class="w-25">
-                {% endif %}
-                {{ macros.render_input(form_field = form.avatar, id = 'FormAvatar', class="md-textarea form-control", label = 'Аватар', type='file') }}
+                
                    
                   <!-- Sign in button -->
                 {{ form.submit(class_="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0", value="Сохранить") }}

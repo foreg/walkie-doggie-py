@@ -35,7 +35,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    {% for current_bet in current_bets%}
+                    {% for current_bet in current_bets %}
                         <tr class="requestPast" data-id="{{current_bet.request.id}}" data-pet_id="{{current_bet.request.pets[0].pet_id}}" >
                             <th scope="row">{{ loop.index  }}</th>
                             <td>{{current_bet.summ}}</td>
@@ -45,6 +45,7 @@
                             <td>{{current_bet.request.pets[0].pet.name}}</td>
                         </tr>
                     {% endfor %}
+
                 </tbody>
             </table>
         </div>
