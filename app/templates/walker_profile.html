@@ -110,7 +110,7 @@
                     <div class="col-md-9 d-flex flex-direction-column">
                         <span class="span-profile">{{user.address}}</span>
                         <span class="span-profile my-3">{{user.phone}}</span>
-                        <span class="span-profile mb-3">{{user.walker_info.rating}}</span>
+                        <span class="span-profile mb-3">{{user.walker_info.rating|round(1)}}</span>
                     </div>
                     <div class="col-md-12 d-flex justify-content-center history-block">
                         <a href="{{ url_for('bets_history', user_id = user.id)}}">Показать актуальные ставки</a>
