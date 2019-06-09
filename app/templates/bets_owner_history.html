@@ -15,7 +15,13 @@
                     {% endfor %}
                 {% endif %}
             {% endwith %}
-            <h2 class="my-4">Актуальные аукционы 
+            <h2 class="my-4">
+                Актуальные аукционы 
+                <div class="far tooltipClass profile-tool">
+                    <span class="tooltiptext tooltip-owner">Для просмотра заявки нажмите на строку. При нажатии на ячейку
+                        с именем волкера, вы сможете просмотреть информацию о нем.
+                    </span>
+                </div>
             </h2>
             <table id="dtBasicExamplePast" class="table table-striped table-bordered bg-white" cellspacing="0" width="100%">
                 <thead>
@@ -33,7 +39,7 @@
                         <tr class="requestPast" data-id="{{current_bet.request.id}}" data-pet_id="{{current_bet.request.pets[0].pet_id}}" >
                             <th scope="row">{{ loop.index  }}</th>
                             <td>{{current_bet.summ}}</td>
-                            <td>{{current_bet.walker.name}}</td>
+                            <td data-walker_id={{current_bet.walker_id}}>{{current_bet.walker.name}}</td>
                             <td>{{current_bet.request.address}}</td>
                             <td>{{current_bet.request.walkDuration}} мин.</td>
                             <td>{{current_bet.request.pets[0].pet.name}}</td>

@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, Response
 from flask_login import current_user
 from app.forms import PetProfileForm
-from app.models import User, Pet, Breed, File, Pet_requests
+from app.models import User, Pet, Breed, File, Pet_requests, Request
 from app.utils import login_required, fill_entity
 from app import db
 from app import images
@@ -10,12 +10,12 @@ from datetime import datetime
 
 @login_required
 def PetHistory(id):
-    user = current_user        
+    user = current_user    
     pet = Pet() if id == -1 else Pet.query.filter_by(id=id, archiveDate=None).first() 
     if pet is None:
         flash('Питомец не найден', 'danger')
         return redirect(url_for('pets'))
-    requests = [row.request for row in Pet_requests.query.filter_by(pet_id=pet.id).all()]
+    requests = user.requests 
     return render_template('pet_history.html', user=user, pet=pet, requests=requests)
 
 @login_required
