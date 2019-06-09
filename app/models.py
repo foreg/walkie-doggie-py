@@ -37,6 +37,7 @@ class User(UserMixin, db.Model):
     bets = db.relationship('Bet', backref='walker', lazy='dynamic')
     # reviews = db.relationship('Review', backref='user', lazy='dynamic')
     reviews = db.relationship('Review', backref='Review.walker_id',primaryjoin='User.id==Review.user_id', lazy='dynamic')
+    requests = db.relationship('Request', backref='walker', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

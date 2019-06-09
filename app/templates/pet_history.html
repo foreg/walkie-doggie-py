@@ -23,20 +23,16 @@
                 </thead>
                 <tbody>
 
-                   {% for request in requests%}
-                   
+                   {% for request in requests %}
                         <tr class="request" data-id="{{request.id}}">
                         <th scope="row">{{ loop.index  }}</th>
-                        <td>{{request.surname}} {{request.name}}</td>
+                        <td>{{request.walker.surname}} {{request.walker.name}}</td>
                         <td>{{request.address}}</td>
                         <td>{{request.walkStartDate.strftime('%d.%m.%Y')}}</td>
                         <td>{{request.walkDuration}} минут</td>
                         <td>{{ request.finalPrice  if request.finalPrice else request.startingPrice }}р.</td>
                         </tr>
                     {% endfor %} 
-                    
-                
-                
             </table>
         </div>
     </section>

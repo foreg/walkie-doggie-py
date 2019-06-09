@@ -18,6 +18,14 @@ def index():
 def walker():
     return controller_index.Walker()
 
+@app.route('/walkerShow/<int(signed=True):walker_id>')
+def show_walker_profile(walker_id):
+    return controller_profile.ShowWalkerProfile(walker_id)
+
+@app.route('/walkersRating')
+def walkers_rating():
+    return controller_requests.WalkersRating()
+
 @app.route('/userAgreement')
 def userAgreement():
     return controller_index.UserAgreement()

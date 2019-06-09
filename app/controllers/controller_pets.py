@@ -15,7 +15,7 @@ def PetHistory(id):
     if pet is None:
         flash('Питомец не найден', 'danger')
         return redirect(url_for('pets'))
-    requests=db.session.query(User.surname,User.name, User.middlename, Request.address,Request.walkDuration, Request.finalPrice,Request.walkStartDate).join(Request, Request.walker_id == User.id).all()   
+    requests = user.requests 
     return render_template('pet_history.html', user=user, pet=pet, requests=requests)
 
 @login_required

@@ -600,6 +600,28 @@ input[type=file]{
 	overflow: auto;
   }
 
+  .table-review{
+	width: 100%;
+    padding: 0 15px;
+  }
+
+  .table{
+	  cursor: pointer;
+  }
+
+  .medal-icon{
+	  width: 40px;
+	  height: 40px;
+  }
+
+  .tooltip-owner{
+	  width: 22vw !important;
+	  margin-left: -11vw !important;
+  }
+
+  .walker-show{
+	max-height: 300px !important; 
+  }
   
   .rating {
 		float:center;
@@ -658,7 +680,6 @@ input[type=file]{
   .rating > label:active {
 	  position:relative;
 	  top:2px;
-	
   }
 
   

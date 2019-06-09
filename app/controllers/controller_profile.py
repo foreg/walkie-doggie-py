@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user
 from app.forms import UserProfileForm,WalkerProfileForm
-from app.models import load_user, Walker, File, Pet
+from app.models import load_user, Walker, File, Pet, Review, User
 from app.utils import login_required, fill_entity
 from app.constants import Roles
 from app import images
@@ -42,6 +42,14 @@ def OwnerProfile(db):
         return render_template('profile.html', form=form, user=user,
             img=url_for('static', filename='uploads/images/' + str(img)), pets=pets)
     return redirect(url_for('login'))
+
+@login_required
+def ShowWalkerProfile(walker_id):
+    user = current_user       
+    walker = User.query.filter_by(id=walker_id).first()
+    reviews = Review.query.filter_by(walker_id=walker_id).all()
+    return render_template('walker_show_profile.html', user=user, walker=walker, reviews=reviews)
+
 
 @login_required
 def WalkerProfile(db):

@@ -10,6 +10,17 @@ from datetime import datetime, timedelta
 
 
 @login_required
+def WalkersRating():
+    user = current_user        
+    walkers = Walker.query.order_by(Walker.rating.desc()).all()
+    rating_list = []
+    for walker in walkers:
+        count_requests = Request.query.filter_by(walker_id=walkers[0].user[0].id).all()
+        if walker.rating != 0 and len(count_requests) > 3:
+            rating_list.append(walker)
+    return render_template('walkers_rating.html', user=user, walkers=rating_list)
+
+@login_required
 def BetsOwnerHistory(user_id):
     user = current_user        
     bets = Bet.query.all()

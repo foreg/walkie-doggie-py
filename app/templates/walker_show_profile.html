@@ -1,0 +1,83 @@
+{% extends "base_roles.html" %}
+
+{% import 'forms.jinja' as macros %}
+{% block content %}
+<main>
+<section class="main-profile">
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{category}} alert-dismissible wow animated slideInDown" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-4 d-flex flex-direction-column align-items-center profile-img-block px-2 mr-3
+        pa-top-img profile-block walker-show justify-content-center">
+        {% if walker.avatar_id %} 
+        <img class="profile-img pb-2" src="{{ url_for('static', filename='uploads/images/' + walker.avatar_info.name)}}">
+        {% else %}
+            {% if walker.gender =='жен.' %} 
+                 <img class="profile-img pb-2" src="{{ url_for('static', filename='uploads/images/female.jpg')}}">
+            {% else %}
+                <img class="profile-img pb-2" src="{{ url_for('static', filename='uploads/images/male.jpg')}}">
+            {% endif %}
+        {% endif %}
+            </div>
+            <div class="col-md-8 pt-2 px-4 profile-block">
+                <div class="profile-header">
+                    <h2 class="h2-profile d-flex align-items-center">{{walker.surname}} {{walker.name}} 
+                        <span class="badge badge-primary ml-2">Волкер</span>
+                    </h2>
+                    <span class="span-profile">{{walker.info}}</span>
+                </div>
+                <hr>
+                <div class="row d-flex flex-direction-row">
+                    <div class="col-md-3 d-flex flex-direction-column">
+                        <span class="gray-text span-profile my-3">Телефон:</span>
+                        <span class="gray-text span-profile mb-3">Рейтинг:</span>
+                    </div>
+                    <div class="col-md-9 d-flex flex-direction-column">
+                        <span class="span-profile my-3">{{walker.phone}}</span>
+                        <span class="span-profile mb-3">{{walker.walker_info.rating}}</span>
+                    </div>
+                    <div class="cold-md-12 table-review">
+                        <h2 class="h2-profile d-flex align-items-center">Отзывы о волкере</h2>
+                        <table id="dtBasicExample" class="table table-striped table-bordered bg-white" cellspacing="0" width="100%">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Оставил отзыв</th>
+                                <th>Оценка</th>
+                                <th>Комментарий</th>
+                                <th>Время</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for review in reviews %}
+                                <tr>
+                                    <td scope="row">{{ loop.index }}</td>
+                                    <td>{{review.user.name}}</td>
+                                    <td>{{review.rating}}</td>
+                                    <td>{{review.comment}}</td>
+                                    {% if review.creationDate %}
+                                    <td>{{review.creationDate.strftime('%d.%m.%Y')}}</td>
+                                    {% endif %}
+                                </tr>
+                            {% endfor %} 
+                        </table>
+                    </div>
+                </div>
+                <hr>
+            </div>
+            
+        </div>
+    </div>
+</section>
+</main>
+<script src="{{url_for('static', filename='js/history.js')}}"></script>
+{% endblock %}
